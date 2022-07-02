@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "757478710267",
+    "firebase_url": "https://invention-plus-default-rtdb.firebaseio.com",
+    "project_id": "invention-plus",
+    "storage_bucket": "invention-plus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757478710267:android:e8a5fa0ed83618ed14495e",
+        "android_client_info": {
+          "package_name": "com.example.welding_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757478710267-nbr8rfuq3n92v77pbhepanm3dhctkemq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIO1gj0KOLv_yr5-zYIbox7Wg7q4uBens"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757478710267-nbr8rfuq3n92v77pbhepanm3dhctkemq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
