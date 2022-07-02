@@ -143,7 +143,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ),
               ),
               onTap: () {
-                Navigator.pushNamed(context, "orders");
+                Navigator.pushNamed(context, "initial_screen");
               },
             ),
 

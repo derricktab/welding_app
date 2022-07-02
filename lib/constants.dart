@@ -5,3 +5,5 @@ const Color bgColor = Color(0xFFFBFBFD);
 
 const double defaultPadding = 16.0;
 const double defaultBorderRadius = 20.0;
+
+var logo = "assets/images/logo1.PNG";

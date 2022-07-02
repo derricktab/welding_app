@@ -3,8 +3,10 @@ import 'package:welding_app/about.dart';
 import 'package:welding_app/contact.dart';
 import 'package:welding_app/drawer.dart';
 import 'package:welding_app/homepage.dart';
+import 'package:welding_app/initial_screen.dart';
 import 'package:welding_app/loader.dart';
 import 'package:welding_app/login.dart';
+import 'package:welding_app/orders.dart';
 import 'package:welding_app/services.dart';
 import 'package:welding_app/signup.dart';
 import 'profile.dart';
@@ -21,7 +23,6 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
- 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,6 +38,8 @@ class _MainAppState extends State<MainApp> {
         "loader": (context) => const MyLoader(),
         "reauthenticate": (context) => const MyLoader(),
         "about": (context) => const About(),
+        "orders": (context) => const Orders(),
+        "initial_screen": (context) => const InitialScreen(),
       },
       home: Stack(
         children: const [
