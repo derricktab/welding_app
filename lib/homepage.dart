@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
+import 'package:welding_app/mini_item.dart';
+import 'package:welding_app/single_service.dart';
 import 'constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
       onTap: drawerOpen
           ? () {
@@ -134,7 +135,49 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 40),
-      
+
+                  // SERVICES SECTION
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Services",
+                          style: TextStyle(fontSize: 19),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "services");
+                          },
+                          child: const Text("See All"),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          MiniItem(
+                              img: "assets/images/w1.jpg",
+                              service: "Windows",
+                              address: "windows"),
+                          MiniItem(
+                              img: "assets/images/d1.jpg",
+                              service: "Metal Doors",
+                              address: "windows"),
+                          MiniItem(
+                              img: "assets/images/w1.jpg",
+                              service: "Windows",
+                              address: "windows"),
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
 

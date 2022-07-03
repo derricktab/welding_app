@@ -36,7 +36,7 @@ class _ServicesState extends State<Services> {
                     service: "Windows",
                     address: "windows"),
 
-                const SizedBox(width: 20),
+                const SizedBox(width: 28),
                 // METALLIC DOORS
                 SingleService(
                     img: "assets/images/d1.jpg",
@@ -55,7 +55,7 @@ class _ServicesState extends State<Services> {
                     service: "Metallic Gates",
                     address: "metal gate"),
 
-                const SizedBox(width: 20),
+                const SizedBox(width: 28),
                 // RAILINGS
                 SingleService(
                     img: "assets/images/rail.png",
@@ -74,7 +74,7 @@ class _ServicesState extends State<Services> {
                     service: "Balcony",
                     address: "balcony"),
 
-                const SizedBox(width: 20),
+                const SizedBox(width: 28),
                 // ROOFING AND CONSTRUCTION
                 SingleService(
                     img: "assets/images/roofing.png",
@@ -95,7 +95,7 @@ class _ServicesState extends State<Services> {
                     service: "Construction",
                     address: "House"),
 
-                const SizedBox(width: 20),
+                const SizedBox(width: 28),
                 // FLOORING
                 SingleService(
                     img: "assets/images/f5.jpg",
