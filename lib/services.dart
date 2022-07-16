@@ -12,11 +12,11 @@ class _ServicesState extends State<Services> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 239, 244, 251),
+      backgroundColor: Color.fromARGB(255, 239, 251, 247),
       appBar: AppBar(
         title: const Text("SERVICES WE OFFER"),
         centerTitle: true,
-        foregroundColor: Colors.green,
+        foregroundColor: Color.fromARGB(255, 0, 154, 5),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -32,15 +32,15 @@ class _ServicesState extends State<Services> {
               children: [
                 // WINDOWS
                 SingleService(
-                    img: "assets/images/w1.jpg",
+                    img: "assets/images/w4.jpg",
                     service: "Windows",
                     address: "windows"),
 
                 const SizedBox(width: 28),
                 // METALLIC DOORS
                 SingleService(
-                    img: "assets/images/d1.jpg",
-                    service: "Metallic Doors",
+                    img: "assets/images/d2.webp",
+                    service: "Doors",
                     address: "metal door"),
               ],
             ),
@@ -51,14 +51,14 @@ class _ServicesState extends State<Services> {
               children: [
                 // METALLIC GATE
                 SingleService(
-                    img: "assets/images/gate.jpg",
+                    img: "assets/images/g1.jpg",
                     service: "Metallic Gates",
                     address: "metal gate"),
 
                 const SizedBox(width: 28),
                 // RAILINGS
                 SingleService(
-                    img: "assets/images/rail.png",
+                    img: "assets/images/s1.jpg",
                     service: "Stair Railings",
                     address: "railings"),
               ],
@@ -70,7 +70,7 @@ class _ServicesState extends State<Services> {
               children: [
                 // BALCONY
                 SingleService(
-                    img: "assets/images/b1.jpg",
+                    img: "assets/images/b3.png",
                     service: "Balcony",
                     address: "balcony"),
 
@@ -91,14 +91,14 @@ class _ServicesState extends State<Services> {
               children: [
                 // HOUSE CONSTRUCTION
                 SingleService(
-                    img: "assets/images/h1.jpg",
+                    img: "assets/images/c1.png",
                     service: "Construction",
                     address: "House"),
 
                 const SizedBox(width: 28),
                 // FLOORING
                 SingleService(
-                    img: "assets/images/f5.jpg",
+                    img: "assets/images/f2.jpg",
                     service: "Flooring",
                     address: "Flooring"),
               ],

@@ -164,26 +164,35 @@ class _HomePageState extends State<HomePage> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
+                          // WINDOWS
                           MiniItem(
-                              img: "assets/images/w1.jpg",
+                              img: "assets/images/w4.jpg",
                               service: "Windows",
-                              address: "windows"),
+                             ),
+
+                          // WOODEN DOORS
                           MiniItem(
                               img: "assets/images/wdoor1.jpg",
                               service: "Wood Doors",
-                              address: "Wooden Doors"),
+                              ),
+
+                          // METAL DOORS
                           MiniItem(
-                              img: "assets/images/d1.jpg",
+                              img: "assets/images/d2.webp",
                               service: "Metal Doors",
-                              address: "windows"),
+                              ),
+
+                          // BALCONY
                           MiniItem(
-                              img: "assets/images/balcony.jpg",
+                              img: "assets/images/b3.png",
                               service: "Balcony",
-                              address: "Balcony"),
+                              ),
+
+                          // ROOFING
                           MiniItem(
-                              img: "assets/images/roof.jpg",
+                              img: "assets/images/roofing.png",
                               service: "Roofing",
-                              address: "Roofing"),
+                             ),
                         ],
                       ),
                     ),
@@ -221,23 +230,23 @@ class _HomePageState extends State<HomePage> {
                           MiniItem(
                               img: "assets/images/w1.jpg",
                               service: "Windows",
-                              address: "windows"),
+                              ),
                           MiniItem(
                               img: "assets/images/wdoor1.jpg",
                               service: "Wood Doors",
-                              address: "Wooden Doors"),
+                              ),
                           MiniItem(
                               img: "assets/images/d1.jpg",
                               service: "Metal Doors",
-                              address: "windows"),
+                              ),
                           MiniItem(
                               img: "assets/images/balcony.jpg",
                               service: "Balcony",
-                              address: "Balcony"),
+                              ),
                           MiniItem(
                               img: "assets/images/roof.jpg",
                               service: "Roofing",
-                              address: "Roofing"),
+                              ),
                         ],
                       ),
                     ),

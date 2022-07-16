@@ -7,6 +7,7 @@ import 'package:welding_app/homepage.dart';
 import 'package:welding_app/loader.dart';
 import 'package:welding_app/login.dart';
 import 'package:welding_app/orders.dart';
+import 'package:welding_app/product.dart';
 import 'package:welding_app/services.dart';
 import 'package:welding_app/signup.dart';
 import 'profile.dart';
@@ -39,6 +40,7 @@ class _MainAppState extends State<MainApp> {
         "reauthenticate": (context) => const MyLoader(),
         "about": (context) => const About(),
         "orders": (context) => const Orders(),
+        "product": (context) => const Product(),
       },
       home: AnimatedSplashScreen(
         splash: 'assets/images/logo1.PNG',

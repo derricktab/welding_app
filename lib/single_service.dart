@@ -34,6 +34,7 @@ class SingleService extends StatelessWidget {
                 img,
                 height: 120,
                 width: 170,
+                scale: 0.0001,
               ),
             ),
             const SizedBox(height: 13),
