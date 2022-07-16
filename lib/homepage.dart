@@ -136,15 +136,16 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 40),
 
-                  // SERVICES SECTION
+                  // SERVICES SECTION HEAD
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
                           "Services",
-                          style: TextStyle(fontSize: 19),
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
                         ),
                         TextButton(
                           onPressed: () {
@@ -156,8 +157,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
+                  // SERVICES SECTION
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -167,17 +169,81 @@ class _HomePageState extends State<HomePage> {
                               service: "Windows",
                               address: "windows"),
                           MiniItem(
+                              img: "assets/images/wdoor1.jpg",
+                              service: "Wood Doors",
+                              address: "Wooden Doors"),
+                          MiniItem(
                               img: "assets/images/d1.jpg",
                               service: "Metal Doors",
                               address: "windows"),
                           MiniItem(
-                              img: "assets/images/w1.jpg",
-                              service: "Windows",
-                              address: "windows"),
+                              img: "assets/images/balcony.jpg",
+                              service: "Balcony",
+                              address: "Balcony"),
+                          MiniItem(
+                              img: "assets/images/roof.jpg",
+                              service: "Roofing",
+                              address: "Roofing"),
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 25),
+
+                  // POPULAR PRODUCTS SECTION HEAD
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Popular Products",
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "services");
+                          },
+                          child: const Text("See All"),
+                        )
+                      ],
+                    ),
+                  ),
+
+                  // POPULAR PRODUCTS SECTION
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          MiniItem(
+                              img: "assets/images/w1.jpg",
+                              service: "Windows",
+                              address: "windows"),
+                          MiniItem(
+                              img: "assets/images/wdoor1.jpg",
+                              service: "Wood Doors",
+                              address: "Wooden Doors"),
+                          MiniItem(
+                              img: "assets/images/d1.jpg",
+                              service: "Metal Doors",
+                              address: "windows"),
+                          MiniItem(
+                              img: "assets/images/balcony.jpg",
+                              service: "Balcony",
+                              address: "Balcony"),
+                          MiniItem(
+                              img: "assets/images/roof.jpg",
+                              service: "Roofing",
+                              address: "Roofing"),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // POPULAR PRODUCTS
                 ],
               ),
 
@@ -208,7 +274,6 @@ class _HomePageState extends State<HomePage> {
                                 onPressed: () {
                                   setState(() {
                                     isHome = true;
-                                    isServices = false;
                                     isContact = false;
                                   });
                                 },
@@ -222,45 +287,15 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-
-                      // SERVICES BUTTON
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isHome = false;
-                            isServices = true;
-                            isContact = false;
-                          });
-                        },
-                        child: Row(
-                          children: [
-                            IconButton(
-                                color: isServices ? activeColor : inactiveColor,
-                                tooltip: "Services",
-                                onPressed: () {
-                                  setState(() {
-                                    isHome = false;
-                                    isServices = true;
-                                    isContact = false;
-                                  });
-                                },
-                                icon: const Icon(FontAwesomeIcons.listCheck)),
-                            Text(
-                              "SERVICES",
-                              style: TextStyle(
-                                  color:
-                                      isServices ? activeColor : inactiveColor),
-                            ),
-                          ],
-                        ),
+                      const Text(
+                        "|",
+                        style: TextStyle(color: Colors.white),
                       ),
-
                       // CONTACT BUTTON
                       GestureDetector(
                         onTap: () {
                           setState(() {
                             isHome = false;
-                            isServices = false;
                             isContact = true;
                           });
                         },
