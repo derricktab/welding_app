@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_app/about.dart';
 import 'package:welding_app/contact.dart';
@@ -13,6 +14,9 @@ import 'package:welding_app/signup.dart';
 import 'profile.dart';
 
 void main(List<String> args) {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Firebase.initializeApp();
   runApp(MainApp());
 }
 
@@ -24,6 +28,8 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+ 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,7 +48,8 @@ class _MainAppState extends State<MainApp> {
         "orders": (context) => const Orders(),
         "product": (context) => const Product(),
       },
-      home: AnimatedSplashScreen(splashIconSize: 180,
+      home: AnimatedSplashScreen(
+        splashIconSize: 180,
         splash: 'assets/images/logo1.PNG',
         nextScreen: Stack(
           children: const [

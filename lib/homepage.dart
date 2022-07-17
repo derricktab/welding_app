@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:welding_app/mini_item.dart';
 import 'package:welding_app/single_service.dart';
 import 'constants.dart';
@@ -14,6 +15,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+  var _cartItems;
+  var prefs;
+
+  // initialize shared preferences
+  initSharedPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    _cartItems = prefs.getInt("cartItems");
+
+    setState(() {});
+  }
+
+// init state method
+  @override
+  void initState() {
+    // TODO: implement initState
+    initSharedPrefs();
+  }
+
   double xOffset = 0;
   double yOffset = 0;
   double scaleFactor = 1;
@@ -83,13 +103,28 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                 actions: [
-                  // CART ICON
-                  IconButton(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    icon: const Icon(Icons.shopping_cart),
-                    onPressed: () {
-                      print("HELLO THERE USER");
-                    },
+                  // SHOPPING CART ICON
+                  Stack(
+                    alignment: AlignmentDirectional.centerEnd,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(right: 20),
+                        child: const Icon(Icons.shopping_cart),
+                      ),
+                      // CART ITEMS NUMBER
+                      Positioned(
+                          top: 5,
+                          right: 0,
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 12),
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(50)),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 2),
+                            child: Text(_cartItems.toString()),
+                          ))
+                    ],
                   ),
 
                   // User Profile
@@ -166,33 +201,33 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           // WINDOWS
                           MiniItem(
-                              img: "assets/images/w4.jpg",
-                              service: "Windows",
-                             ),
+                            img: "assets/images/w4.jpg",
+                            service: "Windows",
+                          ),
 
                           // WOODEN DOORS
                           MiniItem(
-                              img: "assets/images/wdoor1.jpg",
-                              service: "Wood Doors",
-                              ),
+                            img: "assets/images/wdoor1.jpg",
+                            service: "Wood Doors",
+                          ),
 
                           // METAL DOORS
                           MiniItem(
-                              img: "assets/images/d2.webp",
-                              service: "Metal Doors",
-                              ),
+                            img: "assets/images/d2.webp",
+                            service: "Metal Doors",
+                          ),
 
                           // BALCONY
                           MiniItem(
-                              img: "assets/images/b3.png",
-                              service: "Balcony",
-                              ),
+                            img: "assets/images/b3.png",
+                            service: "Balcony",
+                          ),
 
                           // ROOFING
                           MiniItem(
-                              img: "assets/images/roofing.png",
-                              service: "Roofing",
-                             ),
+                            img: "assets/images/roofing.png",
+                            service: "Roofing",
+                          ),
                         ],
                       ),
                     ),
@@ -228,25 +263,25 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         children: [
                           MiniItem(
-                              img: "assets/images/w1.jpg",
-                              service: "Windows",
-                              ),
+                            img: "assets/images/w1.jpg",
+                            service: "Windows",
+                          ),
                           MiniItem(
-                              img: "assets/images/wdoor1.jpg",
-                              service: "Wood Doors",
-                              ),
+                            img: "assets/images/wdoor1.jpg",
+                            service: "Wood Doors",
+                          ),
                           MiniItem(
-                              img: "assets/images/d1.jpg",
-                              service: "Metal Doors",
-                              ),
+                            img: "assets/images/d1.jpg",
+                            service: "Metal Doors",
+                          ),
                           MiniItem(
-                              img: "assets/images/balcony.jpg",
-                              service: "Balcony",
-                              ),
+                            img: "assets/images/balcony.jpg",
+                            service: "Balcony",
+                          ),
                           MiniItem(
-                              img: "assets/images/roof.jpg",
-                              service: "Roofing",
-                              ),
+                            img: "assets/images/roof.jpg",
+                            service: "Roofing",
+                          ),
                         ],
                       ),
                     ),

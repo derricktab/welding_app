@@ -61,7 +61,7 @@ class MiniItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context) => Product())));
+        Navigator.push(context, MaterialPageRoute(builder: ((context) => Product())));
         print("gone to product");
       },
     );
