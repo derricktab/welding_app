@@ -42,7 +42,7 @@ class _MainAppState extends State<MainApp> {
         "orders": (context) => const Orders(),
         "product": (context) => const Product(),
       },
-      home: AnimatedSplashScreen(
+      home: AnimatedSplashScreen(splashIconSize: 180,
         splash: 'assets/images/logo1.PNG',
         nextScreen: Stack(
           children: const [
