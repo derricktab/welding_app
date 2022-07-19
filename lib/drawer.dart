@@ -106,7 +106,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     fontWeight: FontWeight.w900,
                     letterSpacing: 1.5,
                   )),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, "home");
+              },
             ),
 
             // INFO TILE

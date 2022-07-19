@@ -2,6 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_app/about.dart';
+import 'package:welding_app/cart.dart';
 import 'package:welding_app/contact.dart';
 import 'package:welding_app/drawer.dart';
 import 'package:welding_app/homepage.dart';
@@ -47,6 +48,7 @@ class _MainAppState extends State<MainApp> {
         "about": (context) => const About(),
         "orders": (context) => const Orders(),
         "product": (context) => const Product(),
+        "cart": (context) => const Cart(),
       },
       home: AnimatedSplashScreen(
         splashIconSize: 180,

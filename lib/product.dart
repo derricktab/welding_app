@@ -17,6 +17,51 @@ class Product extends StatefulWidget {
 }
 
 class _ProductState extends State<Product> {
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(
+                "assets/images/success.png",
+                width: 90,
+              ),
+              const Text("SUCCESS")
+            ],
+          ),
+          content: const Text(
+            'Your Item Has Been Added To The Cart Succesfully!',
+            textAlign: TextAlign.center,
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Continue Shopping',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text(
+                'Go To Cart',
+                style: TextStyle(fontSize: 18, color: Colors.green),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "cart");
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   var _cartItems;
   var prefs;
 
@@ -56,6 +101,11 @@ class _ProductState extends State<Product> {
   // INITIAL VALUE OF QUANTITY
   int _currentHorizontalIntValue = 1;
 
+  // DERRICK
+  openDrawer() {
+    return Drawer();
+  }
+
   @override
   Widget build(BuildContext context) {
 // IMAGE SLIDERS
@@ -93,48 +143,59 @@ class _ProductState extends State<Product> {
         elevation: 0,
         actions: [
           // SHOPPING CART ICON
-          Stack(
-            alignment: AlignmentDirectional.centerEnd,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(right: 20),
-                child: const Icon(Icons.shopping_cart),
-              ),
-              // CART ITEMS NUMBER
-              Positioned(
-                  top: 5,
-                  right: 0,
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 12),
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(50)),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                    child: Text(_cartItems.toString()),
-                  ))
-            ],
+          GestureDetector(
+            onTap: () {
+              print("clicked");
+              openDrawer();
+            },
+            child: Stack(
+              alignment: AlignmentDirectional.centerEnd,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(right: 20),
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "cart");
+                      },
+                      icon: const Icon(
+                        Icons.shopping_cart,
+                        // size: 20,
+                      )),
+                ),
+                // CART ITEMS NUMBER
+                Positioned(
+                    top: 5,
+                    right: 0,
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 12),
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(50)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 2),
+                      child: Text(_cartItems.toString()),
+                    ))
+              ],
+            ),
           ),
         ],
       ),
       body: ListView(
         children: [
           // CAROUSEL SLIDE
-          Expanded(
-            child: CarouselSlider(
-              items: imageSliders,
-              carouselController: _controller,
-              options: CarouselOptions(
-                  height: 300,
-                  autoPlay: false,
-                  enlargeCenterPage: true,
-                  aspectRatio: 2.0,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  }),
-            ),
+          CarouselSlider(
+            items: imageSliders,
+            carouselController: _controller,
+            options: CarouselOptions(
+                height: 300,
+                autoPlay: false,
+                enlargeCenterPage: true,
+                aspectRatio: 2.0,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _current = index;
+                  });
+                }),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -402,11 +463,11 @@ class _ProductState extends State<Product> {
                   onPressed: () async {
                     _cartItems += 1;
                     await prefs.setInt("cartItems", _cartItems);
-                    var out = await prefs.getInt("cartItems");
-                    print(out);
+
                     setState(() {});
 
                     print("ADD TO CART BUTTON CLICKED");
+                    _showMyDialog();
                   },
                   child: const Text("ADD TO CART"),
                 ),

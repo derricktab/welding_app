@@ -1,10 +1,12 @@
+import 'dart:async';
+import 'dart:math';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:welding_app/mini_item.dart';
-import 'package:welding_app/single_service.dart';
 import 'constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
   var _cartItems;
   var prefs;
 
@@ -46,8 +47,37 @@ class _HomePageState extends State<HomePage> {
   Color? inactiveColor = Color.fromARGB(255, 167, 164, 140);
   var _textController = TextEditingController();
 
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
+
+// IMAGE LIST
+  final List<String> imgList = [
+    'assets/images/door3.jpg',
+    'assets/images/d5.jpg',
+    'assets/images/window4.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
+    // IMAGE SLIDERS
+    final List<Widget> imageSliders = imgList
+        .map((item) => Container(
+              margin: EdgeInsets.all(5.0),
+              height: 600,
+              child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                  child: Stack(
+                    children: <Widget>[
+                      Image.asset(
+                        item,
+                        fit: BoxFit.cover,
+                        width: 1000.0,
+                        height: 400,
+                      ),
+                    ],
+                  )),
+            ))
+        .toList();
     return GestureDetector(
       onTap: drawerOpen
           ? () {
@@ -145,19 +175,61 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+
+              // BODY OF THE APP
               body: ListView(
                 children: [
+                  // CAROUSEL SLIDE
+                  CarouselSlider(
+                    items: imageSliders,
+                    carouselController: _controller,
+                    options: CarouselOptions(
+                        height: 250,
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        aspectRatio: 2.0,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _current = index;
+                          });
+                        }),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: imgList.asMap().entries.map((entry) {
+                      return GestureDetector(
+                        onTap: () => _controller.animateToPage(entry.key),
+                        child: Container(
+                          width: 12.0,
+                          height: 12.0,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 4.0),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: (Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : Colors.black)
+                                  .withOpacity(
+                                      _current == entry.key ? 0.9 : 0.4)),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  // SEARCH BAR
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 30),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(40),
-                          bottomRight: Radius.circular(40)),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        40,
+                      ),
                       color: primaryColor,
                     ),
 
-                    // SEARCH BAR
+                    // search input box
                     child: OutlineSearchBar(
                       textEditingController: _textController,
                       borderRadius: BorderRadius.circular(25),
@@ -169,7 +241,8 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                     ),
                   ),
-                  const SizedBox(height: 40),
+
+                  const SizedBox(height: 15),
 
                   // SERVICES SECTION HEAD
                   Padding(
