@@ -29,7 +29,7 @@ class SingleProduct extends StatelessWidget {
             ),
           ],
         ),
-        height: 170,
+        height: 300,
         width: 150,
         child: Column(
           children: [
@@ -64,9 +64,7 @@ class SingleProduct extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const Product()));
+            context, MaterialPageRoute(builder: (context) => const Product()));
       },
     );
   }
