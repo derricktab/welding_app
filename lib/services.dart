@@ -50,7 +50,7 @@ class _ServicesState extends State<Services> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // METALLIC GATE
-                SingleService(
+                SingleService( 
                   img: "assets/images/g1.jpg",
                   service: "Gates",
                 ),
