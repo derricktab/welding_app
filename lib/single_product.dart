@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:welding_app/prod_list.dart';
+import 'package:welding_app/product.dart';
 
-class SingleService extends StatelessWidget {
+class SingleProduct extends StatelessWidget {
   String img;
-  String service;
+  String prodName;
+  String price;
 
-  SingleService({
+  SingleProduct({
     Key? key,
     required this.img,
-    required this.service,
+    required this.prodName,
+    required this.price,
   }) : super(key: key);
 
   @override
@@ -45,7 +47,7 @@ class SingleService extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  service,
+                  prodName,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -64,7 +66,7 @@ class SingleService extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ProdList(category: service)));
+                builder: (context) => const Product()));
       },
     );
   }

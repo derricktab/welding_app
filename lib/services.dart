@@ -52,7 +52,7 @@ class _ServicesState extends State<Services> {
                 // METALLIC GATE
                 SingleService(
                   img: "assets/images/g1.jpg",
-                  service: "Metallic Gates",
+                  service: "Gates",
                 ),
 
                 const SizedBox(width: 28),
