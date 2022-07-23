@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:welding_app/mini_item.dart';
+import 'package:welding_app/mini_services.dart';
 import 'constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -370,31 +371,31 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         children: [
                           // WINDOWS
-                          MiniItem(
+                          MiniServices(
                             img: "assets/images/w4.jpg",
                             service: "Windows",
                           ),
 
                           // METAL DOORS
-                          MiniItem(
+                          MiniServices(
                             img: "assets/images/d2.webp",
                             service: "Metal Doors",
                           ),
 
                           // BALCONY
-                          MiniItem(
+                          MiniServices(
                             img: "assets/images/b3.png",
                             service: "Balcony",
                           ),
 
                           // ROOFING
-                          MiniItem(
+                          MiniServices(
                             img: "assets/images/roofing.png",
                             service: "Roofing",
                           ),
 
                           // WOODEN DOORS
-                          MiniItem(
+                          MiniServices(
                             img: "assets/images/wdoor1.jpg",
                             service: "Wood Doors",
                           ),

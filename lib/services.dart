@@ -32,16 +32,16 @@ class _ServicesState extends State<Services> {
               children: [
                 // WINDOWS
                 SingleService(
-                    img: "assets/images/w4.jpg",
-                    service: "Windows",
-                    address: "windows"),
+                  img: "assets/images/w4.jpg",
+                  service: "Windows",
+                ),
 
                 const SizedBox(width: 28),
                 // METALLIC DOORS
                 SingleService(
-                    img: "assets/images/d2.webp",
-                    service: "Doors",
-                    address: "metal door"),
+                  img: "assets/images/d2.webp",
+                  service: "Doors",
+                ),
               ],
             ),
             const SizedBox(height: 30),
@@ -51,16 +51,16 @@ class _ServicesState extends State<Services> {
               children: [
                 // METALLIC GATE
                 SingleService(
-                    img: "assets/images/g1.jpg",
-                    service: "Metallic Gates",
-                    address: "metal gate"),
+                  img: "assets/images/g1.jpg",
+                  service: "Metallic Gates",
+                ),
 
                 const SizedBox(width: 28),
                 // RAILINGS
                 SingleService(
-                    img: "assets/images/s1.jpg",
-                    service: "Stair Railings",
-                    address: "railings"),
+                  img: "assets/images/s1.jpg",
+                  service: "Stair Railings",
+                ),
               ],
             ),
             const SizedBox(height: 30),
@@ -70,16 +70,16 @@ class _ServicesState extends State<Services> {
               children: [
                 // BALCONY
                 SingleService(
-                    img: "assets/images/b3.png",
-                    service: "Balcony",
-                    address: "balcony"),
+                  img: "assets/images/b3.png",
+                  service: "Balcony",
+                ),
 
                 const SizedBox(width: 28),
                 // ROOFING AND CONSTRUCTION
                 SingleService(
-                    img: "assets/images/roofing.png",
-                    service: "Roofing",
-                    address: "Roofing"),
+                  img: "assets/images/roofing.png",
+                  service: "Roofing",
+                ),
               ],
             ),
 
@@ -91,16 +91,16 @@ class _ServicesState extends State<Services> {
               children: [
                 // HOUSE CONSTRUCTION
                 SingleService(
-                    img: "assets/images/c1.png",
-                    service: "Construction",
-                    address: "House"),
+                  img: "assets/images/c1.png",
+                  service: "Construction",
+                ),
 
                 const SizedBox(width: 28),
                 // FLOORING
                 SingleService(
-                    img: "assets/images/f2.jpg",
-                    service: "Flooring",
-                    address: "Flooring"),
+                  img: "assets/images/f2.jpg",
+                  service: "Flooring",
+                ),
               ],
             ),
             const SizedBox(height: 50)

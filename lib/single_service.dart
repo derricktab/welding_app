@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:welding_app/prod_list.dart';
 
 class SingleService extends StatelessWidget {
   String img;
   String service;
-  String address;
 
   SingleService({
     Key? key,
     required this.img,
     required this.service,
-    required this.address,
   }) : super(key: key);
 
   @override
@@ -58,7 +57,10 @@ class SingleService extends StatelessWidget {
         ),
       ),
       onTap: () {
-        print(address);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProdList(category: service)));
       },
     );
   }

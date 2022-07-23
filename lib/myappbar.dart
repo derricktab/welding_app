@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatefulWidget{
-  var bgColor;
-  var title;
+  final bgColor;
+  final title;
 
-  MyAppBar({Key? key, this.bgColor, this.title}) : super(key: key);
+  const MyAppBar({Key? key, this.bgColor = Colors.green, this.title}) : super(key: key);
 
   @override
   State<MyAppBar> createState() => _MyAppBarState();

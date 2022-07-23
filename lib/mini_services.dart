@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:welding_app/prod_list.dart';
 import 'package:welding_app/product.dart';
 
-class MiniItem extends StatelessWidget {
+class MiniServices extends StatelessWidget {
   String img;
   String service;
 
-  MiniItem({
+  MiniServices({
     Key? key,
     required this.img,
     required this.service,
@@ -62,8 +62,7 @@ class MiniItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: ((context) => const Product())));
+        Navigator.push(context, MaterialPageRoute(builder: ((context) => ProdList(category: service,))));
       },
     );
   }
