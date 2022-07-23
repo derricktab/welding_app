@@ -20,6 +20,88 @@ class _HomePageState extends State<HomePage> {
   var _cartItems;
   var prefs;
 
+  // METHOD TO DISPLAY ALERT DIALOG FOR CONTACT
+  showAlertDialog() {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(
+                "assets/images/contact1.png",
+                width: 90,
+              ),
+              const Text("Contact Us")
+            ],
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                // ADDRESS
+                Row(
+                  children: const [
+                    Text(
+                      'ADDRESS: ',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Nsangi, Manja Zone',
+                      softWrap: true,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                // EMAIL
+                Row(
+                  children: const [
+                    Text(
+                      'EMAIL: ',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'info@inventionplus.co.ug',
+                      softWrap: true,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+
+                // PHONE NUMBER
+                Row(
+                  children: const [
+                    Text(
+                      'PHONE NUMBER: ',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '+256772438981',
+                      softWrap: true,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text(
+                'Send Us An Email',
+                style: TextStyle(fontSize: 18, color: Colors.green),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "contact");
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   // initialize shared preferences
   initSharedPrefs() async {
     prefs = await SharedPreferences.getInstance();
@@ -134,27 +216,32 @@ class _HomePageState extends State<HomePage> {
                       ),
                 actions: [
                   // SHOPPING CART ICON
-                  Stack(
-                    alignment: AlignmentDirectional.centerEnd,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(right: 20),
-                        child: const Icon(Icons.shopping_cart),
-                      ),
-                      // CART ITEMS NUMBER
-                      Positioned(
-                          top: 5,
-                          right: 0,
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 12),
-                            decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(50)),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 2),
-                            child: Text(_cartItems.toString()),
-                          ))
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "cart");
+                    },
+                    child: Stack(
+                      alignment: AlignmentDirectional.centerEnd,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          child: const Icon(Icons.shopping_cart),
+                        ),
+                        // CART ITEMS NUMBER
+                        Positioned(
+                            top: 5,
+                            right: 0,
+                            child: Container(
+                              margin: const EdgeInsets.only(right: 12),
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(50)),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 2),
+                              child: Text(_cartItems.toString()),
+                            ))
+                      ],
+                    ),
                   ),
 
                   // User Profile
@@ -178,6 +265,8 @@ class _HomePageState extends State<HomePage> {
 
               // BODY OF THE APP
               body: ListView(
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
                 children: [
                   // CAROUSEL SLIDE
                   CarouselSlider(
@@ -218,15 +307,24 @@ class _HomePageState extends State<HomePage> {
                   ),
                   // SEARCH BAR
                   Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                     margin:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
                         40,
                       ),
-                      color: primaryColor,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.green,
+                            offset: Offset.fromDirection(2),
+                            blurRadius: 5,
+                            blurStyle: BlurStyle.outer),
+                        BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 8,
+                            blurStyle: BlurStyle.inner),
+                      ],
+                      color: Colors.transparent,
                     ),
 
                     // search input box
@@ -237,7 +335,6 @@ class _HomePageState extends State<HomePage> {
                       elevation: 3,
                       clearButtonColor: Colors.black,
                       borderColor: Colors.black,
-                      margin: const EdgeInsets.symmetric(horizontal: 10),
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                     ),
                   ),
@@ -278,12 +375,6 @@ class _HomePageState extends State<HomePage> {
                             service: "Windows",
                           ),
 
-                          // WOODEN DOORS
-                          MiniItem(
-                            img: "assets/images/wdoor1.jpg",
-                            service: "Wood Doors",
-                          ),
-
                           // METAL DOORS
                           MiniItem(
                             img: "assets/images/d2.webp",
@@ -301,20 +392,26 @@ class _HomePageState extends State<HomePage> {
                             img: "assets/images/roofing.png",
                             service: "Roofing",
                           ),
+
+                          // WOODEN DOORS
+                          MiniItem(
+                            img: "assets/images/wdoor1.jpg",
+                            service: "Wood Doors",
+                          ),
                         ],
                       ),
                     ),
                   ),
                   const SizedBox(height: 25),
 
-                  // POPULAR PRODUCTS SECTION HEAD
+                  // POPULAR DESIGNS SECTION HEAD
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          "Popular Products",
+                          "Popular Designs",
                           style: TextStyle(
                               fontSize: 19, fontWeight: FontWeight.bold),
                         ),
@@ -360,7 +457,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
-                  // POPULAR PRODUCTS
+                  const SizedBox(height: 35),
                 ],
               ),
 
@@ -370,36 +467,23 @@ class _HomePageState extends State<HomePage> {
                 // notchMargin: 6,
                 color: primaryColor,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.2),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       // HOME BUTTON
                       GestureDetector(
                         onTap: () {
-                          setState(() {
-                            isHome = true;
-                            isServices = false;
-                            isContact = false;
-                          });
+                          setState(() {});
                         },
                         child: Row(
                           children: [
-                            IconButton(
-                                color: isHome ? activeColor : inactiveColor,
-                                tooltip: "Homepage",
-                                onPressed: () {
-                                  setState(() {
-                                    isHome = true;
-                                    isContact = false;
-                                  });
-                                },
-                                icon:
-                                    const Icon(FontAwesomeIcons.houseChimney)),
+                            Icon(FontAwesomeIcons.houseChimney,
+                                color: activeColor),
+                            const SizedBox(width: 12),
                             Text(
                               "HOME",
-                              style: TextStyle(
-                                  color: isHome ? activeColor : inactiveColor),
+                              style: TextStyle(color: activeColor),
                             ),
                           ],
                         ),
@@ -415,25 +499,15 @@ class _HomePageState extends State<HomePage> {
                             isHome = false;
                             isContact = true;
                           });
+                          showAlertDialog();
                         },
                         child: Row(
                           children: [
-                            IconButton(
-                                color: isContact ? activeColor : inactiveColor,
-                                tooltip: "Contact",
-                                onPressed: () {
-                                  setState(() {
-                                    isHome = false;
-                                    isServices = false;
-                                    isContact = true;
-                                  });
-                                },
-                                icon: const Icon(FontAwesomeIcons.phone)),
+                            Icon(FontAwesomeIcons.phone, color: inactiveColor),
+                            const SizedBox(width: 10),
                             Text(
                               "CONTACT",
-                              style: TextStyle(
-                                  color:
-                                      isContact ? activeColor : inactiveColor),
+                              style: TextStyle(color: inactiveColor),
                             ),
                           ],
                         ),

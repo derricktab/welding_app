@@ -1,4 +1,2 @@
-about us page
-
 implement the search feature
-cart page and checkout
+checkout

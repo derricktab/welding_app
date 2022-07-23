@@ -278,7 +278,7 @@ class _ProductState extends State<Product> {
 
                     // PRICE
                     const Text(
-                      "USH 230,000",
+                      "~ USH 230,000",
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
