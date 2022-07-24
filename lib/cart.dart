@@ -113,7 +113,7 @@ class _CartState extends State<Cart> {
             // SHOPPING CART ICON
             GestureDetector(
               onTap: () {
-                print("clicked");
+                setState(() {});
               },
               child: Stack(
                 alignment: AlignmentDirectional.centerEnd,
@@ -132,7 +132,7 @@ class _CartState extends State<Cart> {
                       child: Container(
                         margin: const EdgeInsets.only(right: 12),
                         decoration: BoxDecoration(
-                            color: Colors.lightGreenAccent,
+                            color: const Color.fromARGB(255, 95, 255, 89),
                             borderRadius: BorderRadius.circular(50)),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 5, vertical: 2),
@@ -144,16 +144,16 @@ class _CartState extends State<Cart> {
           ],
         ),
         body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           children: [
             const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              padding: EdgeInsets.only(bottom: 28, left: 15),
               child: Text(
                 "SHOPPING \nCART",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
-                    color: Colors.green,
+                    color: Color.fromARGB(255, 16, 110, 19),
                     fontFamily: "times"),
               ),
             ),
@@ -165,11 +165,39 @@ class _CartState extends State<Cart> {
                 children: cartItems.map((item) {
                   return Dismissible(
                     key: GlobalKey(),
-                    background: Container(color: Colors.red),
-                    secondaryBackground: Container(color: Colors.green),
-                    onUpdate: (details) {
-                      print(details.toString());
+                    background: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(40),
+                          )),
+                    ),
+                    confirmDismiss: (direction) async {
+                      var response = await showDialog<bool>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: const Text(
+                                'Are You Sure You Want To Remove This Item From Cart?'),
+                            actions: <Widget>[
+                              TextButton(
+                                  child: const Text('Yes'),
+                                  // Return "true" when dismissed.
+                                  onPressed: () =>
+                                      Navigator.pop(context, true)),
+                              TextButton(
+                                  child: const Text('No'),
+                                  // Return "false" when dismissed.
+                                  onPressed: () =>
+                                      Navigator.pop(context, false)),
+                            ],
+                          );
+                        },
+                      );
+
+                      return response;
                     },
+                    direction: DismissDirection.endToStart,
                     child: CartItem(
                         imagePath: item["image"].toString(),
                         itemName: item["prodName"].toString(),
@@ -179,7 +207,7 @@ class _CartState extends State<Cart> {
                 }).toList(),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
             // TOTAL
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -232,7 +260,8 @@ class CartItem extends StatelessWidget {
       children: [
         // product image
         ClipRRect(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(40), bottomLeft: Radius.circular(40)),
           child: Image.asset(
             imagePath,
             width: 150,
