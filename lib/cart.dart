@@ -233,7 +233,8 @@ class _CartState extends State<Cart> {
                     borderRadius: BorderRadius.circular(12)),
               ),
               onPressed: () async {
-                setState(() {});
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "checkout");
               },
               child: const Text("CHECKOUT"),
             ),
