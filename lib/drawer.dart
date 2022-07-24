@@ -107,7 +107,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     letterSpacing: 1.5,
                   )),
               onTap: () {
-                Navigator.pushNamed(context, "home");
+                setState(() {});
               },
             ),
 

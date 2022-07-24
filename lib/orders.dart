@@ -14,6 +14,14 @@ class _OrdersState extends State<Orders> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.chevron_left,
+              size: 38,
+            )),
         title: const Text("ORDERS"),
         centerTitle: true,
         backgroundColor: primaryColor,

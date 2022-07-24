@@ -145,23 +145,17 @@ class _ProductState extends State<Product> {
           // SHOPPING CART ICON
           GestureDetector(
             onTap: () {
-              print("clicked");
-              openDrawer();
+              Navigator.pushNamed(context, "cart");
             },
             child: Stack(
               alignment: AlignmentDirectional.centerEnd,
               children: [
                 Container(
-                  margin: const EdgeInsets.only(right: 20),
-                  child: IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "cart");
-                      },
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        // size: 20,
-                      )),
-                ),
+                    margin: const EdgeInsets.only(right: 25),
+                    child: const Icon(
+                      Icons.shopping_cart,
+                      // size: 20,
+                    )),
                 // CART ITEMS NUMBER
                 Positioned(
                     top: 5,
@@ -205,7 +199,8 @@ class _ProductState extends State<Product> {
                 child: Container(
                   width: 12.0,
                   height: 12.0,
-                  margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 4.0),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: (Theme.of(context).brightness == Brightness.dark
@@ -463,6 +458,12 @@ class _ProductState extends State<Product> {
                   onPressed: () async {
                     _cartItems += 1;
                     await prefs.setInt("cartItems", _cartItems);
+                    List<String> items = await prefs.getStringList("items");
+
+                    print("before: " + items.length.toString());
+                    items.add("12");
+                    await prefs.setStringList("items", items);
+                    print("after: " + items.length.toString());
 
                     setState(() {});
 

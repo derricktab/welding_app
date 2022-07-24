@@ -1,0 +1,1 @@
+remove item from a list when dismissible is executed

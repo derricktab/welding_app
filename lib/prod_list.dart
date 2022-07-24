@@ -14,39 +14,40 @@ class _ProdListState extends State<ProdList> {
   var products = <Map<String, dynamic>>[
     {
       "prodId": 12,
-      "name": "Glass Windows",
-      "price": 200000,
-      "image": "assets/images/logo2.png"
+      "name": "Bed",
+      "price": 280000,
+      "image": "assets/images/bed.jpg"
     },
     {
       "prodId": 12,
       "name": "Wooden Doors",
       "price": 200000,
-      "image": "assets/images/logo2.png"
+      "image": "assets/images/door.jpg"
     },
     {
       "prodId": 12,
       "name": "Glassses",
       "price": 200000,
-      "image": "assets/images/logo2.png"
+      "image": "assets/images/f1.jpg"
     },
     {
       "prodId": 12,
       "name": "Glass Windows",
       "price": 200000,
-      "image": "assets/images/d1.jpg",
+      "image": "assets/images/gate.jpg",
     },
     {
       "prodId": 12,
       "name": "Glass Windows",
       "price": 200000,
-      "image": "assets/images/logo2.png"
+      "image": "assets/images/hr1.jpg"
     },
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 239, 251, 247),
+        // backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(widget.category),
           centerTitle: true,
@@ -58,6 +59,7 @@ class _ProdListState extends State<ProdList> {
           crossAxisCount: 2,
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
+          childAspectRatio: 0.8,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           children: products.map((product) {
             return SingleProduct(

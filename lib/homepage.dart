@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -107,6 +104,7 @@ class _HomePageState extends State<HomePage> {
   initSharedPrefs() async {
     prefs = await SharedPreferences.getInstance();
     _cartItems = prefs.getInt("cartItems");
+    await prefs.setStringList("items", ["45"]);
 
     setState(() {});
   }

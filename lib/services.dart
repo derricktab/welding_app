@@ -14,9 +14,17 @@ class _ServicesState extends State<Services> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 239, 251, 247),
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.chevron_left,
+              size: 40,
+            )),
         title: const Text("SERVICES WE OFFER"),
         centerTitle: true,
-        foregroundColor: Color.fromARGB(255, 0, 154, 5),
+        foregroundColor: Color.fromARGB(255, 23, 22, 22),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
@@ -50,7 +58,7 @@ class _ServicesState extends State<Services> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // METALLIC GATE
-                SingleService( 
+                SingleService(
                   img: "assets/images/g1.jpg",
                   service: "Gates",
                 ),

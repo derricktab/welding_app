@@ -132,11 +132,14 @@ class _CartState extends State<Cart> {
                       child: Container(
                         margin: const EdgeInsets.only(right: 12),
                         decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 95, 255, 89),
+                            color: Colors.black,
                             borderRadius: BorderRadius.circular(50)),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 5, vertical: 2),
-                        child: Text(_cartItems.toString()),
+                        child: Text(
+                          _cartItems.toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
                       ))
                 ],
               ),
@@ -167,7 +170,7 @@ class _CartState extends State<Cart> {
                     key: GlobalKey(),
                     background: Container(
                       decoration: const BoxDecoration(
-                          color: Colors.orange,
+                          color: Colors.green,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(40),
                           )),

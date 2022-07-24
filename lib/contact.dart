@@ -69,6 +69,14 @@ class _ContactState extends State<Contact> {
       resizeToAvoidBottomInset: false,
       // resizeToAvoidBottomPadding: false,
       appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.chevron_left,
+                size: 38,
+              )),
           backgroundColor: primaryColor,
           elevation: 0,
           title: const Text(

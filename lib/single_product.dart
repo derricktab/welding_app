@@ -17,20 +17,20 @@ class SingleProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        height: 0,
+        height: 100,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: const Color.fromARGB(255, 149, 151, 147),
+              color: Color.fromARGB(255, 179, 180, 178),
               blurRadius: 8,
               spreadRadius: 0.02,
               offset: Offset.fromDirection(0),
             ),
           ],
         ),
-        child: ListView(
+        child: Column(
           children: [
             // // PRODUCT IMAGE
             ClipRRect(
@@ -48,20 +48,21 @@ class SingleProduct extends StatelessWidget {
             // PRODUCT NAME
             Text(
               prodName,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
               style: const TextStyle(
-                fontSize: 18,
-              ),
+                  fontSize: 17, color: Color.fromARGB(255, 63, 62, 62)),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
 
             // PRODUCT PRICE
-            Text(
-              "~ UGX: " + price,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                "~ UGX: " + price,
+                style: const TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 20),
