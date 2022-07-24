@@ -17,6 +17,7 @@ class SingleProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
+        height: 400,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.white,
@@ -29,12 +30,12 @@ class SingleProduct extends StatelessWidget {
             ),
           ],
         ),
-        // height: 300,
-        width: 150,
-        child: Column(
+        child: ListView(
           children: [
+            // // PRODUCT IMAGE
             ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               child: Image.asset(
                 img,
                 height: 120,
@@ -43,22 +44,25 @@ class SingleProduct extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 13),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  prodName,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.lightGreen,
-                )
-              ],
-            )
+
+            // PRODUCT NAME
+            Text(
+              prodName,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(height: 10),
+
+            // PRODUCT PRICE
+            Text(
+              price,
+              style: const TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

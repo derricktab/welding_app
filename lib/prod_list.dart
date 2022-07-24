@@ -34,7 +34,7 @@ class _ProdListState extends State<ProdList> {
       "prodId": 12,
       "name": "Glass Windows",
       "price": 200000,
-      "image": "assets/images/logo2.png"
+      "image": "assets/images/d1.jpg",
     },
     {
       "prodId": 12,
