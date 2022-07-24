@@ -49,6 +49,14 @@ class _ProdListState extends State<ProdList> {
         backgroundColor: Color.fromARGB(255, 239, 251, 247),
         // backgroundColor: Colors.white,
         appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.chevron_left,
+                size: 40,
+              )),
           title: Text(widget.category),
           centerTitle: true,
           backgroundColor: Colors.transparent,

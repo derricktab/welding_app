@@ -137,7 +137,7 @@ class _ProductState extends State<Product> {
             },
             icon: const Icon(
               Icons.chevron_left,
-              size: 35,
+              size: 40,
             )),
         backgroundColor: Colors.transparent,
         elevation: 0,

@@ -78,6 +78,14 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(
+              Icons.chevron_left,
+              size: 40,
+            )),
         backgroundColor: Colors.white,
         elevation: 0,
         foregroundColor: Colors.black,

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:welding_app/constants.dart';
-import 'profile.dart';
 import 'package:share_plus/share_plus.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -19,20 +18,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
     await Share.share("Invention Plus Group Of Companies");
   }
 
-  void checkSP() async {
-    // Obtain shared preferences.
-    final prefs = await SharedPreferences.getInstance();
-    // Save an integer value to 'counter' key.
-    await prefs.setInt('counter', 10);
-    final int? counter = prefs.getInt('counter');
-    print(counter);
-  }
+
 
   @override
   void initState() {
     // initializing firebase app
     Firebase.initializeApp();
-    checkSP();
 
     // // checking if the user is logged in
     // FirebaseAuth.instance.authStateChanges().listen((User? user) {

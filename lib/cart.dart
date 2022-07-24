@@ -170,9 +170,10 @@ class _CartState extends State<Cart> {
                     key: GlobalKey(),
                     background: Container(
                       decoration: const BoxDecoration(
-                          color: Colors.green,
+                          color: Colors.red,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(40),
+                            bottomRight: Radius.circular(40),
                           )),
                     ),
                     confirmDismiss: (direction) async {
