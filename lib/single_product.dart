@@ -17,7 +17,7 @@ class SingleProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        height: 400,
+        height: 0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: Colors.white,
@@ -57,9 +57,11 @@ class SingleProduct extends StatelessWidget {
 
             // PRODUCT PRICE
             Text(
-              price,
+              "~ UGX: " + price,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 20),
