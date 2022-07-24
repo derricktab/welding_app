@@ -29,7 +29,7 @@ class SingleProduct extends StatelessWidget {
             ),
           ],
         ),
-        height: 300,
+        // height: 300,
         width: 150,
         child: Column(
           children: [
