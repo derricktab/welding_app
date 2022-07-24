@@ -104,12 +104,14 @@ class _HomePageState extends State<HomePage> {
   initSharedPrefs() async {
     prefs = await SharedPreferences.getInstance();
     _cartItems = prefs.getInt("cartItems");
+
+    try{
     var items = await prefs.getStringList("items");
-    if (items == null) {
-      await prefs.setStringList("items", [""]);
-    } else {
       print(items.toString());
     }
+    catch(exception){ await prefs.setStringList("items", <String>[]);
+      print("set new value");}
+
 
     setState(() {});
   }
