@@ -4,11 +4,13 @@ import 'package:welding_app/product.dart';
 
 class MiniItem extends StatelessWidget {
   String img;
+  String prodId;
   String service;
 
   MiniItem({
     Key? key,
     required this.img,
+    required this.prodId,
     required this.service,
   }) : super(key: key);
 
@@ -63,7 +65,7 @@ class MiniItem extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: ((context) => const Product())));
+            MaterialPageRoute(builder: ((context) => Product(prodId: prodId,))));
       },
     );
   }

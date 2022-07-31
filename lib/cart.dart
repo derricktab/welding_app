@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:intl/intl.dart';
 
 class Cart extends StatefulWidget {
   const Cart({Key? key}) : super(key: key);
@@ -11,19 +12,15 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   var _cartItems;
   var prefs;
+  var _total = 0;
 
   // initialize shared preferences
   initSharedPrefs() async {
     prefs = await SharedPreferences.getInstance();
-    _cartItems = prefs.getInt("cartItems");
-
-    setState(() {});
-  }
-
-  // init state method
-  @override
-  void initState() {
-    initSharedPrefs();
+    setState(() {
+      _cartItems = prefs.getInt("cartItems");
+      _total = 0;
+    });
   }
 
   var cartItems = [
@@ -92,7 +89,14 @@ class _CartState extends State<Cart> {
     },
   ];
 
-  final _key = GlobalKey();
+  // adding commas to numbers
+  var f = NumberFormat.decimalPattern('en_us');
+
+  // init state method
+  @override
+  void initState() {
+    initSharedPrefs();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +117,6 @@ class _CartState extends State<Cart> {
             // SHOPPING CART ICON
             GestureDetector(
               onTap: () {
-                setState(() {});
               },
               child: Stack(
                 alignment: AlignmentDirectional.centerEnd,
@@ -165,64 +168,88 @@ class _CartState extends State<Cart> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
-                children: cartItems.map((item) {
-                  return Dismissible(
-                    key: GlobalKey(),
-                    background: Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(40),
-                            bottomRight: Radius.circular(40),
-                          )),
-                    ),
-                    confirmDismiss: (direction) async {
-                      var response = await showDialog<bool>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            content: const Text(
-                                'Are You Sure You Want To Remove This Item From Cart?'),
-                            actions: <Widget>[
-                              TextButton(
-                                  child: const Text('Yes'),
-                                  // Return "true" when dismissed.
-                                  onPressed: () =>
-                                      Navigator.pop(context, true)),
-                              TextButton(
-                                  child: const Text('No'),
-                                  // Return "false" when dismissed.
-                                  onPressed: () =>
-                                      Navigator.pop(context, false)),
-                            ],
-                          );
-                        },
-                      );
+                children: cartItems
+                    .asMap()
+                    .map((index, item) {
+                      // calculating the total
+                      int price = int.parse(item["price"].toString());
+                      int quantity = int.parse(item["quantity"].toString());
 
-                      return response;
-                    },
-                    direction: DismissDirection.endToStart,
-                    child: CartItem(
-                        imagePath: item["image"].toString(),
-                        itemName: item["prodName"].toString(),
-                        Price: item["price"].toString(),
-                        Quanity: item["quantity"].toString()),
-                  );
-                }).toList(),
+                      setState(() {
+                        _total += (price * quantity);
+                        print(_total);
+                      });
+                      return MapEntry(
+                        index,
+                        Dismissible(
+                          key: GlobalKey(),
+                          background: Container(
+                            decoration: const BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(40),
+                                  bottomRight: Radius.circular(40),
+                                )),
+                          ),
+                          confirmDismiss: (direction) async {
+                            var response = await showDialog<bool>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: const Text(
+                                      'Are You Sure You Want To Remove This Item From Cart?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                        child: const Text('Yes'),
+                                        // Return "true" when dismissed.
+                                        onPressed: () =>
+                                            Navigator.pop(context, true)),
+                                    TextButton(
+                                        child: const Text('No'),
+                                        // Return "false" when dismissed.
+                                        onPressed: () =>
+                                            Navigator.pop(context, false)),
+                                  ],
+                                );
+                              },
+                            );
+
+                            return response;
+                          },
+                          onDismissed: (direction) {
+                            final removed = cartItems.removeAt(index);
+                            print(cartItems.length);
+                          },
+                          direction: DismissDirection.endToStart,
+                          child: CartItem(
+                              imagePath: item["image"].toString(),
+                              itemName: item["prodName"].toString(),
+                              Price: f.format(item["price"]).toString(),
+                              Quanity: item["quantity"].toString()),
+                        ),
+                      );
+                    })
+                    .values
+                    .toList(),
               ),
             ),
             const SizedBox(height: 40),
+
             // TOTAL
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
-                  "Total",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                Text("UGX 500,000",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20))
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Total: ",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  Text("UGX ${f.format(_total)}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20))
+                ],
+              ),
             ),
             const SizedBox(height: 20),
             // CHECKOUT BUTTON

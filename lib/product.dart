@@ -5,11 +5,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Product extends StatefulWidget {
-  // final String prodId;
+  final String prodId;
 
   const Product({
     Key? key,
-    // required this.prodId
+    required this.prodId,
   }) : super(key: key);
 
   @override
@@ -83,15 +83,11 @@ class _ProductState extends State<Product> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
-// IMAGE LIST
-  final List<String> imgList = [
-    'assets/images/b3.png',
-    'assets/images/bed.jpg',
-    'assets/images/re.jpg',
-  ];
-
   var dropdownValue = "Select Size";
-
+  var imgList = [
+    // "assets/images/door.jpg",
+    "assets/images/f5.jpg",
+  ];
   // HEART COLOR
   var _heartColor = Colors.black;
 
@@ -129,7 +125,7 @@ class _ProductState extends State<Product> {
         .toList();
 
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Color.fromARGB(255, 152, 164, 153),
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -461,6 +457,11 @@ class _ProductState extends State<Product> {
                     List<String> items = await prefs.getStringList("items");
 
                     print("before: " + items.length.toString());
+
+                    var _item = {
+                      'prodId': 12,
+                    };
+
                     items.add("12");
                     await prefs.setStringList("items", items);
                     print("after: " + items.length.toString());

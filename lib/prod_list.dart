@@ -74,6 +74,7 @@ class _ProdListState extends State<ProdList> {
               img: product["image"].toString(),
               prodName: product["name"].toString(),
               price: product["price"].toString(),
+              prodId: product["prodId"].toString(),
             );
           }).toList(),
         ));

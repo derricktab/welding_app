@@ -5,12 +5,14 @@ class SingleProduct extends StatelessWidget {
   String img;
   String prodName;
   String price;
+  String prodId;
 
   SingleProduct({
     Key? key,
     required this.img,
     required this.prodName,
     required this.price,
+    required this.prodId,
   }) : super(key: key);
 
   @override
@@ -71,7 +73,7 @@ class SingleProduct extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Product()));
+            context, MaterialPageRoute(builder: (context) => Product(prodId: prodId,)));
       },
     );
   }

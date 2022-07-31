@@ -26,12 +26,41 @@ class _CheckOutState extends State<CheckOut> {
         centerTitle: true,
         backgroundColor: primaryColor,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView(
         children: [
-          Image.asset("assets/images/success.png"),
-          const SizedBox(height: 20),
-          const Text("Your Order Has Been Placed Successfully."),
+          const SizedBox(height: 100),
+          Image.asset(
+            "assets/images/success.png",
+            height: 250,
+          ),
+
+          // SUCCESS MESSAGE
+          const SizedBox(height: 40),
+          const Padding(
+            padding: EdgeInsets.all(25),
+            child: Text(
+              "SUCCESS",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+
+          // CONFIRMATION MESSAGE
+          // const SizedBox(height: 5),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+            child: Text(
+              "Your Order Has Been Placed Successfully. We shall Contact You Soon for More Details.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: "times",
+              ),
+            ),
+          ),
         ],
       ),
     );

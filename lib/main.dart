@@ -10,16 +10,16 @@ import 'package:welding_app/homepage.dart';
 import 'package:welding_app/loader.dart';
 import 'package:welding_app/login.dart';
 import 'package:welding_app/orders.dart';
-import 'package:welding_app/product.dart';
+// import 'package:welding_app/product.dart';
 import 'package:welding_app/services.dart';
 import 'package:welding_app/signup.dart';
 import 'profile.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Firebase.initializeApp();
-  runApp(MainApp());
+  await Firebase.initializeApp();
+  runApp(const MainApp());
 }
 
 class MainApp extends StatefulWidget {
@@ -48,7 +48,6 @@ class _MainAppState extends State<MainApp> {
         "reauthenticate": (context) => const MyLoader(),
         "about": (context) => const About(),
         "orders": (context) => const Orders(),
-        "product": (context) => const Product(),
         "cart": (context) => const Cart(),
         "checkout": (context) => const CheckOut(),
       },

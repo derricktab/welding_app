@@ -441,22 +441,27 @@ class _HomePageState extends State<HomePage> {
                           MiniItem(
                             img: "assets/images/w1.jpg",
                             service: "Windows",
+                            prodId: "2",
                           ),
                           MiniItem(
                             img: "assets/images/wdoor1.jpg",
                             service: "Wood Doors",
+                            prodId: "3",
                           ),
                           MiniItem(
                             img: "assets/images/d1.jpg",
                             service: "Metal Doors",
+                            prodId: "5",
                           ),
                           MiniItem(
                             img: "assets/images/balcony.jpg",
                             service: "Balcony",
+                            prodId: "8",
                           ),
                           MiniItem(
                             img: "assets/images/roof.jpg",
                             service: "Roofing",
+                            prodId: "8",
                           ),
                         ],
                       ),
