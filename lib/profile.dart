@@ -143,10 +143,10 @@ class _ProfileState extends State<Profile> {
                   top: 135,
                   left: 125,
                   child: CircleAvatar(
+                    backgroundColor: Color.fromARGB(255, 139, 188, 234),
                     radius: 65,
-                    backgroundImage: NetworkImage(
-                      "https://thumbs.dreamstime.com/b/rainbow-love-heart-background-red-wood-60045149.jpg",
-                      scale: 2,
+                    backgroundImage: AssetImage(
+                      "assets/images/dummy-user.png",
                     ),
                   ),
                 ),

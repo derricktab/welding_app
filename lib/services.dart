@@ -48,7 +48,7 @@ class _ServicesState extends State<Services> {
                 // METALLIC DOORS
                 SingleService(
                   img: "assets/images/d2.webp",
-                  service: "Doors",
+                  service: "Metal Doors",
                 ),
               ],
             ),

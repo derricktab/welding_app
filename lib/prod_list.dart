@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:welding_app/single_product.dart';
+import 'models/products.dart';
 
 class ProdList extends StatefulWidget {
   final category;
@@ -11,40 +12,13 @@ class ProdList extends StatefulWidget {
 }
 
 class _ProdListState extends State<ProdList> {
-  var products = <Map<String, dynamic>>[
-    {
-      "prodId": 12,
-      "name": "Bed",
-      "price": 280000,
-      "image": "assets/images/bed.jpg"
-    },
-    {
-      "prodId": 12,
-      "name": "Wooden Doors",
-      "price": 200000,
-      "image": "assets/images/door.jpg"
-    },
-    {
-      "prodId": 12,
-      "name": "Glassses",
-      "price": 200000,
-      "image": "assets/images/f1.jpg"
-    },
-    {
-      "prodId": 12,
-      "name": "Glass Windows",
-      "price": 200000,
-      "image": "assets/images/gate.jpg",
-    },
-    {
-      "prodId": 12,
-      "name": "Glass Windows",
-      "price": 200000,
-      "image": "assets/images/hr1.jpg"
-    },
-  ];
+
+
   @override
   Widget build(BuildContext context) {
+
+    List<Map<String, dynamic>> products = Products(widget.category).returnProdList();
+
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 239, 251, 247),
         // backgroundColor: Colors.white,
@@ -75,6 +49,7 @@ class _ProdListState extends State<ProdList> {
               prodName: product["name"].toString(),
               price: product["price"].toString(),
               prodId: product["prodId"].toString(),
+              description: product["description"].toString(),
             );
           }).toList(),
         ));

@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var _cartItems;
   var prefs;
 
   // METHOD TO DISPLAY ALERT DIALOG FOR CONTACT
@@ -46,7 +45,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Nsangi, Manja Zone',
+                      'Nsangi, Manja Zone, \n2KM off Nsangi Stage',
                       softWrap: true,
                     ),
                   ],
@@ -99,19 +98,23 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+    var _cartItems;
 
-  // initialize shared preferences
   initSharedPrefs() async {
-    prefs = await SharedPreferences.getInstance();
-    _cartItems = prefs.getInt("cartItems");
+    var prefs = await SharedPreferences.getInstance();
 
-    try{
-    var items = await prefs.getStringList("items");
+    try {
+      var items = await prefs.getStringList("items");
+      setState(() {
+        _cartItems = items!.length;
+      });
       print(items.toString());
+      print("cart items set");
+      
+    } catch (exception) {
+      await prefs.setStringList("items", <String>[]);
+      print("set new value");
     }
-    catch(exception){ await prefs.setStringList("items", <String>[]);
-      print("set new value");}
-
 
     setState(() {});
   }
@@ -140,13 +143,14 @@ class _HomePageState extends State<HomePage> {
 
 // IMAGE LIST
   final List<String> imgList = [
-    'assets/images/door3.jpg',
+    'assets/images/d3.jpg',
     'assets/images/d5.jpg',
     'assets/images/window4.jpg',
   ];
 
   @override
   Widget build(BuildContext context) {
+    
     // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
@@ -439,29 +443,34 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         children: [
                           MiniItem(
-                            img: "assets/images/w1.jpg",
-                            service: "Windows",
-                            prodId: "2",
+                            image: "assets/images/w1.jpg",
+                            prodName: "Almuninium Window",
+                            price: "200000",
+                            description: "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
-                            img: "assets/images/wdoor1.jpg",
-                            service: "Wood Doors",
-                            prodId: "3",
+                            image: "assets/images/wdoor1.jpg",
+                            prodName: "Interior Door",
+                            price: "260000",
+                            description: "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
-                            img: "assets/images/d1.jpg",
-                            service: "Metal Doors",
-                            prodId: "5",
+                            image: "assets/images/d1.jpg",
+                            prodName: "Almuninium Door",
+                            price: "500000",
+                            description: "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
-                            img: "assets/images/balcony.jpg",
-                            service: "Balcony",
-                            prodId: "8",
+                            image: "assets/images/balcony.jpg",
+                            prodName: "Balcony",
+                            price: "600000",
+                            description: "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
-                            img: "assets/images/roof.jpg",
-                            service: "Roofing",
-                            prodId: "8",
+                            image: "assets/images/roof.jpg",
+                            prodName: "Modern Roofing",
+                            price: "3000000",
+                            description: "Very durable product made from the finest materials.",
                           ),
                         ],
                       ),

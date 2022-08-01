@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -5,11 +7,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Product extends StatefulWidget {
-  final String prodId;
+  final String image;
+  final String prodName;
+  final String price;
+  final String description;
 
   const Product({
     Key? key,
-    required this.prodId,
+    required this.image,
+    required this.prodName,
+    required this.price,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -66,9 +74,21 @@ class _ProductState extends State<Product> {
   var prefs;
 
   // initialize shared preferences
+
   initSharedPrefs() async {
     prefs = await SharedPreferences.getInstance();
-    _cartItems = prefs.getInt("cartItems");
+
+    try {
+      var items = await prefs.getStringList("items");
+      setState(() {
+        _cartItems = items!.length;
+      });
+      print(items.toString());
+      print("cart items set");
+    } catch (exception) {
+      await prefs.setStringList("items", <String>[]);
+      print("set new value");
+    }
 
     setState(() {});
   }
@@ -84,10 +104,7 @@ class _ProductState extends State<Product> {
   final CarouselController _controller = CarouselController();
 
   var dropdownValue = "Select Size";
-  var imgList = [
-    // "assets/images/door.jpg",
-    "assets/images/f5.jpg",
-  ];
+
   // HEART COLOR
   var _heartColor = Colors.black;
 
@@ -104,6 +121,15 @@ class _ProductState extends State<Product> {
 
   @override
   Widget build(BuildContext context) {
+    var imgList = [widget.image];
+    
+    final _prodName = widget.prodName;
+
+    final _price = widget.price;
+
+    final _description = widget.description;
+
+
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
@@ -125,7 +151,7 @@ class _ProductState extends State<Product> {
         .toList();
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 152, 164, 153),
+      backgroundColor: Color.fromARGB(255, 229, 255, 231),
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -136,6 +162,7 @@ class _ProductState extends State<Product> {
               size: 40,
             )),
         backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
         elevation: 0,
         actions: [
           // SHOPPING CART ICON
@@ -159,11 +186,15 @@ class _ProductState extends State<Product> {
                     child: Container(
                       margin: const EdgeInsets.only(right: 12),
                       decoration: BoxDecoration(
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 45, 61, 50),
                           borderRadius: BorderRadius.circular(50)),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 2),
-                      child: Text(_cartItems.toString()),
+                      child: Text(
+                        _cartItems.toString(),
+                        style: const TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
                     ))
               ],
             ),
@@ -212,21 +243,28 @@ class _ProductState extends State<Product> {
           Container(
             height: 340,
             padding: const EdgeInsets.only(top: 30, right: 30, left: 30),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30))),
+                    topRight: Radius.circular(30)),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black,
+                      offset: Offset.fromDirection(20),
+                      spreadRadius: 0.5,
+                      blurRadius: 8),
+                ]),
             child: ListView(
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      "Metallic Window",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    Text(
+                      _prodName,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -268,9 +306,9 @@ class _ProductState extends State<Product> {
                         }),
 
                     // PRICE
-                    const Text(
-                      "~ USH 230,000",
-                      style: TextStyle(
+                    Text(
+                      "~ $_price",
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.green),
@@ -278,9 +316,9 @@ class _ProductState extends State<Product> {
                   ],
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  "We have this window in different shapes, designs, colors and sizes.",
-                  style: TextStyle(fontSize: 18),
+                Text(
+                  _description,
+                  style: const TextStyle(fontSize: 18),
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -452,24 +490,29 @@ class _ProductState extends State<Product> {
                         borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () async {
-                    _cartItems += 1;
-                    await prefs.setInt("cartItems", _cartItems);
+                    // _cartItems += 1;
+                    // await prefs.setInt("cartItems", _cartItems);
                     List<String> items = await prefs.getStringList("items");
 
                     print("before: " + items.length.toString());
 
                     var _item = {
                       'prodId': 12,
+                      "image": imgList[0],
+                      "prodName": _prodName,
+                      "quantity": _currentHorizontalIntValue,
+                      "price": _price
                     };
 
-                    items.add("12");
+                    var encodedItem = jsonEncode(_item);
+
+                    items.add(encodedItem);
                     await prefs.setStringList("items", items);
                     print("after: " + items.length.toString());
 
-                    setState(() {});
-
                     print("ADD TO CART BUTTON CLICKED");
                     _showMyDialog();
+                    setState(() {});
                   },
                   child: const Text("ADD TO CART"),
                 ),

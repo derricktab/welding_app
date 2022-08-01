@@ -6,6 +6,7 @@ class SingleProduct extends StatelessWidget {
   String prodName;
   String price;
   String prodId;
+  String description;
 
   SingleProduct({
     Key? key,
@@ -13,6 +14,7 @@ class SingleProduct extends StatelessWidget {
     required this.prodName,
     required this.price,
     required this.prodId,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -40,7 +42,7 @@ class SingleProduct extends StatelessWidget {
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               child: Image.asset(
                 img,
-                height: 120,
+                height: 120, 
                 width: 170,
                 scale: 0.0001,
               ),
@@ -73,7 +75,7 @@ class SingleProduct extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Product(prodId: prodId,)));
+            context, MaterialPageRoute(builder: (context) => Product(image: img, prodName: prodName, price: price, description: description,)));
       },
     );
   }

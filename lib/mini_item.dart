@@ -3,15 +3,19 @@ import 'package:welding_app/prod_list.dart';
 import 'package:welding_app/product.dart';
 
 class MiniItem extends StatelessWidget {
-  String img;
+  String image;
   String prodId;
-  String service;
+  String prodName;
+  String price;
+  String description;
 
   MiniItem({
     Key? key,
-    required this.img,
-    required this.prodId,
-    required this.service,
+    required this.image,
+    this.prodId = '2',
+    required this.prodName,
+    required this.price,
+    required this.description,
   }) : super(key: key);
 
   @override
@@ -35,7 +39,7 @@ class MiniItem extends StatelessWidget {
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(30)),
               child: Image.asset(
-                img,
+                image,
                 height: 100,
                 width: 100,
               ),
@@ -46,12 +50,18 @@ class MiniItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    service,
-                    style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueGrey),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Text(
+                      prodName,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
+                      style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueGrey),
+                    ),
                   ),
                   const Icon(
                     Icons.arrow_forward_ios,
@@ -64,8 +74,15 @@ class MiniItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: ((context) => Product(prodId: prodId,))));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => Product(
+                      image: image,
+                      prodName: prodName,
+                      price: price,
+                      description: description,
+                    ))));
       },
     );
   }
