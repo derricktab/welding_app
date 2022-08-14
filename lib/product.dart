@@ -241,7 +241,7 @@ class _ProductState extends State<Product> {
 
           // TEXT CONTAINER
           Container(
-            height: 340,
+            height: 500,
             padding: const EdgeInsets.only(top: 30, right: 30, left: 30),
             decoration: BoxDecoration(
                 color: Colors.white,

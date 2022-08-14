@@ -18,8 +18,6 @@ class _DrawerScreenState extends State<DrawerScreen> {
     await Share.share("Invention Plus Group Of Companies");
   }
 
-
-
   @override
   void initState() {
     // initializing firebase app
@@ -74,10 +72,11 @@ class _DrawerScreenState extends State<DrawerScreen> {
             Container(
               margin: const EdgeInsets.only(left: 70),
               child: const Text(
-                "GROUP OF COMPANIES LTD",
+                "For All Your Construction Needs",
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 38, 107, 41),
                 ),
               ),
             ),

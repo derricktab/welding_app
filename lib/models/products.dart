@@ -173,6 +173,88 @@ class Products {
     },
   ];
 
+// GATES
+  var gates = <Map<String, dynamic>>[
+    {
+      "prodId": 01,
+      "name": "Modern Gate",
+      "price": 1000000,
+      "image": "assets/images/gate.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 02,
+      "name": "Modern Gate",
+      "price": 1600000,
+      "image": "assets/images/gate1.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 02,
+      "name": "Modern Gate",
+      "price": 1500000,
+      "image": "assets/images/gate2.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 02,
+      "name": "Modern Gate",
+      "price": 2000000,
+      "image": "assets/images/gate3.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+  ];
+
+// CONSTRUCTION
+  var construction = <Map<String, dynamic>>[
+    {
+      "prodId": 01,
+      "name": "Wooden Door",
+      "price": 278000,
+      "image": "assets/images/wdoor.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 02,
+      "name": "Wooden Door",
+      "price": 190000,
+      "image": "assets/images/wdoor1.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 02,
+      "name": "Closet",
+      "price": 600000,
+      "image": "assets/images/f1.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+  ];
+
+// FLOORING
+  var flooring = <Map<String, dynamic>>[
+    {
+      "prodId": 01,
+      "name": "Wooden Door",
+      "price": 278000,
+      "image": "assets/images/wdoor.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 02,
+      "name": "Wooden Door",
+      "price": 190000,
+      "image": "assets/images/wdoor1.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 02,
+      "name": "Closet",
+      "price": 600000,
+      "image": "assets/images/f1.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+  ];
+
   returnProdList() {
     if (category == "Windows") {
       return windows;
@@ -186,6 +268,12 @@ class Products {
       return roofing;
     } else if (category == "Wood Doors") {
       return wooddoors;
+    } else if (category == "Stair Railings") {
+      return balcony;
+    } else if (category == "Construction") {
+      return construction;
+    } else if (category == "Flooring") {
+      return flooring;
     }
   }
 }

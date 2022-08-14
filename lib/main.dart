@@ -53,7 +53,7 @@ class _MainAppState extends State<MainApp> {
       },
       home: AnimatedSplashScreen(
         splashIconSize: 180,
-        splash: 'assets/images/logo1.PNG',
+        splash: 'assets/images/L1.png',
         nextScreen: Stack(
           children: const [
             DrawerScreen(),

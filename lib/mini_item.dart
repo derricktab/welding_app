@@ -50,18 +50,15 @@ class MiniItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Text(
-                      prodName,
-                      softWrap: true,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 3,
-                      style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blueGrey),
-                    ),
+                  Text(
+                    prodName,
+                    softWrap: true,
+                    overflow: TextOverflow.clip,
+                    maxLines: 3,
+                    style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueGrey),
                   ),
                   const Icon(
                     Icons.arrow_forward_ios,

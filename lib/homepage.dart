@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'info@inventionplus.co.ug',
+                      'info@inventionplusgroup.com',
                       softWrap: true,
                     ),
                   ],
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '+256772438981',
+                      '+256392175187 \n +256702078598',
                       softWrap: true,
                     ),
                   ],
@@ -98,7 +98,8 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
-    var _cartItems;
+
+  var _cartItems;
 
   initSharedPrefs() async {
     var prefs = await SharedPreferences.getInstance();
@@ -110,7 +111,6 @@ class _HomePageState extends State<HomePage> {
       });
       print(items.toString());
       print("cart items set");
-      
     } catch (exception) {
       await prefs.setStringList("items", <String>[]);
       print("set new value");
@@ -150,7 +150,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
     // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
@@ -444,33 +443,38 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           MiniItem(
                             image: "assets/images/w1.jpg",
-                            prodName: "Almuninium Window",
+                            prodName: "Window",
                             price: "200000",
-                            description: "Very durable product made from the finest materials.",
+                            description:
+                                "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
                             image: "assets/images/wdoor1.jpg",
                             prodName: "Interior Door",
                             price: "260000",
-                            description: "Very durable product made from the finest materials.",
+                            description:
+                                "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
                             image: "assets/images/d1.jpg",
-                            prodName: "Almuninium Door",
+                            prodName: "Door",
                             price: "500000",
-                            description: "Very durable product made from the finest materials.",
+                            description:
+                                "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
                             image: "assets/images/balcony.jpg",
                             prodName: "Balcony",
                             price: "600000",
-                            description: "Very durable product made from the finest materials.",
+                            description:
+                                "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
                             image: "assets/images/roof.jpg",
-                            prodName: "Modern Roofing",
+                            prodName: "Roofing",
                             price: "3000000",
-                            description: "Very durable product made from the finest materials.",
+                            description:
+                                "Very durable product made from the finest materials.",
                           ),
                         ],
                       ),

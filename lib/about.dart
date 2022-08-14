@@ -59,7 +59,7 @@ class _AboutState extends State<About> {
         ),
 
         // LOGO
-        Image.asset("assets/images/logo2.png", height: 200),
+        Image.asset("assets/images/L1.png", height: 200),
 
         // ABOUT US TEXT
         const Padding(
