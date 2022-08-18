@@ -53,26 +53,72 @@ class _ServicesState extends State<Services> {
               ],
             ),
             const SizedBox(height: 30),
+
             // ROW 2
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // GYPSUM CEILINGS
+                SingleService(
+                  img: "assets/images/gypsum1.png",
+                  service: "Gypsum Ceilings",
+                ),
+
+                const SizedBox(width: 28),
+                // UNDERGROUND WELL ESCAVATION
+                SingleService(
+                  img: "assets/images/well3.jpg",
+                  service: "Underground Well Escavation",
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 30),
+
+            // ROW 3
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // HOUSE CONSTRUCTION
+                SingleService(
+                  img: "assets/images/c1.png",
+                  service: "Construction",
+                ),
+
+                const SizedBox(width: 28),
+                // FLOORING
+                SingleService(
+                  img: "assets/images/f2.jpg",
+                  service: "Flooring",
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 50),
+
+            // ROW 4
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // METALLIC GATE
                 SingleService(
                   img: "assets/images/g1.jpg",
-                  service: "Gates",
+                  service: "Gypsum Ceilings",
                 ),
 
                 const SizedBox(width: 28),
                 // RAILINGS
                 SingleService(
                   img: "assets/images/s1.jpg",
-                  service: "Stair Railings",
+                  service: "",
                 ),
               ],
             ),
+
             const SizedBox(height: 30),
-            // ROW 3
+            // ROW 5
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -93,7 +139,7 @@ class _ServicesState extends State<Services> {
 
             const SizedBox(height: 30),
 
-            // ROW 4
+            // ROW 6
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

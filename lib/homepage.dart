@@ -61,6 +61,7 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       'info@inventionplusgroup.com',
                       softWrap: true,
+                      style: TextStyle(fontSize: 15),
                     ),
                   ],
                 ),
@@ -216,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {
                           drawerOpen = true;
                           setState(() {
-                            xOffset = 210;
+                            xOffset = 250;
                             yOffset = 180;
                             scaleFactor = 0.65;
                             radius = 60;

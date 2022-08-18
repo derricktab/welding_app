@@ -120,6 +120,44 @@ class _DrawerScreenState extends State<DrawerScreen> {
               },
             ),
 
+            // COMPLETED PROJECTS
+            ListTile(
+              leading: const Icon(
+                Icons.checklist_rtl,
+                size: 32,
+                color: Colors.black,
+              ),
+              title: const Text(
+                "Finished Projects",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black,
+                ),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, "completed_projects");
+              },
+            ),
+
+            // ONGOING PROJECTS
+            ListTile(
+              leading: const Icon(
+                Icons.rocket_launch_rounded,
+                size: 32,
+                color: Colors.black,
+              ),
+              title: const Text(
+                "Ongoing Projects",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black,
+                ),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, "ongoing_projects");
+              },
+            ),
+
             // NEARBY DOCTOR TILE
             ListTile(
               leading: const Icon(
@@ -197,7 +235,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             ),
 
             const SizedBox(
-              height: 150,
+              height: 50,
             ),
 
             ListTile(

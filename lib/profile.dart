@@ -102,8 +102,8 @@ class _ProfileState extends State<Profile> {
                             Colors.greenAccent,
                           ]),
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(140),
-                          bottomRight: Radius.circular(140))),
+                          bottomLeft: Radius.circular(60),
+                          bottomRight: Radius.circular(60))),
                   child: Column(
                     children: [
                       // BACK ARROW
@@ -189,6 +189,7 @@ class _ProfileState extends State<Profile> {
 
             // Phone Number
             ListTile(
+              enabled: true,
               title: Text(
                 _phone.toString(),
                 style: const TextStyle(fontSize: 22),
@@ -209,9 +210,12 @@ class _ProfileState extends State<Profile> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
                 onPressed: () {},
-                child: const Text(
-                  "Edit Profile",
-                  style: TextStyle(fontSize: 17),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  child: Text(
+                    "Edit Profile",
+                    style: TextStyle(fontSize: 17),
+                  ),
                 ),
               ),
             ),
@@ -228,12 +232,38 @@ class _ProfileState extends State<Profile> {
                   // call the delete method to delete user
                   _delete(context);
                 },
-                child: const Text(
-                  "Delete Account",
-                  style: TextStyle(fontSize: 17),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  child: Text(
+                    "Delete Account",
+                    style: TextStyle(fontSize: 17),
+                  ),
                 ),
               ),
             ),
+
+            const SizedBox(height: 20),
+
+            // Logout Button
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(), primary: Colors.orange),
+                onPressed: () {
+                  // call the delete method to delete user
+                  _delete(context);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  child: Text(
+                    "Logout",
+                    style: TextStyle(fontSize: 19, color: Colors.black),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
