@@ -22,7 +22,10 @@ class _ServicesState extends State<Services> {
               Icons.chevron_left,
               size: 40,
             )),
-        title: const Text("SERVICES WE OFFER"),
+        title: const Text(
+          "PRODUCTS & SERVICES",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         foregroundColor: Color.fromARGB(255, 23, 22, 22),
         backgroundColor: Colors.transparent,
@@ -48,7 +51,7 @@ class _ServicesState extends State<Services> {
                 // METALLIC DOORS
                 SingleService(
                   img: "assets/images/d2.webp",
-                  service: "Metal Doors",
+                  service: "Main Doors",
                 ),
               ],
             ),
@@ -87,15 +90,15 @@ class _ServicesState extends State<Services> {
                 ),
 
                 const SizedBox(width: 28),
-                // FLOORING
+                // BALCONY
                 SingleService(
-                  img: "assets/images/f2.jpg",
-                  service: "Flooring",
+                  img: "assets/images/balcony.png",
+                  service: "Balcony",
                 ),
               ],
             ),
 
-            const SizedBox(height: 50),
+            const SizedBox(height: 30),
 
             // ROW 4
 
@@ -105,14 +108,14 @@ class _ServicesState extends State<Services> {
                 // METALLIC GATE
                 SingleService(
                   img: "assets/images/g1.jpg",
-                  service: "Gypsum Ceilings",
+                  service: "Metallic Gates",
                 ),
 
                 const SizedBox(width: 28),
-                // RAILINGS
+                // WOODEN DOORS
                 SingleService(
-                  img: "assets/images/s1.jpg",
-                  service: "",
+                  img: "assets/images/wdoor.jpg",
+                  service: "Wooden Doors",
                 ),
               ],
             ),
@@ -122,10 +125,10 @@ class _ServicesState extends State<Services> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // BALCONY
+                // BACK DOORS
                 SingleService(
-                  img: "assets/images/b3.png",
-                  service: "Balcony",
+                  img: "assets/images/bdoor6.jpg",
+                  service: "Back Door",
                 ),
 
                 const SizedBox(width: 28),
@@ -145,8 +148,8 @@ class _ServicesState extends State<Services> {
               children: [
                 // HOUSE CONSTRUCTION
                 SingleService(
-                  img: "assets/images/c1.png",
-                  service: "Construction",
+                  img: "assets/images/painting.jpg",
+                  service: "Painting",
                 ),
 
                 const SizedBox(width: 28),

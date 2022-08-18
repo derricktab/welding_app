@@ -31,31 +31,41 @@ class SingleService extends StatelessWidget {
         width: 150,
         child: Column(
           children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(30)),
-              child: Image.asset(
-                img,
-                height: 120,
-                width: 170,
-                scale: 0.0001,
+            Expanded(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(30)),
+                child: Image.asset(
+                  img,
+                  height: 120,
+                  width: 170,
+                  scale: 0.0001,
+                ),
               ),
             ),
             const SizedBox(height: 13),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  service,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15, left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Text(
+                      service,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
-                ),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.lightGreen,
-                )
-              ],
+                  // const Expanded(
+                  //   child: Icon(
+                  //     Icons.arrow_forward_ios,
+                  //     color: Colors.lightGreen,
+                  //   ),
+                  // )
+                ],
+              ),
             )
           ],
         ),
