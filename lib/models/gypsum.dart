@@ -1,0 +1,81 @@
+
+// GYPSUM CEILINGS
+  var gypsum = <Map<String, dynamic>>[
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum.jpeg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum.webp",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum1.jpeg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum2.jpeg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum2.jpg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum3.jpeg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum3.webp",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum4.jpeg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum5.jpeg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum6.jpeg",
+      "description": "Very durable product made from the finest materials.",
+    },
+    {
+      "prodId": 01,
+      "name": "Gypsum Ceiling",
+      "price": 500000 - 600000,
+      "image": "assets/images/gypsum7.jpeg",
+      "description": "Very durable product made from the finest materials.",
+    },
+  ];

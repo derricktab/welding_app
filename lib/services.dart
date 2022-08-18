@@ -128,7 +128,7 @@ class _ServicesState extends State<Services> {
                 // BACK DOORS
                 SingleService(
                   img: "assets/images/bdoor6.jpg",
-                  service: "Back Door",
+                  service: "Back Doors",
                 ),
 
                 const SizedBox(width: 28),
