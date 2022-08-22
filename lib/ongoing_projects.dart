@@ -14,34 +14,48 @@ class OngoingProjects extends StatefulWidget {
 class _OngoingProjectsState extends State<OngoingProjects> {
   @override
   Widget build(BuildContext context) {
-    var imgList = [
-      "assets/images/finished.jpeg",
-      "assets/images/finished1.jpeg",
-      "assets/images/finished2.jpeg"
+    var ongoing = [
+      "assets/images/ongoing3.jpeg",
+    ];
+    var ongoing1 = [
+      "assets/images/ongoing.jpeg",
+    ];
+    var ongoing2 = [
+      "assets/images/ongoing2.jpeg",
+    ];
+    var ongoing3 = [
+      "assets/images/ongoing4.jpeg",
+      "assets/images/ongoing5.jpeg",
+      "assets/images/ongoing8.jpeg",
+      "assets/images/ongoing9.jpeg",
+    ];
+    var ongoing4 = [
+      "assets/images/ongoing6.jpeg",
+      "assets/images/ongoing7.jpeg",
     ];
 
-// IMAGE SLIDERS
-    final List<Widget> imageSliders = imgList
-        .map((item) => Container(
-              margin: EdgeInsets.all(5.0),
-              height: 600,
-              child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                  child: Stack(
-                    children: <Widget>[
-                      Image.asset(
-                        item,
-                        fit: BoxFit.cover,
-                        width: 1000.0,
-                        height: 400,
-                      ),
-                    ],
-                  )),
-            ))
-        .toList();
+// // IMAGE SLIDERS
+//     final List<Widget> imageSliders = imgList
+//         .map((item) => Container(
+//               margin: EdgeInsets.all(5.0),
+//               height: 600,
+//               child: ClipRRect(
+//                   borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+//                   child: Stack(
+//                     children: <Widget>[
+//                       Image.asset(
+//                         item,
+//                         fit: BoxFit.cover,
+//                         width: 1000.0,
+//                         height: 400,
+//                       ),
+//                     ],
+//                   )),
+//             ))
+//         .toList();
 
-    int _current = 0;
-    final CarouselController _controller = CarouselController();
+//     int _current = 0;
+//     final CarouselController _controller = CarouselController();
 
     return Scaffold(
       appBar: AppBar(
@@ -89,7 +103,7 @@ class _OngoingProjectsState extends State<OngoingProjects> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: MJImageSlider(
-                images: imgList,
+                images: ongoing,
                 useLocalAssetImages: true,
                 duration: const Duration(seconds: 3),
                 width: 200,
@@ -106,7 +120,58 @@ class _OngoingProjectsState extends State<OngoingProjects> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: MJImageSlider(
-                images: imgList,
+                images: ongoing1,
+                useLocalAssetImages: true,
+                duration: const Duration(seconds: 3),
+                width: 200,
+                height: 200,
+                curve: Curves.easeInOutCubicEmphasized,
+              ),
+            ),
+          ),
+
+          // images slider
+          Container(
+            margin: const EdgeInsets.all(22),
+            height: 270,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: MJImageSlider(
+                images: ongoing2,
+                useLocalAssetImages: true,
+                duration: const Duration(seconds: 3),
+                width: 200,
+                height: 200,
+                curve: Curves.easeInOutCubicEmphasized,
+              ),
+            ),
+          ),
+
+          // images slider
+          Container(
+            margin: const EdgeInsets.all(22),
+            height: 270,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: MJImageSlider(
+                images: ongoing3,
+                useLocalAssetImages: true,
+                duration: const Duration(seconds: 3),
+                width: 200,
+                height: 200,
+                curve: Curves.easeInOutCubicEmphasized,
+              ),
+            ),
+          ),
+
+          // images slider
+          Container(
+            margin: const EdgeInsets.all(22),
+            height: 270,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: MJImageSlider(
+                images: ongoing4,
                 useLocalAssetImages: true,
                 duration: const Duration(seconds: 3),
                 width: 200,
