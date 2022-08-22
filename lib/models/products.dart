@@ -8,7 +8,8 @@ import 'woodendoors.dart';
 import 'gates.dart';
 import 'houseConstruction.dart';
 import 'flooring.dart';
-
+import 'backdoors.dart';
+import 'painting.dart';
 
 
 class Products {
@@ -22,7 +23,7 @@ class Products {
       return maindoors;
     } else if (category == "Gypsum Ceilings") {
       return gypsum;
-    } else if (category == "Undeground Well Escavation") {
+    } else if (category == "Underground Well Escavation") {
       return wells;
     } else if (category == "Construction") {
       return construction;
@@ -35,9 +36,8 @@ class Products {
     } else if (category == "Back Doors") {
       return backdoors;
     }
-    } else if (category == "Roofing") {
+    else if (category == "Roofing") {
       return roofing;
-    }
     } else if (category == "Painting") {
       return painting;
     }

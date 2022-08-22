@@ -7,7 +7,7 @@ class MiniServices extends StatelessWidget {
   String service;
 
   MiniServices({
-    Key? key,
+    Key? key, 
     required this.img,
     required this.service,
   }) : super(key: key);

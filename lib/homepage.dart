@@ -144,9 +144,10 @@ class _HomePageState extends State<HomePage> {
 
 // IMAGE LIST
   final List<String> imgList = [
-    'assets/images/d3.jpg',
-    'assets/images/d5.jpg',
-    'assets/images/window4.jpg',
+    'assets/images/gypsum3.jpeg',
+    'assets/images/mdoor5.jpeg',
+    'assets/images/gate3.jpg',
+    'assets/images/window4.jpeg',
   ];
 
   @override

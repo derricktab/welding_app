@@ -42,7 +42,7 @@ class SingleProduct extends StatelessWidget {
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
               child: Image.asset(
                 img,
-                height: 120, 
+                height: 120,
                 width: 170,
                 scale: 0.0001,
               ),
@@ -50,22 +50,26 @@ class SingleProduct extends StatelessWidget {
             const SizedBox(height: 13),
 
             // PRODUCT NAME
-            Text(
-              prodName,
-              textAlign: TextAlign.start,
-              style: const TextStyle(
-                  fontSize: 17, color: Color.fromARGB(255, 63, 62, 62)),
+            Expanded(
+              child: Text(
+                prodName,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                    fontSize: 17, color: Color.fromARGB(255, 63, 62, 62)),
+              ),
             ),
             const SizedBox(height: 8),
 
             // PRODUCT PRICE
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Text(
-                "~ UGX: " + price,
-                style: const TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Text(
+                  "~ UGX: " + price,
+                  style: const TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -75,7 +79,14 @@ class SingleProduct extends StatelessWidget {
       ),
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Product(image: img, prodName: prodName, price: price, description: description,)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => Product(
+                      image: img,
+                      prodName: prodName,
+                      price: price,
+                      description: description,
+                    )));
       },
     );
   }

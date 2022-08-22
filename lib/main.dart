@@ -6,6 +6,7 @@ import 'package:welding_app/cart.dart';
 import 'package:welding_app/checkout.dart';
 import 'package:welding_app/contact.dart';
 import 'package:welding_app/drawer.dart';
+import 'package:welding_app/finished_projects.dart';
 import 'package:welding_app/homepage.dart';
 import 'package:welding_app/loader.dart';
 import 'package:welding_app/login.dart';
@@ -50,6 +51,7 @@ class _MainAppState extends State<MainApp> {
         "orders": (context) => const Orders(),
         "cart": (context) => const Cart(),
         "checkout": (context) => const CheckOut(),
+        "finished_projects": (context) => const FinishedProjects(),
       },
       home: AnimatedSplashScreen(
         splashIconSize: 180,

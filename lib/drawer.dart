@@ -135,7 +135,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 ),
               ),
               onTap: () {
-                Navigator.pushNamed(context, "completed_projects");
+                Navigator.pushNamed(context, "finished_projects");
               },
             ),
 
