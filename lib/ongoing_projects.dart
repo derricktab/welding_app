@@ -72,10 +72,10 @@ class _OngoingProjectsState extends State<OngoingProjects> {
         ),
       ),
 
-      // FINISHED PROJECTS
+      // ONGOING PROJECTS
       body: ListView(
         children: [
-          // finished projects text
+          // ONGOING projects text
           Container(
             height: 150,
             padding: const EdgeInsets.only(top: 25),
