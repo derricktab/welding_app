@@ -47,7 +47,7 @@ dependencies:
   cloud_firestore: ^3.4.2
   flutter_rating_bar: ^4.0.1
   intl: ^0.17.0
-  image_gallery_view: ^1.0.0
+  gallery_zoom_slides: ^0.0.1
 
   
 dev_dependencies:

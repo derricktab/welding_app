@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:image_gallery_view/image_gallery_view.dart';
+import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 import 'package:welding_app/constants.dart';
 
 class FinishedProjects extends StatefulWidget {
@@ -15,41 +15,6 @@ class _FinishedProjectsState extends State<FinishedProjects> {
   Widget build(BuildContext context) {
 
     var imgList = ["assets/images/finished1.jpeg"];
-
-
-    var _images = [
-      ImageGalleryItem(
-          imageUrl:
-              'https://images.pexels.com/photos/10165785/pexels-photo-10165785.jpeg',
-          thumbnailUrl:
-              'https://images.pexels.com/photos/10165785/pexels-photo-10165785.jpeg',
-          text:
-              'This is an egg which has been perfectly cooked and presented very nicely on a plate, with some garnish'),
-      ImageGalleryItem(
-          imageUrl:
-              'https://images.pexels.com/photos/5720809/pexels-photo-5720809.jpeg',
-          thumbnailUrl:
-              'https://images.pexels.com/photos/5720809/pexels-photo-5720809.jpeg',
-          text: 'A nice egg for breakfast'),
-      ImageGalleryItem(
-        imageUrl:
-            'https://images.pexels.com/photos/9428260/pexels-photo-9428260.jpeg',
-        thumbnailUrl:
-            'https://images.pexels.com/photos/9428260/pexels-photo-9428260.jpeg',
-      ),
-      ImageGalleryItem(
-          imageUrl:
-              'https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg',
-          thumbnailUrl:
-              'https://images.pexels.com/photos/929778/pexels-photo-929778.jpeg',
-          text: 'Red Rose'),
-      ImageGalleryItem(
-        imageUrl:
-            'https://images.pexels.com/photos/4790406/pexels-photo-4790406.jpeg',
-        thumbnailUrl:
-            'https://images.pexels.com/photos/4790406/pexels-photo-4790406.jpeg',
-      ),
-    ];
 
     var finished_projects = <Map<String, dynamic>>[
       {
@@ -117,20 +82,27 @@ class _FinishedProjectsState extends State<FinishedProjects> {
       // FINISHED PROJECTS
       body: ListView(
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            height: 250,
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: ClipRRect(
-              child: Image.asset("assets/images/finished.jpeg"),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => GalleryZoomSlides(
+                            imgList,0)));
+            },
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              height: 250,
+              decoration: BoxDecoration(
+                color: Colors.orange,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: ClipRRect(
+                child: Image.asset("assets/images/finished.jpeg"),
+              ),
             ),
           ),
-          ImageGalleryView(
-            images: _images,
-          ),
+    
         ],
       ),
     );

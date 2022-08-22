@@ -247,6 +247,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "10.1.0"
+  gallery_zoom_slides:
+    dependency: "direct main"
+    description:
+      name: gallery_zoom_slides
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -296,13 +303,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
-  image_gallery_view:
-    dependency: "direct main"
-    description:
-      name: image_gallery_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   image_picker:
     dependency: "direct main"
     description:
@@ -771,5 +771,5 @@ packages:
     source: hosted
     version: "0.2.0+1"
 sdks:
-  dart: ">=2.17.6 <3.0.0"
+  dart: ">=2.17.1 <3.0.0"
   flutter: ">=3.0.0"
