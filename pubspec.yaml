@@ -48,6 +48,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   intl: ^0.17.0
   gallery_zoom_slides: ^0.0.1
+  mj_image_slider: ^0.0.5
 
   
 dev_dependencies:

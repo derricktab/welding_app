@@ -4,14 +4,14 @@ import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 import 'package:mj_image_slider/mj_image_slider.dart';
 import 'package:welding_app/constants.dart';
 
-class FinishedProjects extends StatefulWidget {
-  const FinishedProjects({Key? key}) : super(key: key);
+class OngoingProjects extends StatefulWidget {
+  const OngoingProjects({Key? key}) : super(key: key);
 
   @override
-  State<FinishedProjects> createState() => _FinishedProjectsState();
+  State<OngoingProjects> createState() => _OngoingProjectsState();
 }
 
-class _FinishedProjectsState extends State<FinishedProjects> {
+class _OngoingProjectsState extends State<OngoingProjects> {
   @override
   Widget build(BuildContext context) {
     var imgList = [
@@ -71,7 +71,7 @@ class _FinishedProjectsState extends State<FinishedProjects> {
                     bottomLeft: Radius.circular(35),
                     bottomRight: Radius.circular(35))),
             child: const Text(
-              "FINISHED PROJECTS",
+              "ONGOING PROJECTS",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 26,
