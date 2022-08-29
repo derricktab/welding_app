@@ -162,7 +162,13 @@ class _CartState extends State<Cart> {
                                 return response;
                               },
                               onDismissed: (direction) async {
-                                // GOING TO IMPLEMENT
+                                // REMOVE ITEM FROM CART
+                                FirebaseFirestore.instance
+                                    .collection("cart")
+                                    .doc()
+                                    .delete()
+                                    .then((value) =>
+                                        print("Item Removed from cart"));
                               },
                               direction: DismissDirection.endToStart,
                               child: CartItem(

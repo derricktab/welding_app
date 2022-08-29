@@ -36,8 +36,7 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
-    var isFirstRun = IsFirstRun.isFirstRun();
-    print(isFirstRun);
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {

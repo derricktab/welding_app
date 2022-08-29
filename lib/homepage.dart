@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:is_first_run/is_first_run.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:welding_app/mini_item.dart';
@@ -103,7 +104,6 @@ class _HomePageState extends State<HomePage> {
 
   var _cartItems;
 
- 
 // GET CART NO
   getCartNo() {
     FirebaseFirestore.instance
@@ -118,7 +118,6 @@ class _HomePageState extends State<HomePage> {
       });
     });
   }
-
 
   double xOffset = 0;
   double yOffset = 0;
@@ -145,8 +144,18 @@ class _HomePageState extends State<HomePage> {
 
   var _cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
 
+  bool? isFirst;
+
+  firstRun() async {
+    bool isFirstRun = await IsFirstRun.isFirstRun();
+    setState(() {
+      isFirst = isFirstRun;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
