@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
@@ -15,51 +16,43 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   var _cartItems;
-  var prefs;
   var _total = 0;
   var cartItems = [];
 
   // initialize shared preferences
 
-  initSharedPrefs() async {
-    prefs = await SharedPreferences.getInstance();
-    var decodedList = [];
+  // initSharedPrefs() async {
+  //   prefs = await SharedPreferences.getInstance();
+  //   var decodedList = [];
 
-    try {
-      var items = await prefs.getStringList("items");
-      setState(() {
-        _cartItems = items!.length;
-        _total = 0;
+  //   try {
+  //     var items = await prefs.getStringList("items");
+  //     setState(() {
+  //       _cartItems = items!.length;
+  //       _total = 0;
 
-        cartItems = items;
+  //       cartItems = items;
 
-        cartItems.forEach((element) {
-          var decoded_element = jsonDecode(element);
+  //       cartItems.forEach((element) {
+  //         var decoded_element = jsonDecode(element);
 
-          decodedList.add(decoded_element);
-        });
+  //         decodedList.add(decoded_element);
+  //       });
 
-        cartItems = decodedList;
-        print("cart items $decodedList");
-      });
-    } catch (exception) {
-      await prefs.setStringList("items", <String>[]);
-      print("set new value");
-      print(exception);
-    }
+  //       cartItems = decodedList;
+  //       print("cart items $decodedList");
+  //     });
+  //   } catch (exception) {
+  //     await prefs.setStringList("items", <String>[]);
+  //     print("set new value");
+  //     print(exception);
+  //   }
 
-    setState(() {});
-  }
+  //   setState(() {});
+  // }
 
-  // var cartItems = [
-  //   {
-  //     "prodId": 12,
-  //     "image": "assets/images/welder.jpg",
-  //     "prodName": "Metallic Window",
-  //     "quantity": 3,
-  //     "price": 40000
-  //   },
-  // ];
+// Cart Stream
+  var cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
 
   // adding commas to numbers
   var f = NumberFormat.decimalPattern('en_us');
@@ -67,12 +60,17 @@ class _CartState extends State<Cart> {
   // init state method
   @override
   void initState() {
-    initSharedPrefs();
-    print("inititalized prefs");
+    // initSharedPrefs();
   }
 
   @override
   Widget build(BuildContext context) {
+    cartStream.listen((snapshot) {
+      setState(() {
+        _cartItems = snapshot.docs.length;
+      });
+    });
+
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.black,
@@ -105,17 +103,26 @@ class _CartState extends State<Cart> {
                     top: 5,
                     right: 0,
                     child: Container(
-                      margin: const EdgeInsets.only(right: 12),
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(50)),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 2),
-                      child: Text(
-                        _cartItems.toString(),
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                    ))
+                        margin: const EdgeInsets.only(right: 12),
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(50)),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        child: Text(
+                          _cartItems.toString(),
+                          style: const TextStyle(color: Colors.white),
+                        )
+
+                        // StreamBuilder<QuerySnapshot>(
+                        //     stream: cartStream,
+                        //     builder: ((context, snapshot) {
+                        //       return Text(
+                        //         snapshot.data!.size.toString(),
+                        //         style: const TextStyle(color: Colors.white),
+                        //       );
+                        //     })),
+                        ))
               ],
             ),
           ),
@@ -191,18 +198,7 @@ class _CartState extends State<Cart> {
                                 return response;
                               },
                               onDismissed: (direction) async {
-                                var encodedList = <String>[];
-                                final removed = cartItems.removeAt(index);
-                                cartItems.forEach((element) {
-                                  var encodedMap = jsonEncode(element);
-
-                                  // adding the string encoded map to the list
-                                  encodedList.add(encodedMap);
-                                });
-                                print(encodedList);
-                                await prefs.setStringList("items", encodedList);
-
-                                print("list updated");
+                                // GOING TO IMPLEMENT
                               },
                               direction: DismissDirection.endToStart,
                               child: CartItem(
@@ -249,8 +245,8 @@ class _CartState extends State<Cart> {
                   onPressed: () async {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, "checkout");
-                    await prefs.setStringList("items", <String>[]);
-                    print("cart cleared");
+                    // await prefs.setStringList("items", <String>[]);
+                    // print("cart cleared");
                   },
                   child: const Text("CHECKOUT"),
                 ),

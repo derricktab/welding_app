@@ -26,6 +26,9 @@ class Product extends StatefulWidget {
 }
 
 class _ProductState extends State<Product> {
+  var _cartItems = 0;
+
+  // DIALOG BOX TO CONFIRM ADD TO CART OPERATION
   Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
@@ -100,6 +103,13 @@ class _ProductState extends State<Product> {
 
   @override
   Widget build(BuildContext context) {
+    // GETTING THE CURRENT STREAM
+    _cartStream.listen((snapshot) {
+      setState(() {
+        _cartItems = snapshot.docs.length;
+      });
+    });
+
     var imgList = [widget.image];
 
     final _prodName = widget.prodName;
@@ -163,22 +173,19 @@ class _ProductState extends State<Product> {
                   top: 5,
                   right: 0,
                   child: Container(
-                      margin: const EdgeInsets.only(right: 12),
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 45, 61, 50),
-                          borderRadius: BorderRadius.circular(50)),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 5, vertical: 2),
-                      child: StreamBuilder<QuerySnapshot>(
-                          stream: _cartStream,
-                          builder: (context, snapshot) {
-                            return Text(
-                              snapshot.data!.size.toString(),
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            );
-                          })),
+                    margin: const EdgeInsets.only(right: 12),
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 45, 61, 50),
+                        borderRadius: BorderRadius.circular(50)),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                    child: Text(
+                      _cartItems.toString(),
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+
+                  ),
                 )
               ],
             ),
