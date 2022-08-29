@@ -71,34 +71,7 @@ class _ProductState extends State<Product> {
     );
   }
 
-  var _cartItems;
-  var prefs;
-
-  // initialize shared preferences
-
-  initSharedPrefs() async {
-    prefs = await SharedPreferences.getInstance();
-
-    try {
-      var items = await prefs.getStringList("items");
-      setState(() {
-        _cartItems = items!.length;
-      });
-      print(items.toString());
-      print("cart items set");
-    } catch (exception) {
-      await prefs.setStringList("items", <String>[]);
-      print("set new value");
-    }
-
-    setState(() {});
-  }
-
-// init state method
-  @override
-  void initState() {
-    initSharedPrefs();
-  }
+  var _cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
 
   var _liked = false;
   int _current = 0;
@@ -115,30 +88,14 @@ class _ProductState extends State<Product> {
   // INITIAL VALUE OF QUANTITY
   int _currentHorizontalIntValue = 1;
 
-  addToCart() {
-    var _product = {
-      'prodId': 15,
-      "image": "assets/images/wdoor3.jpeg",
-      "prodName": "NEWEST DOOR Door",
-      "quantity": 3,
-      "price": 7000
-    };
+// METHOD TO ADD PRODUCT TO CART
+  addToCart(product) {
+    var prodId = product["prodId"];
 
-    var prodId = _product["prodId"];
-
-    // FirebaseFirestore.instance
-    //     .collection("cart")
-    //     .add(_product)
-    //     .then((value) => print("ADDED TO CLOUD FIRESTORE"));
-
-    var items = FirebaseFirestore.instance
+    FirebaseFirestore.instance
         .collection("cart")
-        .snapshots()
-        .listen((snapshot) {
-      var val = snapshot.docs;
-      var length = val.length;
-      print("DOCS: $length");
-    });
+        .add(product)
+        .then((value) => _showMyDialog(), onError: (error) => print("$error"));
   }
 
   @override
@@ -200,23 +157,29 @@ class _ProductState extends State<Product> {
                       Icons.shopping_cart,
                       // size: 20,
                     )),
+
                 // CART ITEMS NUMBER
                 Positioned(
-                    top: 5,
-                    right: 0,
-                    child: Container(
+                  top: 5,
+                  right: 0,
+                  child: Container(
                       margin: const EdgeInsets.only(right: 12),
                       decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 45, 61, 50),
+                          color: const Color.fromARGB(255, 45, 61, 50),
                           borderRadius: BorderRadius.circular(50)),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 2),
-                      child: Text(
-                        _cartItems.toString(),
-                        style: const TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ))
+                      child: StreamBuilder<QuerySnapshot>(
+                          stream: _cartStream,
+                          builder: (context, snapshot) {
+                            return Text(
+                              snapshot.data!.size.toString(),
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            );
+                          })),
+                )
               ],
             ),
           ),
@@ -225,9 +188,6 @@ class _ProductState extends State<Product> {
       body: ListView(
         children: [
           // CAROUSEL SLIDE
-          ElevatedButton(
-              onPressed: () => addToCart(), child: Text("GET CART ITEMS NO")),
-
           CarouselSlider(
             items: imageSliders,
             carouselController: _controller,
@@ -514,10 +474,6 @@ class _ProductState extends State<Product> {
                         borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () async {
-                    // _cartItems += 1;
-                    // await prefs.setInt("cartItems", _cartItems);
-                    List<String> items = await prefs.getStringList("items");
-
                     var _item = {
                       'prodId': 12,
                       "image": imgList[0],
@@ -526,14 +482,8 @@ class _ProductState extends State<Product> {
                       "price": _price
                     };
 
-                    var encodedItem = jsonEncode(_item);
-
-                    items.add(encodedItem);
-                    await prefs.setStringList("items", items);
-                    print("after: " + items.length.toString());
-
-                    print("ADD TO CART BUTTON CLICKED");
-                    _showMyDialog();
+                    addToCart(_item);
+                    // _showMyDialog();
                     setState(() {});
                   },
                   child: const Text("ADD TO CART"),
