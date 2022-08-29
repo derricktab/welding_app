@@ -19,38 +19,6 @@ class _CartState extends State<Cart> {
   var _total = 0;
   var cartItems = [];
 
-  // initialize shared preferences
-
-  // initSharedPrefs() async {
-  //   prefs = await SharedPreferences.getInstance();
-  //   var decodedList = [];
-
-  //   try {
-  //     var items = await prefs.getStringList("items");
-  //     setState(() {
-  //       _cartItems = items!.length;
-  //       _total = 0;
-
-  //       cartItems = items;
-
-  //       cartItems.forEach((element) {
-  //         var decoded_element = jsonDecode(element);
-
-  //         decodedList.add(decoded_element);
-  //       });
-
-  //       cartItems = decodedList;
-  //       print("cart items $decodedList");
-  //     });
-  //   } catch (exception) {
-  //     await prefs.setStringList("items", <String>[]);
-  //     print("set new value");
-  //     print(exception);
-  //   }
-
-  //   setState(() {});
-  // }
-
 // Cart Stream
   var cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
 
@@ -67,6 +35,12 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     cartStream.listen((snapshot) {
       setState(() {
+        // updating the cart
+        snapshot.docs.forEach((doc) {
+          print(doc.data());
+        });
+
+        // updating the number of items in the cart
         _cartItems = snapshot.docs.length;
       });
     });
