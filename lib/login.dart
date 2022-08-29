@@ -317,10 +317,13 @@ class _LoginState extends State<Login> {
                           .authStateChanges()
                           .listen((User? user) {
                         if (user != null) {
+                          print("USER SIGNIN SUCCESFULL");
                           setState(() {
                             Navigator.pop(context);
                             Navigator.pushNamed(context, "profile");
                           });
+                        } else {
+                          print("FAILED TO SIGN IN WITH GOOGLE");
                         }
                       });
                     },

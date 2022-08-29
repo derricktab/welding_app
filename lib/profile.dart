@@ -73,6 +73,10 @@ class _ProfileState extends State<Profile> {
         });
   }
 
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -251,8 +255,7 @@ class _ProfileState extends State<Profile> {
                 style: ElevatedButton.styleFrom(
                     shape: const StadiumBorder(), primary: Colors.orange),
                 onPressed: () {
-                  // call the delete method to delete user
-                  _delete(context);
+                  logout();
                 },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 14),

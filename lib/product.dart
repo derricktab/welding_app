@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -114,21 +115,41 @@ class _ProductState extends State<Product> {
   // INITIAL VALUE OF QUANTITY
   int _currentHorizontalIntValue = 1;
 
-  // DERRICK
-  openDrawer() {
-    return Drawer();
+  addToCart() {
+    var _product = {
+      'prodId': 15,
+      "image": "assets/images/wdoor3.jpeg",
+      "prodName": "NEWEST DOOR Door",
+      "quantity": 3,
+      "price": 7000
+    };
+
+    var prodId = _product["prodId"];
+
+    // FirebaseFirestore.instance
+    //     .collection("cart")
+    //     .add(_product)
+    //     .then((value) => print("ADDED TO CLOUD FIRESTORE"));
+
+    var items = FirebaseFirestore.instance
+        .collection("cart")
+        .snapshots()
+        .listen((snapshot) {
+      var val = snapshot.docs;
+      var length = val.length;
+      print("DOCS: $length");
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     var imgList = [widget.image];
-    
+
     final _prodName = widget.prodName;
 
     final _price = widget.price;
 
     final _description = widget.description;
-
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
@@ -204,6 +225,9 @@ class _ProductState extends State<Product> {
       body: ListView(
         children: [
           // CAROUSEL SLIDE
+          ElevatedButton(
+              onPressed: () => addToCart(), child: Text("GET CART ITEMS NO")),
+
           CarouselSlider(
             items: imageSliders,
             carouselController: _controller,
@@ -493,8 +517,6 @@ class _ProductState extends State<Product> {
                     // _cartItems += 1;
                     // await prefs.setInt("cartItems", _cartItems);
                     List<String> items = await prefs.getStringList("items");
-
-                    print("before: " + items.length.toString());
 
                     var _item = {
                       'prodId': 12,
