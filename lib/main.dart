@@ -3,10 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:welding_app/about.dart';
+import 'package:welding_app/addProduct.dart';
 import 'package:welding_app/cart.dart';
 import 'package:welding_app/checkout.dart';
 import 'package:welding_app/contact.dart';
 import 'package:welding_app/drawer.dart';
+import 'package:welding_app/edit_prodile.dart';
 import 'package:welding_app/finished_projects.dart';
 import 'package:welding_app/homepage.dart';
 import 'package:welding_app/loader.dart';
@@ -34,9 +36,21 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  bool? isFirst;
+
+  firstRun() async {
+    bool isFirstRun = await IsFirstRun.isFirstRun();
+    setState(() {
+      isFirst = isFirstRun;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    
+
+    // checking if the app is running for the first time.
+    var isFirstRun = firstRun();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
@@ -56,15 +70,18 @@ class _MainAppState extends State<MainApp> {
         "finished_projects": (context) => const FinishedProjects(),
         "ongoing_projects": (context) => const OngoingProjects(),
         "gallery": (context) => MyApp(),
+        "addProduct": (context) => AddProduct(),
+        "edit_profile": (context) => EditProfile(),
       },
+
       home: AnimatedSplashScreen(
         splashIconSize: 180,
         splash: 'assets/images/L1.png',
         nextScreen: Stack(
-          children: const [
+          children: <Widget> [
             DrawerScreen(),
             HomePage(),
-          ],
+            ],
         ),
         splashTransition: SplashTransition.scaleTransition,
         // pageTransitionType: PageTransitionType.scale,

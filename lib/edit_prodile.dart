@@ -5,14 +5,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class EditProfile extends StatefulWidget {
+  const EditProfile({Key? key}) : super(key: key);
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<EditProfile> createState() => _EditProfileState();
 }
 
-class _ProfileState extends State<Profile> {
+class _EditProfileState extends State<EditProfile> {
   String? _username = "Loading.....";
   var _email;
   String? _phone = "Phone Not Set";
@@ -28,53 +28,8 @@ class _ProfileState extends State<Profile> {
           _email = user.email;
           _phone = user.phoneNumber;
         });
-        print(_username);
       }
     });
-  }
-
-  // METHOD TO DISPLAY POPUP DIALOG BOX
-  void _delete(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext ctx) {
-          return AlertDialog(
-            title: const Text('Please Confirm'),
-            content:
-                const Text('Are You Sure You Want To Delete Your Account?'),
-            actions: [
-              // The "Yes" button
-              TextButton(
-                  onPressed: () async {
-                    try {
-                      await FirebaseAuth.instance.currentUser!.delete();
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'requires-recent-login') {
-                        // Navigator.pop(context);
-                        Navigator.pushNamed(context, "reauthenticate");
-                      } else {
-                        print("not this error");
-                      }
-                    }
-                    // Remove the box
-
-                    // Close the dialog
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Yes')),
-              TextButton(
-                  onPressed: () {
-                    // Close the dialog
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('No'))
-            ],
-          );
-        });
-  }
-
-  void logout() async {
-    await FirebaseAuth.instance.signOut();
   }
 
   @override
@@ -213,13 +168,11 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-                onPressed: () {
-                  Navigator.pushNamed(context, "edit_profile");
-                },
+                onPressed: () {},
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 14),
                   child: Text(
-                    "Edit Profile",
+                    "U+1F4BE Save",
                     style: TextStyle(fontSize: 17),
                   ),
                 ),
@@ -227,48 +180,6 @@ class _ProfileState extends State<Profile> {
             ),
 
             const SizedBox(height: 10),
-
-            // Delete Account Button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(), primary: Colors.red),
-                onPressed: () {
-                  // call the delete method to delete user
-                  _delete(context);
-                },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Text(
-                    "Delete Account",
-                    style: TextStyle(fontSize: 17),
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // Logout Button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(), primary: Colors.orange),
-                onPressed: () {
-                  logout();
-                },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Text(
-                    "Logout",
-                    style: TextStyle(fontSize: 19, color: Colors.black),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 40),
           ],
         ),
       ),

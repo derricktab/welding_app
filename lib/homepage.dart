@@ -144,14 +144,6 @@ class _HomePageState extends State<HomePage> {
 
   var _cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
 
-  bool? isFirst;
-
-  firstRun() async {
-    bool isFirstRun = await IsFirstRun.isFirstRun();
-    setState(() {
-      isFirst = isFirstRun;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
