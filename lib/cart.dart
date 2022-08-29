@@ -37,13 +37,15 @@ class _CartState extends State<Cart> {
       setState(() {
         // updating the cart
         snapshot.docs.forEach((doc) {
-          print(doc.data());
+          cartItems.add(doc.data());
         });
 
         // updating the number of items in the cart
         _cartItems = snapshot.docs.length;
       });
     });
+
+    print(cartItems);
 
     return Scaffold(
       appBar: AppBar(
@@ -86,17 +88,7 @@ class _CartState extends State<Cart> {
                         child: Text(
                           _cartItems.toString(),
                           style: const TextStyle(color: Colors.white),
-                        )
-
-                        // StreamBuilder<QuerySnapshot>(
-                        //     stream: cartStream,
-                        //     builder: ((context, snapshot) {
-                        //       return Text(
-                        //         snapshot.data!.size.toString(),
-                        //         style: const TextStyle(color: Colors.white),
-                        //       );
-                        //     })),
-                        ))
+                        )))
               ],
             ),
           ),
@@ -126,13 +118,11 @@ class _CartState extends State<Cart> {
                         .asMap()
                         .map((index, item) {
                           // calculating the total
-                          print(item["price"].runtimeType);
                           int price = int.parse(item["price"]);
                           int quantity = int.parse(item["quantity"].toString());
 
                           setState(() {
                             _total += (price * quantity);
-                            print(_total);
                           });
                           return MapEntry(
                             index,

@@ -103,24 +103,7 @@ class _HomePageState extends State<HomePage> {
 
   var _cartItems;
 
-  initSharedPrefs() async {
-    var prefs = await SharedPreferences.getInstance();
-
-    try {
-      var items = await prefs.getStringList("items");
-      setState(() {
-        _cartItems = items!.length;
-      });
-      print(items.toString());
-      print("cart items set");
-    } catch (exception) {
-      await prefs.setStringList("items", <String>[]);
-      print("set new value");
-    }
-
-    setState(() {});
-  }
-
+ 
 // GET CART NO
   getCartNo() {
     FirebaseFirestore.instance
@@ -136,12 +119,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-// init state method
-  @override
-  void initState() {
-// TODO: implement initState
-    initSharedPrefs();
-  }
 
   double xOffset = 0;
   double yOffset = 0;

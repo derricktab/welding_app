@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:is_first_run/is_first_run.dart';
 import 'package:welding_app/about.dart';
 import 'package:welding_app/cart.dart';
 import 'package:welding_app/checkout.dart';
@@ -33,10 +34,10 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
- 
-
   @override
   Widget build(BuildContext context) {
+    var isFirstRun = IsFirstRun.isFirstRun();
+    print(isFirstRun);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {

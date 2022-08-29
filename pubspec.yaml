@@ -50,6 +50,7 @@ dependencies:
   gallery_zoom_slides: ^0.0.1
   mj_image_slider: ^0.0.5
   firebase_storage: ^10.3.6
+  is_first_run: ^1.0.0
 
   
 dev_dependencies:
