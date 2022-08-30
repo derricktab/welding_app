@@ -69,16 +69,16 @@ class _MainAppState extends State<MainApp> {
         "checkout": (context) => const CheckOut(),
         "finished_projects": (context) => const FinishedProjects(),
         "ongoing_projects": (context) => const OngoingProjects(),
-        "gallery": (context) => MyApp(),
-        "addProduct": (context) => AddProduct(),
-        "edit_profile": (context) => EditProfile(),
+        "gallery": (context) => const MyApp(),
+        "addProduct": (context) => const AddProduct(),
+        "edit_profile": (context) => const EditProfile(),
       },
 
       home: AnimatedSplashScreen(
         splashIconSize: 180,
         splash: 'assets/images/L1.png',
         nextScreen: Stack(
-          children: <Widget> [
+          children: const <Widget> [
             DrawerScreen(),
             HomePage(),
             ],

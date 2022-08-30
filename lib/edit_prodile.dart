@@ -39,6 +39,11 @@ class _EditProfileState extends State<EditProfile> {
     getUserData();
   }
 
+  final _form = GlobalKey<FormState>();
+  var _nameField = TextEditingController();
+  var _emailField = TextEditingController();
+  var _phoneField = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,18 +121,15 @@ class _EditProfileState extends State<EditProfile> {
               ],
             ),
 
-            // PROFILE DETAILS
-
-            // Name
-            ListTile(
-              title: Text(
-                _username.toString(),
-                style: const TextStyle(fontSize: 22),
-              ),
-              leading: const Icon(
-                Icons.person,
-                size: 35,
-                color: Color.fromARGB(255, 14, 171, 22),
+            // NAME DETAILS
+            Form(
+              key: _form,
+              child: ListView(
+                children: [
+                  TextFormField(
+                    controller: _nameField,
+                  ),
+                ],
               ),
             ),
             const Divider(thickness: 2),
@@ -172,7 +174,7 @@ class _EditProfileState extends State<EditProfile> {
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 14),
                   child: Text(
-                    "U+1F4BE Save",
+                    "Save",
                     style: TextStyle(fontSize: 17),
                   ),
                 ),
