@@ -122,38 +122,10 @@ class _EditProfileState extends State<EditProfile> {
 
           const Divider(thickness: 2),
 
-          // Email
-          ListTile(
-            title: Text(
-              _email.toString(),
-              style: const TextStyle(fontSize: 22),
-            ),
-            leading: const Icon(
-              Icons.email_rounded,
-              size: 35,
-              color: Color.fromARGB(255, 14, 171, 22),
-            ),
-          ),
-          const Divider(thickness: 2),
-
-          // Phone Number
-          ListTile(
-            enabled: true,
-            title: Text(
-              _phone.toString(),
-              style: const TextStyle(fontSize: 22),
-            ),
-            leading: const Icon(
-              Icons.phone,
-              size: 35,
-              color: Color.fromARGB(255, 14, 171, 22),
-            ),
-          ),
-          const Divider(thickness: 2),
-
+     
           const SizedBox(height: 40),
 
-          // edit profile button
+          // SAVE BUTTON
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50),
             child: ElevatedButton(
