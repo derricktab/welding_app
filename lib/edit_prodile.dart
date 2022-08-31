@@ -124,6 +124,12 @@ class _EditProfileState extends State<EditProfile> {
 
             const Divider(thickness: 2),
 
+            // NAME
+            TextFormField(
+              decoration: InputDecoration.collapsed(
+                  hintText: "Enter Name"),
+              controller: _nameField,
+            ),
             const SizedBox(height: 40),
 
             // SAVE BUTTON
