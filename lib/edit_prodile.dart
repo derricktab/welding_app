@@ -47,144 +47,131 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: ListView(
-          children: [
-            // STACK TO CONTAIN THE PROFILE DETAILS
-            Stack(
-              children: [
-                // UPPER AREA
-                Container(
-                  height: 200,
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Colors.black,
-                            Colors.green,
-                            Colors.greenAccent,
-                          ]),
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(60),
-                          bottomRight: Radius.circular(60))),
-                  child: Column(
-                    children: [
-                      // BACK ARROW
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 5.0, vertical: 12),
-                                child: Icon(
-                                  Icons.arrow_back_ios_new,
-                                  color: Colors.white,
-                                ),
-                              ))
-                        ],
-                      ),
-                      const SizedBox(height: 27),
-                      // DISPLAYING LOGGEDIN USERNAME
-                      Center(
-                          child: Text(
-                        _username!.toUpperCase(),
-                        style: const TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 247, 245, 245),
-                        ),
-                      )),
-                    ],
-                  ),
-                ),
-
-                // PROFILE IMAGE
-                const Positioned(
-                  top: 135,
-                  left: 125,
-                  child: CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 139, 188, 234),
-                    radius: 65,
-                    backgroundImage: AssetImage(
-                      "assets/images/dummy-user.png",
+      body: Form(
+        child: ListView( children: [
+          // STACK TO CONTAIN THE PROFILE DETAILS
+          Stack(
+            children: [
+              // UPPER AREA
+              Container(
+                height: 200,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.black,
+                          Colors.green,
+                          Colors.greenAccent,
+                        ]),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(60),
+                        bottomRight: Radius.circular(60))),
+                child: Column(
+                  children: [
+                    // BACK ARROW
+                    Row(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5.0, vertical: 12),
+                              child: Icon(
+                                Icons.arrow_back_ios_new,
+                                color: Colors.white,
+                              ),
+                            ))
+                      ],
                     ),
-                  ),
+                    const SizedBox(height: 27),
+                    // DISPLAYING LOGGEDIN USERNAME
+                    Center(
+                        child: Text(
+                      _username!.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 247, 245, 245),
+                      ),
+                    )),
+                  ],
                 ),
-
-                Container(
-                  height: 300,
-                )
-              ],
-            ),
-
-            // NAME DETAILS
-            Form(
-              key: _form,
-              child: ListView(
-                children: [
-                  TextFormField(
-                    controller: _nameField,
-                  ),
-                ],
               ),
-            ),
-            const Divider(thickness: 2),
 
-            // Email
-            ListTile(
-              title: Text(
-                _email.toString(),
-                style: const TextStyle(fontSize: 22),
-              ),
-              leading: const Icon(
-                Icons.email_rounded,
-                size: 35,
-                color: Color.fromARGB(255, 14, 171, 22),
-              ),
-            ),
-            const Divider(thickness: 2),
-
-            // Phone Number
-            ListTile(
-              enabled: true,
-              title: Text(
-                _phone.toString(),
-                style: const TextStyle(fontSize: 22),
-              ),
-              leading: const Icon(
-                Icons.phone,
-                size: 35,
-                color: Color.fromARGB(255, 14, 171, 22),
-              ),
-            ),
-            const Divider(thickness: 2),
-
-            const SizedBox(height: 40),
-
-            // edit profile button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-                onPressed: () {},
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Text(
-                    "Save",
-                    style: TextStyle(fontSize: 17),
+              // PROFILE IMAGE
+              const Positioned(
+                top: 135,
+                left: 125,
+                child: CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 139, 188, 234),
+                  radius: 65,
+                  backgroundImage: AssetImage(
+                    "assets/images/dummy-user.png",
                   ),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 10),
-          ],
-        ),
-      ),
+              Container(
+                height: 300,
+              )
+            ],
+          ),
+
+          const Divider(thickness: 2),
+
+          // Email
+          ListTile(
+            title: Text(
+              _email.toString(),
+              style: const TextStyle(fontSize: 22),
+            ),
+            leading: const Icon(
+              Icons.email_rounded,
+              size: 35,
+              color: Color.fromARGB(255, 14, 171, 22),
+            ),
+          ),
+          const Divider(thickness: 2),
+
+          // Phone Number
+          ListTile(
+            enabled: true,
+            title: Text(
+              _phone.toString(),
+              style: const TextStyle(fontSize: 22),
+            ),
+            leading: const Icon(
+              Icons.phone,
+              size: 35,
+              color: Color.fromARGB(255, 14, 171, 22),
+            ),
+          ),
+          const Divider(thickness: 2),
+
+          const SizedBox(height: 40),
+
+          // edit profile button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+              onPressed: () {},
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 14),
+                child: Text(
+                  "Save",
+                  style: TextStyle(fontSize: 17),
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 10),
+        ],
+      ),)
     );
   }
 }

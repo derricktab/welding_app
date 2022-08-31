@@ -103,21 +103,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   var _cartItems;
-
-// GET CART NO
-  getCartNo() {
-    FirebaseFirestore.instance
-        .collection("cart")
-        .get()
-        .then((QuerySnapshot snapshot) {
-      snapshot.docs.forEach((doc) {
-        setState(() {
-          _cartItems = doc["no"];
-          print("CART NO: $_cartItems");
-        });
-      });
-    });
-  }
+  var cartItems = [];
 
   double xOffset = 0;
   double yOffset = 0;
@@ -144,9 +130,19 @@ class _HomePageState extends State<HomePage> {
 
   var _cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
 
-
   @override
   Widget build(BuildContext context) {
+    _cartStream.listen((snapshot) {
+      setState(() {
+        // updating the cart
+        snapshot.docs.forEach((doc) {
+          cartItems.add(doc.data());
+        });
+
+        // updating the number of items in the cart
+        _cartItems = snapshot.docs.length;
+      });
+    });
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
@@ -496,9 +492,6 @@ class _HomePageState extends State<HomePage> {
                   ),
 
                   const SizedBox(height: 35),
-
-                  ElevatedButton(
-                      onPressed: getCartNo, child: const Text("GET CART NO"))
                 ],
               ),
 
