@@ -24,9 +24,10 @@ class _EditProfileState extends State<EditProfile> {
         FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user != null) {
         setState(() {
+          _nameField.text = user.displayName.toString();
           _username = user.displayName;
-          _email = user.email;
-          _phone = user.phoneNumber;
+          _emailField.text = user.email.toString();
+          _phoneField.text = user.phoneNumber.toString();
         });
       }
     });
@@ -122,22 +123,84 @@ class _EditProfileState extends State<EditProfile> {
               ],
             ),
 
-            const Divider(thickness: 2),
+            // const Divider(thickness: 2),
 
-            // NAME
-            TextFormField(
-              decoration: InputDecoration.collapsed(
-                  hintText: "Enter Name"),
-              controller: _nameField,
+            // NAME TEXT FIELD
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                    hintText: "Enter Name",
+                    prefixIcon: Icon(Icons.person),
+                    prefixIconColor: Colors.red,
+                    border: OutlineInputBorder()),
+                controller: _nameField,
+
+                // checking if the input field is not null
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Name Cant Be Empty";
+                  }
+                  return null;
+                },
+              ),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 10),
+
+            // EMAIL TEXT FIELD
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                    hintText: "Enter Email",
+                    prefixIcon: Icon(Icons.email),
+                    prefixIconColor: Colors.red,
+                    border: OutlineInputBorder()),
+                controller: _emailField,
+
+                // checking if the input field is not null
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Email Cant Be Empty";
+                  }
+                  return null;
+                },
+              ),
+            ),
+            const SizedBox(height: 10),
+
+            // PHONE TEXT FIELD
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                    hintText: "Enter Phone",
+                    prefixIcon: Icon(Icons.phone),
+                    prefixIconColor: Colors.red,
+                    border: OutlineInputBorder()),
+                controller: _phoneField,
+
+                // checking if the input field is not null
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Phone Cant Be Empty";
+                  }
+                  return null;
+                },
+              ),
+            ),
+            const SizedBox(height: 10),
 
             // SAVE BUTTON
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-                onPressed: () {},
+                onPressed: () {
+                  if (_form.currentState!.validate()) {
+                    print("VALIDATED");
+                  }
+                },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 14),
                   child: Text(
