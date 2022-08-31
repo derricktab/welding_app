@@ -24,6 +24,7 @@ class _SignUpState extends State<SignUp> {
   var _email = TextEditingController();
   var _password = TextEditingController();
   var _phone = TextEditingController();
+  var _address = TextEditingController();
   var _confirmPassword = TextEditingController();
 
   // hiding password input
@@ -181,6 +182,7 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                   const SizedBox(height: 10),
+
                   // PHONE FORM FIELD
                   TextFormField(
                     style: const TextStyle(color: Colors.white),
@@ -207,6 +209,34 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   const SizedBox(height: 10),
+
+                  // ADDRESS INPUT FIELD
+                  TextFormField(
+                    style: const TextStyle(color: Colors.white),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Address Can't be empty";
+                      }
+                      return null;
+                    },
+                    scrollPadding: const EdgeInsets.all(5),
+                    controller: _address,
+                    decoration: InputDecoration(
+                      enabledBorder: myinputborder(),
+                      label: const Text(
+                        "Address: ",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      hintText: "Enter Your Address",
+                      prefixIcon: const Icon(
+                        Icons.location_on,
+                        color: Colors.amberAccent,
+                      ),
+                      border: myinputborder(),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+
                   // PASSWORD FORM FIELD
                   TextFormField(
                     style: const TextStyle(color: Colors.white),
