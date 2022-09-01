@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -336,6 +337,8 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   const SizedBox(height: 15),
+
+                  //
                   // SIGNUP BUTTON
                   ElevatedButton(
                     onPressed: () async {
@@ -345,6 +348,7 @@ class _SignUpState extends State<SignUp> {
                       setState(() {
                         _errorMessage = null;
                       });
+
                       if (_formKey.currentState!.validate()) {
                         try {
                           final credential = await FirebaseAuth.instance
@@ -389,7 +393,23 @@ class _SignUpState extends State<SignUp> {
                                 )),
                           );
                         } else {
-                          // if registration is successful
+
+                        // if registration is successful
+                          var _user = {
+                            "name": _name.text,
+                            "email": _email.text,
+                            "phone": _phone.text,
+                            "address": _address.text,
+                            "role": "user",
+                          };
+
+                          FirebaseFirestore.instance
+                              .collection("users")
+                              .add(_user)
+                              .then((value) {
+                            print("Data added to Cloud Firestore");
+                          });
+
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 padding: EdgeInsets.all(20),

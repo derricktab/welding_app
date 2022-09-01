@@ -15,7 +15,7 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  var _cartItems;
+  var _cartItems = 0;
   var _total = 0;
   var cartItems = [];
 

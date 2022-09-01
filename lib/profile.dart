@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class _ProfileState extends State<Profile> {
   String? _username = "Loading.....";
   var _email;
   String? _phone = "Phone Not Set";
+  String? _address = "Not Set";
   var _isShown;
 
 // METHOD TO GET THE USER DATA
@@ -28,7 +30,9 @@ class _ProfileState extends State<Profile> {
           _email = user.email;
           _phone = user.phoneNumber;
         });
-        print(_username);
+      final query = FirebaseFirestore.instance
+            .collection("users")
+            .where("email", isEqualTo: _email.toString()).get().then((value) => print("Value: $value"));
       }
     });
   }
@@ -206,7 +210,22 @@ class _ProfileState extends State<Profile> {
             ),
             const Divider(thickness: 2),
 
-            const SizedBox(height: 40),
+            // Address
+            ListTile(
+              enabled: true,
+              title: Text(
+                _address.toString(),
+                style: const TextStyle(fontSize: 22),
+              ),
+              leading: const Icon(
+                Icons.location_on,
+                size: 35,
+                color: Color.fromARGB(255, 14, 171, 22),
+              ),
+            ),
+            const Divider(thickness: 2),
+
+            const SizedBox(height: 30),
 
             // edit profile button
             Padding(

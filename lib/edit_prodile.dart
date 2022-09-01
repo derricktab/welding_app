@@ -44,6 +44,7 @@ class _EditProfileState extends State<EditProfile> {
   var _nameField = TextEditingController();
   var _emailField = TextEditingController();
   var _phoneField = TextEditingController();
+  var _addressField = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +175,7 @@ class _EditProfileState extends State<EditProfile> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
                 decoration: const InputDecoration(
-                    hintText: "Enter Phone",
+                    hintText: "Enter Phone Number",
                     prefixIcon: Icon(Icons.phone),
                     prefixIconColor: Colors.red,
                     border: OutlineInputBorder()),
@@ -191,6 +192,28 @@ class _EditProfileState extends State<EditProfile> {
             ),
             const SizedBox(height: 10),
 
+            // ADDRESS TEXT FIELD
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                    hintText: "Enter Address",
+                    prefixIcon: Icon(Icons.location_on_outlined),
+                    prefixIconColor: Colors.red,
+                    border: OutlineInputBorder()),
+                controller: _addressField,
+
+                // checking if the input field is not null
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Address Cant Be Empty";
+                  }
+                  return null;
+                },
+              ),
+            ),
+            const SizedBox(height: 30),
+
             // SAVE BUTTON
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -204,8 +227,8 @@ class _EditProfileState extends State<EditProfile> {
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 14),
                   child: Text(
-                    "Save",
-                    style: TextStyle(fontSize: 17),
+                    "SAVE",
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
               ),

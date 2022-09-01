@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  var _cartItems;
+  var _cartItems = 0;
   var cartItems = [];
 
   double xOffset = 0;
