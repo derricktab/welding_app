@@ -329,11 +329,10 @@ class _LoginState extends State<Login> {
                               padding: EdgeInsets.symmetric(
                                   vertical: 13, horizontal: 5),
                             ));
-                            // print("USER SIGN IN SUCCESFULL");
                             Navigator.pop(context);
                             Navigator.pop(context);
                           } else {
-                            print("FAILED TO SIGN IN WITH GOOGLE");
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Something Went Wrong"), backgroundColor: Colors.red, padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),));
                           }
                         });
                       });
