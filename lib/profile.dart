@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Profile extends StatefulWidget {
@@ -91,6 +92,8 @@ class _ProfileState extends State<Profile> {
         });
   }
 
+  var _picker = ImagePicker();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -106,26 +109,26 @@ class _ProfileState extends State<Profile> {
           children: [
             ElevatedButton(
                 onPressed: () async {
-                  var storageRef = FirebaseStorage.instance
-                      .ref()
-                      .child("userImages/name.png");
-                  print(storageRef.fullPath);
+                  var photo;
+                  var image =
+                      await _picker.pickImage(source: ImageSource.gallery);
+                  var path = image!.path;
 
-                  // File file = File(
-                  //     "D:/DERRICK/MY WORK/PROGRAMMING/FLUTTER/projects/welding_app/assets/images/user.png");
-                  // try {
-                  //   await storageRef
-                  //       .child("userImages/user.png")
-                  //       .putFile(file)
-                  //       .then((p0) {
-                  //     print("Image Uploaded");
-                  //   }, onError: (error) {
-                  //     print(error.toString());
-                  //   });
-                  // } catch (e) {
-                  //   // ...
-                  //   print(e);
-                  // }
+                  var storageRef =
+                      FirebaseStorage.instance.ref().child("userImages/$path");
+                  print(path);
+
+                  File file = File(path);
+                  try {
+                    await storageRef.putFile(file).then((p0) {
+                      print("Image Uploaded");
+                    }, onError: (error) {
+                      print(error.toString());
+                    });
+                  } catch (e) {
+                    // ...
+                    print(e);
+                  }
                 },
                 child: const Text("UPLOAD FILE")),
             // STACK TO CONTAIN THE PROFILE DETAILS
