@@ -317,9 +317,9 @@ class _LoginState extends State<Login> {
                             .listen((User? user) {
                           if (user != null) {
                             print("USER SIGN IN SUCCESFULL");
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                            // Navigator.pushNamed(context, "home");
+                            // Navigator.pop(context);
+                            // Navigator.pop(context);
+                            Navigator.pushNamed(context, "home");
                           } else {
                             print("FAILED TO SIGN IN WITH GOOGLE");
                           }
