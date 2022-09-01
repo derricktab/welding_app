@@ -401,7 +401,7 @@ class _SignUpState extends State<SignUp> {
                             "phone": _phone.text,
                             "address": _address.text,
                             "role": "user",
-                            "image": "assets/",
+                            "image": "assets/images/user.png",
                           };
 
                           FirebaseFirestore.instance
