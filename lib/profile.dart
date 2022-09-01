@@ -1,10 +1,11 @@
-import 'dart:ui';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -102,6 +103,22 @@ class _ProfileState extends State<Profile> {
       body: Container(
         child: ListView(
           children: [
+            ElevatedButton(
+                onPressed: () async {
+                  var storageRef = FirebaseStorage.instance.ref();
+                  Directory appDocDir =
+                      await getApplicationDocumentsDirectory();
+                  String filePath = '${appDocDir.absolute}/assets/images/user.png';
+                  File file = File(filePath);
+
+                  try {
+                    await storageRef.putFile(file);
+                  } catch (e) {
+                    // ...
+                    print(e);
+                  }
+                },
+                child: const Text("UPLOAD FILE")),
             // STACK TO CONTAIN THE PROFILE DETAILS
             Stack(
               children: [
@@ -287,8 +304,8 @@ class _ProfileState extends State<Profile> {
                   await FirebaseAuth.instance.signOut().then((value) {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, "login");
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("LOGGED OUT SUCCESFULLY")));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("LOGGED OUT SUCCESFULLY")));
                   });
                 },
                 child: const Padding(
