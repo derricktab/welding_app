@@ -323,7 +323,7 @@ class _LoginState extends State<Login> {
                             print("USER SIGN IN SUCCESFULL");
                             Navigator.pop(context);
                             Navigator.pushNamed(context, "drawer");
-                            Navigator.pushNamed(context, "home");
+                            // Navigator.pushNamed(context, "home");
                           } else {
                             print("FAILED TO SIGN IN WITH GOOGLE");
                           }

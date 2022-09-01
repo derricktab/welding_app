@@ -285,7 +285,6 @@ class _ProfileState extends State<Profile> {
                     shape: const StadiumBorder(), primary: Colors.orange),
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut().then((value) {
-                    print("LOGGED OUT SUCCESFULLY!");
                     Navigator.pop(context);
                     Navigator.pushNamed(context, "login");
                     ScaffoldMessenger.of(context).showSnackBar(
