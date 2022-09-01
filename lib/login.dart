@@ -347,7 +347,7 @@ class _LoginState extends State<Login> {
                     ),
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
-                      primary: Color.fromARGB(244, 243, 239, 239),
+                      primary: const Color.fromARGB(244, 243, 239, 239),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 5),
                     ),
