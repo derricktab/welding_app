@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -31,6 +33,28 @@ class _EditProfileState extends State<EditProfile> {
         });
       }
     });
+  }
+
+  uploadImage(var path) async {
+    var photo;
+
+    var imgName = DateTime.now();
+
+    var storageRef =
+        FirebaseStorage.instance.ref().child("userImages/$imgName.png");
+    print(path);
+
+    File file = File(path);
+    try {
+      await storageRef.putFile(file).then((p0) {
+        print("Image Uploaded");
+      }, onError: (error) {
+        print(error.toString());
+      });
+    } catch (e) {
+      // ...
+      print(e);
+    }
   }
 
   @override
