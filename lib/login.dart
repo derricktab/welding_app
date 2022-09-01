@@ -311,7 +311,6 @@ class _LoginState extends State<Login> {
                   // LOGIN WITH GOOGLE
                   ElevatedButton.icon(
                     onPressed: () async {
-
                       // bring up the loader
                       Navigator.pushNamed(context, "loader");
 
@@ -322,8 +321,9 @@ class _LoginState extends State<Login> {
                           if (user != null) {
                             print("USER SIGN IN SUCCESFULL");
                             Navigator.pop(context);
-                            Navigator.pushNamed(context, "drawer");
-                            // Navigator.pushNamed(context, "home");
+                            Navigator.pop(context);
+                            // Navigator.pushNamed(context, "drawer");
+                            // // Navigator.pushNamed(context, "home");
                           } else {
                             print("FAILED TO SIGN IN WITH GOOGLE");
                           }
