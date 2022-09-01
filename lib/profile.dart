@@ -107,30 +107,7 @@ class _ProfileState extends State<Profile> {
       body: Container(
         child: ListView(
           children: [
-            ElevatedButton(
-                onPressed: () async {
-                  var photo;
-                  var image =
-                      await _picker.pickImage(source: ImageSource.gallery);
-                  var path = image!.path;
-
-                  var storageRef =
-                      FirebaseStorage.instance.ref().child("userImages/$path");
-                  print(path);
-
-                  File file = File(path);
-                  try {
-                    await storageRef.putFile(file).then((p0) {
-                      print("Image Uploaded");
-                    }, onError: (error) {
-                      print(error.toString());
-                    });
-                  } catch (e) {
-                    // ...
-                    print(e);
-                  }
-                },
-                child: const Text("UPLOAD FILE")),
+   
             // STACK TO CONTAIN THE PROFILE DETAILS
             Stack(
               children: [
