@@ -36,13 +36,10 @@ class _EditProfileState extends State<EditProfile> {
   }
 
   uploadImage(var path) async {
-    var photo;
-
     var imgName = DateTime.now();
 
     var storageRef =
         FirebaseStorage.instance.ref().child("userImages/$imgName.png");
-    print(path);
 
     File file = File(path);
     try {
@@ -141,6 +138,16 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ),
                 ),
+
+                // EDIT ICON IMAGE
+                const Positioned(
+                    top: 135,
+                    left: 125,
+                    child: CircleAvatar(
+                      backgroundColor: Color.fromARGB(191, 0, 0, 0),
+                      radius: 65,
+                      child: Icon(Icons.edit),
+                    )),
 
                 Container(
                   height: 300,
