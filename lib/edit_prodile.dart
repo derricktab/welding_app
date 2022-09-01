@@ -27,9 +27,10 @@ class _EditProfileState extends State<EditProfile> {
   getUserData() async {
     final components =
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
-
-      
-      final imageUrl = await FirebaseStorage.instance.ref().child("users/me/profile.png").getDownloadURL();
+      // final imageUrl = await FirebaseStorage.instance
+      //     .ref()
+      //     .child("users/me/profile.png")
+      //     .getDownloadURL();
 
       if (user != null) {
         setState(() {
@@ -268,6 +269,7 @@ class _EditProfileState extends State<EditProfile> {
 
             // SAVE BUTTON
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
@@ -287,7 +289,8 @@ class _EditProfileState extends State<EditProfile> {
 
                 // CANCEL BUTTON
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+                  style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(), primary: Colors.black),
                   onPressed: () {
                     Navigator.pop(context);
                   },

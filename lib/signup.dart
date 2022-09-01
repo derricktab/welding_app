@@ -15,6 +15,14 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  // Upload Image
+  generateUID() {
+    var uid;
+
+    // get latest id
+    return uid;
+  }
+
   var _loggedIn = false;
   var _errorMessage;
   // form key
@@ -393,15 +401,15 @@ class _SignUpState extends State<SignUp> {
                                 )),
                           );
                         } else {
-
-                        // if registration is successful
+                          // if registration is successful
                           var _user = {
+                            "uid": 1,
                             "name": _name.text,
                             "email": _email.text,
                             "phone": _phone.text,
                             "address": _address.text,
                             "role": "user",
-                            "image": "assets/images/user.png",
+                            "image": "",
                           };
 
                           FirebaseFirestore.instance
@@ -409,6 +417,12 @@ class _SignUpState extends State<SignUp> {
                               .add(_user)
                               .then((value) {
                             print("Data added to Cloud Firestore");
+                            FirebaseFirestore.instance
+                                .collection("users")
+                                .doc(value.id.toString())
+                                .update({"uid": value.id}).then(
+                                    (value) => print("UID updated"));
+                            print(value.id);
                           });
 
                           ScaffoldMessenger.of(context).showSnackBar(
