@@ -319,11 +319,19 @@ class _LoginState extends State<Login> {
                             .authStateChanges()
                             .listen((User? user) {
                           if (user != null) {
-                            print("USER SIGN IN SUCCESFULL");
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text(
+                                "Login Succesful",
+                                textAlign: TextAlign.center,
+                              ),
+                              backgroundColor: Colors.green,
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 13, horizontal: 5),
+                            ));
+                            // print("USER SIGN IN SUCCESFULL");
                             Navigator.pop(context);
                             Navigator.pop(context);
-                            // Navigator.pushNamed(context, "drawer");
-                            // // Navigator.pushNamed(context, "home");
                           } else {
                             print("FAILED TO SIGN IN WITH GOOGLE");
                           }
