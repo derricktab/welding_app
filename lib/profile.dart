@@ -89,10 +89,6 @@ class _ProfileState extends State<Profile> {
         });
   }
 
-  void logout() async {
-    await FirebaseAuth.instance.signOut();
-  }
-
   @override
   void initState() {
     // TODO: implement initState
@@ -287,8 +283,14 @@ class _ProfileState extends State<Profile> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     shape: const StadiumBorder(), primary: Colors.orange),
-                onPressed: () {
-                  logout();
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut().then((value) {
+                    print("LOGGED OUT SUCCESFULLY!");
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "login");
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("LOGGED OUT SUCCESFULLY")));
+                  });
                 },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 14),
