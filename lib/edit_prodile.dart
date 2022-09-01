@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -66,6 +67,7 @@ class _EditProfileState extends State<EditProfile> {
   var _emailField = TextEditingController();
   var _phoneField = TextEditingController();
   var _addressField = TextEditingController();
+  var _path;
 
   @override
   Widget build(BuildContext context) {
@@ -140,13 +142,28 @@ class _EditProfileState extends State<EditProfile> {
                 ),
 
                 // EDIT ICON IMAGE
-                const Positioned(
+                Positioned(
                     top: 135,
                     left: 125,
-                    child: CircleAvatar(
-                      backgroundColor: Color.fromARGB(191, 0, 0, 0),
-                      radius: 65,
-                      child: Icon(Icons.edit),
+                    child: GestureDetector(
+                      onTap: () async {
+                        var image = await ImagePicker()
+                            .pickImage(source: ImageSource.gallery);
+                        setState(() {
+                          _path = image!.path;
+                        });
+
+                        print(_path);
+                      },
+                      child: const CircleAvatar(
+                        backgroundColor: Color.fromARGB(135, 0, 0, 0),
+                        radius: 65,
+                        child: Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 35,
+                        ),
+                      ),
                     )),
 
                 Container(
