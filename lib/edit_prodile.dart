@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -20,11 +21,16 @@ class _EditProfileState extends State<EditProfile> {
   var _email;
   String? _phone = "Phone Not Set";
   var _isShown;
+  var _userImage;
 
 // METHOD TO GET THE USER DATA
-  getUserData() {
+  getUserData() async {
     final components =
-        FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        FirebaseAuth.instance.authStateChanges().listen((User? user) async {
+
+      
+      final imageUrl = await FirebaseStorage.instance.ref().child("users/me/profile.png").getDownloadURL();
+
       if (user != null) {
         setState(() {
           _nameField.text = user.displayName.toString();
@@ -261,23 +267,39 @@ class _EditProfileState extends State<EditProfile> {
             const SizedBox(height: 30),
 
             // SAVE BUTTON
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-                onPressed: () {
-                  if (_form.currentState!.validate()) {
-                    print("VALIDATED");
-                  }
-                },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Text(
-                    "SAVE",
-                    style: TextStyle(fontSize: 20),
+            Row(
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+                  onPressed: () {
+                    if (_form.currentState!.validate()) {
+                      print("VALIDATED");
+                    }
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    child: Text(
+                      "SAVE",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
-              ),
+
+                // CANCEL BUTTON
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    child: Text(
+                      "CANCEL",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ),
+              ],
             ),
 
             const SizedBox(height: 10),
