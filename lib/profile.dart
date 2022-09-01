@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Profile extends StatefulWidget {
@@ -105,18 +106,26 @@ class _ProfileState extends State<Profile> {
           children: [
             ElevatedButton(
                 onPressed: () async {
-                  var storageRef = FirebaseStorage.instance.ref();
-                  Directory appDocDir =
-                      await getApplicationDocumentsDirectory();
-                  String filePath = '${appDocDir.absolute}/assets/images/user.png';
-                  File file = File(filePath);
+                  var storageRef = FirebaseStorage.instance
+                      .ref()
+                      .child("userImages/name.png");
+                  print(storageRef.fullPath);
 
-                  try {
-                    await storageRef.putFile(file);
-                  } catch (e) {
-                    // ...
-                    print(e);
-                  }
+                  // File file = File(
+                  //     "D:/DERRICK/MY WORK/PROGRAMMING/FLUTTER/projects/welding_app/assets/images/user.png");
+                  // try {
+                  //   await storageRef
+                  //       .child("userImages/user.png")
+                  //       .putFile(file)
+                  //       .then((p0) {
+                  //     print("Image Uploaded");
+                  //   }, onError: (error) {
+                  //     print(error.toString());
+                  //   });
+                  // } catch (e) {
+                  //   // ...
+                  //   print(e);
+                  // }
                 },
                 child: const Text("UPLOAD FILE")),
             // STACK TO CONTAIN THE PROFILE DETAILS

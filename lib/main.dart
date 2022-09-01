@@ -62,7 +62,6 @@ class _MainAppState extends State<MainApp> {
         "contact": (context) => const Contact(),
         "services": (context) => const Services(),
         "loader": (context) => const MyLoader(),
-        "reauthenticate": (context) => const MyLoader(),
         "about": (context) => const About(),
         "orders": (context) => const Orders(),
         "cart": (context) => const Cart(),

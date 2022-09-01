@@ -165,7 +165,7 @@ class _CartState extends State<Cart> {
                                 // REMOVE ITEM FROM CART
                                 FirebaseFirestore.instance
                                     .collection("cart")
-                                    .doc()
+                                    .doc("8p19Mk9xG8B5V239mV4g")
                                     .delete()
                                     .then((value) =>
                                         print("Item Removed from cart"));
