@@ -152,8 +152,7 @@ class _EditProfileState extends State<EditProfile> {
                         setState(() {
                           _path = image!.path;
                         });
-
-                        print(_path);
+                      
                       },
                       child: const CircleAvatar(
                         backgroundColor: Color.fromARGB(135, 0, 0, 0),
