@@ -408,7 +408,6 @@ class _SignUpState extends State<SignUp> {
                             "email": _email.text,
                             "phone": _phone.text,
                             "address": _address.text,
-                            "role": "user",
                             "image": "",
                           };
 
