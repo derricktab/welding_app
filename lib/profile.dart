@@ -30,9 +30,21 @@ class _ProfileState extends State<Profile> {
           _email = user.email;
           _phone = user.phoneNumber;
         });
-      final query = FirebaseFirestore.instance
+        final query = FirebaseFirestore.instance
             .collection("users")
-            .where("email", isEqualTo: _email.toString()).get().then((value) => print("Value: $value"));
+            .where("email", isEqualTo: _email.toString())
+            .get()
+            .then((value) {
+          var result = value.docs.map((e) {
+            var data = e.data();
+
+            return [e["address"], e["phone"]];
+          });
+          setState(() {
+            _address = result.first[0];
+            _phone = result.first[1];
+          });
+        });
       }
     });
   }

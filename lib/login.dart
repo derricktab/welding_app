@@ -311,20 +311,19 @@ class _LoginState extends State<Login> {
                   // LOGIN WITH GOOGLE
                   ElevatedButton.icon(
                     onPressed: () async {
-                      final user = signInWithGoogle();
-                      await _prefs.setBool("loggedIn", true);
-                      FirebaseAuth.instance
-                          .authStateChanges()
-                          .listen((User? user) {
-                        if (user != null) {
-                          print("USER SIGNIN SUCCESFULL");
-                          setState(() {
+                      signInWithGoogle().then((value) {
+                        FirebaseAuth.instance
+                            .authStateChanges()
+                            .listen((User? user) {
+                          if (user != null) {
+                            print("USER SIGN IN SUCCESFULL");
                             Navigator.pop(context);
-                            Navigator.pushNamed(context, "profile");
-                          });
-                        } else {
-                          print("FAILED TO SIGN IN WITH GOOGLE");
-                        }
+                            Navigator.pop(context);
+                            // Navigator.pushNamed(context, "home");
+                          } else {
+                            print("FAILED TO SIGN IN WITH GOOGLE");
+                          }
+                        });
                       });
                     },
                     icon: const Icon(
