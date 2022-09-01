@@ -37,7 +37,23 @@ class _EditProfileState extends State<EditProfile> {
           _nameField.text = user.displayName.toString();
           _username = user.displayName;
           _emailField.text = user.email.toString();
-          _phoneField.text = user.phoneNumber.toString();
+          // _phoneField.text = user.phoneNumber.toString();
+          // _addressField.text = user.phoneNumber.toString();
+        });
+        final query = FirebaseFirestore.instance
+            .collection("users")
+            .where("email", isEqualTo: _email.toString())
+            .get()
+            .then((value) {
+          var result = value.docs.map((e) {
+            var data = e.data();
+
+            return [e["address"], e["phone"]];
+          });
+          setState(() {
+            _addressField.text = result.first[0];
+            _phoneField.text = result.first[1];
+          });
         });
       }
     });
