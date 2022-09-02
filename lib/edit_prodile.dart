@@ -64,8 +64,9 @@ class _EditProfileState extends State<EditProfile> {
 
     File file = File(path);
     try {
-      await storageRef.putFile(file).then((p0) {
-        print("Image Uploaded");
+      await storageRef.putFile(file).then((p0) async {
+        var imgUrl = await storageRef.getDownloadURL();
+        return imgUrl;
       }, onError: (error) {
         print(error.toString());
       });
@@ -172,7 +173,7 @@ class _EditProfileState extends State<EditProfile> {
                         setState(() {
                           _path = image!.path;
                         });
-                        uploadImage(_path);
+                        var url = uploadImage(_path);
                       },
                       child: const CircleAvatar(
                         backgroundColor: Color.fromARGB(135, 0, 0, 0),
