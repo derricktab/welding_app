@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
   String? _address = "Not Set";
   var _isShown;
   var _userImage =
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png";
+      "https://cdn.landesa.org/wp-content/uploads/default-user-image.png";
 
 // METHOD TO GET THE USER DATA
   getUserData() {
@@ -171,7 +171,7 @@ class _ProfileState extends State<Profile> {
                   top: 135,
                   left: 125,
                   child: CircleAvatar(
-                    backgroundColor: const Color.fromARGB(255, 139, 188, 234),
+                    backgroundColor: Color.fromARGB(255, 221, 41, 17),
                     radius: 65,
                     backgroundImage: NetworkImage(
                       _userImage,

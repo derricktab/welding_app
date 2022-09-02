@@ -22,13 +22,13 @@ class _EditProfileState extends State<EditProfile> {
   String? _phone = "Phone Not Set";
   var _isShown;
   var _userImage =
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png";
+      "https://cdn.landesa.org/wp-content/uploads/default-user-image.png";
 
 // METHOD TO GET THE USER DATA
   getUserData() async {
     final components =
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
-         if (user != null) {
+      if (user != null) {
         setState(() {
           _nameField.text = user.displayName.toString();
           _username = user.displayName;
