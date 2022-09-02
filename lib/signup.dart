@@ -425,7 +425,7 @@ class _SignUpState extends State<SignUp> {
                           });
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
+                            const SnackBar( 
                                 padding: EdgeInsets.all(20),
                                 elevation: 8,
                                 backgroundColor:
