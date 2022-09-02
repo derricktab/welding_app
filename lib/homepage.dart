@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var _userImage =
-      "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/user.png?alt=media&token=e0070a00-a874-49ac-975c-c327d8779ed3";
+      "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/dummy-user.png?alt=media&token=1c9c3610-e560-4347-8931-bcd30139a324";
 
   // GET THE USER IMAGE
   getUserImage() {
@@ -297,10 +297,9 @@ class _HomePageState extends State<HomePage> {
                     child: GestureDetector(
                       child: CircleAvatar(
                         radius: 15,
-                        foregroundImage: NetworkImage(_userImage),
+                        backgroundImage: NetworkImage(_userImage),
                         // foregroundColor: Colors.yellow,
-                        backgroundColor: Color.fromARGB(163, 0, 0, 0),
-                        child: const Text("DZ"),
+                        backgroundColor: Color.fromARGB(209, 0, 0, 0),
                       ),
                       onTap: () {
                         Navigator.pushNamed(context, "profile");
