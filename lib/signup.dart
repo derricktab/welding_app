@@ -18,7 +18,6 @@ class _SignUpState extends State<SignUp> {
   // Upload Image
   getUid() async {
     var uid = await FirebaseAuth.instance.currentUser!.uid;
-    print(uid);
     // get latest id
     return uid;
   }
@@ -80,7 +79,6 @@ class _SignUpState extends State<SignUp> {
   void initState() {
     // initializating the firebase app
     Firebase.initializeApp();
-    getUid();
   }
 
   @override
@@ -412,18 +410,19 @@ class _SignUpState extends State<SignUp> {
                             "image":
                                 "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/userImages%2F2022-09-02%2014%3A51%3A26.244059.png?alt=media&token=8b87a755-6660-44a5-988c-56f6fe5b899d",
                           };
-
+                          var uid = getUid();
+                          
                           FirebaseFirestore.instance
                               .collection("users")
-                              .add(_user)
+                              .doc(uid.toString()).set(_user)
                               .then((value) {
                             print("Data added to Cloud Firestore");
                             FirebaseFirestore.instance
                                 .collection("users")
-                                .doc(value.id.toString())
-                                .update({"uid": value.id}).then(
+                                .doc(uid.toString())
+                                .update({"uid": uid.toString()}).then(
                                     (value) => print("UID updated"));
-                            print(value.id);
+                            print(uid.toString());
                           });
 
                           ScaffoldMessenger.of(context).showSnackBar(
