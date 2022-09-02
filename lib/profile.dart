@@ -24,17 +24,28 @@ class _ProfileState extends State<Profile> {
   var _isShown;
   var _userImage =
       "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/user.png?alt=media&token=e0070a00-a874-49ac-975c-c327d8779ed3";
+  var _uid;
 
   // Get User ID
   getUid() {
-    var uid = FirebaseAuth.instance.currentUser!.uid;
-    // get latest id
+    var uid;
+    var user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      uid = FirebaseAuth.instance.currentUser!.uid;
+      setState(() {
+        _uid = uid;
+      });
+      print(uid);
+    }
     return uid;
   }
 
 // METHOD TO GET THE USER DATA
   getUserData() {
     var uid = getUid();
+    if (uid == null) {
+      return;
+    }
 
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user != null) {
@@ -106,212 +117,221 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: ListView(
-          children: [
-            // STACK TO CONTAIN THE PROFILE DETAILS
-            Stack(
-              children: [
-                // UPPER AREA
-                Container(
-                  height: 200,
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Colors.black,
-                            Colors.green,
-                            Colors.greenAccent,
-                          ]),
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(60),
-                          bottomRight: Radius.circular(60))),
-                  child: Column(
-                    children: [
-                      // BACK ARROW
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 5.0, vertical: 12),
-                                child: Icon(
-                                  Icons.arrow_back_ios_new,
-                                  color: Colors.white,
-                                ),
-                              ))
-                        ],
-                      ),
-                      const SizedBox(height: 27),
-                      // DISPLAYING LOGGEDIN USERNAME
-                      Center(
-                          child: Text(
-                        _username!.toUpperCase(),
-                        style: const TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 247, 245, 245),
+    if (_uid != null) {
+      return Scaffold(
+        body: Container(
+          child: ListView(
+            children: [
+              // STACK TO CONTAIN THE PROFILE DETAILS
+              Stack(
+                children: [
+                  // UPPER AREA
+                  Container(
+                    height: 200,
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Colors.black,
+                              Colors.green,
+                              Colors.greenAccent,
+                            ]),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(60),
+                            bottomRight: Radius.circular(60))),
+                    child: Column(
+                      children: [
+                        // BACK ARROW
+                        Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 5.0, vertical: 12),
+                                  child: Icon(
+                                    Icons.arrow_back_ios_new,
+                                    color: Colors.white,
+                                  ),
+                                ))
+                          ],
                         ),
-                      )),
-                    ],
+                        const SizedBox(height: 27),
+                        // DISPLAYING LOGGEDIN USERNAME
+                        Center(
+                            child: Text(
+                          _username!.toUpperCase(),
+                          style: const TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 247, 245, 245),
+                          ),
+                        )),
+                      ],
+                    ),
                   ),
-                ),
 
-                // PROFILE IMAGE
-                Positioned(
-                  top: 135,
-                  left: 125,
-                  child: CircleAvatar(
-                    backgroundColor: Color.fromARGB(118, 0, 0, 0),
-                    radius: 65,
-                    backgroundImage: NetworkImage(
-                      _userImage,
+                  // PROFILE IMAGE
+                  Positioned(
+                    top: 135,
+                    left: 125,
+                    child: CircleAvatar(
+                      backgroundColor: Color.fromARGB(118, 0, 0, 0),
+                      radius: 65,
+                      backgroundImage: NetworkImage(
+                        _userImage,
+                      ),
+                    ),
+                  ),
+
+                  Container(
+                    height: 300,
+                  )
+                ],
+              ),
+
+              // PROFILE DETAILS
+
+              // Name
+              ListTile(
+                title: Text(
+                  _username.toString(),
+                  style: const TextStyle(fontSize: 22),
+                ),
+                leading: const Icon(
+                  Icons.person,
+                  size: 35,
+                  color: Color.fromARGB(255, 14, 171, 22),
+                ),
+              ),
+              const Divider(thickness: 2),
+
+              // Email
+              ListTile(
+                title: Text(
+                  _email.toString(),
+                  style: const TextStyle(fontSize: 22),
+                ),
+                leading: const Icon(
+                  Icons.email_rounded,
+                  size: 35,
+                  color: Color.fromARGB(255, 14, 171, 22),
+                ),
+              ),
+              const Divider(thickness: 2),
+
+              // Phone Number
+              ListTile(
+                enabled: true,
+                title: Text(
+                  _phone.toString(),
+                  style: const TextStyle(fontSize: 22),
+                ),
+                leading: const Icon(
+                  Icons.phone,
+                  size: 35,
+                  color: Color.fromARGB(255, 14, 171, 22),
+                ),
+              ),
+              const Divider(thickness: 2),
+
+              // Address
+              ListTile(
+                enabled: true,
+                title: Text(
+                  _address.toString(),
+                  style: const TextStyle(fontSize: 22),
+                ),
+                leading: const Icon(
+                  Icons.location_on,
+                  size: 35,
+                  color: Color.fromARGB(255, 14, 171, 22),
+                ),
+              ),
+              const Divider(thickness: 2),
+
+              const SizedBox(height: 30),
+
+              // edit profile button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "edit_profile");
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    child: Text(
+                      "Edit Profile",
+                      style: TextStyle(fontSize: 17),
                     ),
                   ),
                 ),
-
-                Container(
-                  height: 300,
-                )
-              ],
-            ),
-
-            // PROFILE DETAILS
-
-            // Name
-            ListTile(
-              title: Text(
-                _username.toString(),
-                style: const TextStyle(fontSize: 22),
               ),
-              leading: const Icon(
-                Icons.person,
-                size: 35,
-                color: Color.fromARGB(255, 14, 171, 22),
-              ),
-            ),
-            const Divider(thickness: 2),
 
-            // Email
-            ListTile(
-              title: Text(
-                _email.toString(),
-                style: const TextStyle(fontSize: 22),
-              ),
-              leading: const Icon(
-                Icons.email_rounded,
-                size: 35,
-                color: Color.fromARGB(255, 14, 171, 22),
-              ),
-            ),
-            const Divider(thickness: 2),
+              const SizedBox(height: 10),
 
-            // Phone Number
-            ListTile(
-              enabled: true,
-              title: Text(
-                _phone.toString(),
-                style: const TextStyle(fontSize: 22),
-              ),
-              leading: const Icon(
-                Icons.phone,
-                size: 35,
-                color: Color.fromARGB(255, 14, 171, 22),
-              ),
-            ),
-            const Divider(thickness: 2),
-
-            // Address
-            ListTile(
-              enabled: true,
-              title: Text(
-                _address.toString(),
-                style: const TextStyle(fontSize: 22),
-              ),
-              leading: const Icon(
-                Icons.location_on,
-                size: 35,
-                color: Color.fromARGB(255, 14, 171, 22),
-              ),
-            ),
-            const Divider(thickness: 2),
-
-            const SizedBox(height: 30),
-
-            // edit profile button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
-                onPressed: () {
-                  Navigator.pushNamed(context, "edit_profile");
-                },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Text(
-                    "Edit Profile",
-                    style: TextStyle(fontSize: 17),
+              // Delete Account Button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(), primary: Colors.red),
+                  onPressed: () {
+                    // call the delete method to delete user
+                    _delete(context);
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    child: Text(
+                      "Delete Account",
+                      style: TextStyle(fontSize: 17),
+                    ),
                   ),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 10),
+              const SizedBox(height: 20),
 
-            // Delete Account Button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(), primary: Colors.red),
-                onPressed: () {
-                  // call the delete method to delete user
-                  _delete(context);
-                },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Text(
-                    "Delete Account",
-                    style: TextStyle(fontSize: 17),
+              // Logout Button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(), primary: Colors.orange),
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut().then((value) {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, "login");
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("LOGGED OUT SUCCESFULLY")));
+                    });
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 14),
+                    child: Text(
+                      "Logout",
+                      style: TextStyle(fontSize: 19, color: Colors.black),
+                    ),
                   ),
                 ),
               ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // Logout Button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(), primary: Colors.orange),
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut().then((value) {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, "login");
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("LOGGED OUT SUCCESFULLY")));
-                  });
-                },
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Text(
-                    "Logout",
-                    style: TextStyle(fontSize: 19, color: Colors.black),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 40),
-          ],
+              const SizedBox(height: 40),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    } else {
+      return const Scaffold(
+        body: Center(
+          child: Text("THE USER IS NOT LOGGED IN"),
+        ),
+      );
+    }
   }
 }

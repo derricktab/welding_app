@@ -34,20 +34,21 @@ class _EditProfileState extends State<EditProfile> {
 // METHOD TO GET THE USER DATA
   getUserData() async {
     var uid = await getUid();
+    setState(() {
+      _uid = uid;
+    });
     final components =
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user != null) {
-        setState(() {
-          _nameField.text = user.displayName.toString();
-          _username = user.displayName;
-          _emailField.text = user.email.toString();
-        });
         FirebaseFirestore.instance
             .collection("users")
             .doc(uid)
             .get()
             .then((value) {
           setState(() {
+            _nameField.text = value["name"];
+            _username = value["name"];
+            _emailField.text = value["email"];
             _addressField.text = value["address"];
             _phoneField.text = value["phone"];
             _userImage = value["image"];
@@ -294,10 +295,9 @@ class _EditProfileState extends State<EditProfile> {
                   style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
                   onPressed: () {
                     if (_form.currentState!.validate()) {
-                      print("UID: $_uid");
                       FirebaseFirestore.instance
                           .collection("users")
-                          .doc(_uid.toString())
+                          .doc(_uid)
                           .update(
                         {
                           "image": _userImage.toString(),
@@ -306,8 +306,10 @@ class _EditProfileState extends State<EditProfile> {
                           "phone": _phoneField.text.toString(),
                           "address": _addressField.text.toString(),
                         },
-                      );
-                      print("VALIDATED");
+                      ).then((value) {
+                        print("DATA UPDATED SUCCESFULLY");
+                      });
+                      // print("VALIDATED");
                     }
                   },
                   child: const Padding(
