@@ -22,7 +22,8 @@ class _ProfileState extends State<Profile> {
   String? _phone = "Phone Not Set";
   String? _address = "Not Set";
   var _isShown;
-  var _userImage;
+  var _userImage =
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png";
 
 // METHOD TO GET THE USER DATA
   getUserData() {
@@ -43,10 +44,14 @@ class _ProfileState extends State<Profile> {
           var result = value.docs.map((e) {
             var data = e.data();
 
-            return [e["address"], e["phone"]];
+            return [
+              e["address"],
+              e["phone"],
+            ];
           });
           setState(() {
             _address = result.first[0];
+            print("ADDRESS: $_address");
             _phone = result.first[1];
           });
         });
@@ -162,14 +167,14 @@ class _ProfileState extends State<Profile> {
                 ),
 
                 // PROFILE IMAGE
-                const Positioned(
+                Positioned(
                   top: 135,
                   left: 125,
                   child: CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 139, 188, 234),
+                    backgroundColor: const Color.fromARGB(255, 139, 188, 234),
                     radius: 65,
-                    backgroundImage: AssetImage(
-                      "assets/images/dummy-user.png",
+                    backgroundImage: NetworkImage(
+                      _userImage,
                     ),
                   ),
                 ),

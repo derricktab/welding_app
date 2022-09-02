@@ -22,18 +22,13 @@ class _EditProfileState extends State<EditProfile> {
   String? _phone = "Phone Not Set";
   var _isShown;
   var _userImage =
-      "https://ci4.googleusercontent.com/proxy/Z2XzrZeJzTeKo8XbmSQvnPHnYhICxpHyndi3gc8NNnPLwsnJrVJbM4hhB4V-U2KVzPIELMxMoS5yuhC_ICxzIDbCxGyNjKGS-xR4z3_HBFxtUN8td7wdidbjhuSSjKXVLXsIMpTUYxVoxpYA7SCN7aa_MekL145KRjazS1EDM9sxUC08EHKdNnM8IILAwq_PpEm5BJf2_HDInTx-0VI1vLKHtWzfWZMHFXOf01NGRx69KNqvCYxlhLLjnyOHjG_QWkxe9GEXF-rdlpw=s0-d-e1-ft#https://legacy-image-prod.s3.amazonaws.com/uploads/54e0c82c60f6b1c9f1e8f325adb75fcbbf8e0af64685baf6b56f35a320e82f35656e3c4fd7ac9c53b0070e4080245dfbe7caeaedfca3ea05d58a22fd76f553db.png";
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/User_font_awesome.svg/1200px-User_font_awesome.svg.png";
 
 // METHOD TO GET THE USER DATA
   getUserData() async {
     final components =
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
-      // final imageUrl = await FirebaseStorage.instance
-      //     .ref()
-      //     .child("users/me/profile.png")
-      //     .getDownloadURL();
-
-      if (user != null) {
+         if (user != null) {
         setState(() {
           _nameField.text = user.displayName.toString();
           _username = user.displayName;
@@ -46,11 +41,12 @@ class _EditProfileState extends State<EditProfile> {
             .then((value) {
           var result = value.docs.map((e) {
             var data = e.data();
-            return [data["address"], data["phone"]];
+            return [data["address"], data["phone"], data["image"]];
           });
           setState(() {
             _addressField.text = result.first[0];
             _phoneField.text = result.first[1];
+            _userImage = result.first[2];
           });
         });
       }
