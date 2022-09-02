@@ -20,9 +20,9 @@ class _EditProfileState extends State<EditProfile> {
   String? _username = "Loading.....";
   var _email;
   String? _phone = "Phone Not Set";
-  var _isShown;
   var _userImage =
       "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/user.png?alt=media&token=e0070a00-a874-49ac-975c-c327d8779ed3";
+  var _uid;
 
 // METHOD TO GET THE USER DATA
   getUserData() async {
@@ -45,12 +45,14 @@ class _EditProfileState extends State<EditProfile> {
               data["address"],
               data["phone"],
               data["image"],
+              data["uid"],
             ];
           });
           setState(() {
             _addressField.text = result.first[0];
             _phoneField.text = result.first[1];
             _userImage = result.first[2];
+            _uid = result.first[3];
           });
         });
       }
@@ -294,6 +296,11 @@ class _EditProfileState extends State<EditProfile> {
                   style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
                   onPressed: () {
                     if (_form.currentState!.validate()) {
+                      print("UID: $_uid");
+                      FirebaseFirestore.instance
+                          .collection("users")
+                          .doc(_uid.toString())
+                          .update({"image": _userImage.toString()});
                       print("VALIDATED");
                     }
                   },
