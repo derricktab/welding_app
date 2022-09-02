@@ -16,9 +16,9 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   // Upload Image
-  generateUID() {
-    var uid;
-
+  getUid() async {
+    var uid = await FirebaseAuth.instance.currentUser!.uid;
+    print(uid);
     // get latest id
     return uid;
   }
@@ -80,6 +80,7 @@ class _SignUpState extends State<SignUp> {
   void initState() {
     // initializating the firebase app
     Firebase.initializeApp();
+    getUid();
   }
 
   @override
@@ -408,7 +409,8 @@ class _SignUpState extends State<SignUp> {
                             "email": _email.text,
                             "phone": _phone.text,
                             "address": _address.text,
-                            "image": "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/userImages%2F2022-09-02%2014%3A51%3A26.244059.png?alt=media&token=8b87a755-6660-44a5-988c-56f6fe5b899d",
+                            "image":
+                                "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/userImages%2F2022-09-02%2014%3A51%3A26.244059.png?alt=media&token=8b87a755-6660-44a5-988c-56f6fe5b899d",
                           };
 
                           FirebaseFirestore.instance
@@ -425,7 +427,7 @@ class _SignUpState extends State<SignUp> {
                           });
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar( 
+                            const SnackBar(
                                 padding: EdgeInsets.all(20),
                                 elevation: 8,
                                 backgroundColor:

@@ -29,6 +29,7 @@ class _EditProfileState extends State<EditProfile> {
     final components =
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user != null) {
+        print(user.uid);
         setState(() {
           _nameField.text = user.displayName.toString();
           _username = user.displayName;
@@ -226,7 +227,6 @@ class _EditProfileState extends State<EditProfile> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
-                enabled: false,
                 decoration: const InputDecoration(
                     hintText: "Enter Email",
                     prefixIcon: Icon(Icons.email),
