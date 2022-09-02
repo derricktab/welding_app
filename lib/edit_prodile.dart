@@ -22,7 +22,7 @@ class _EditProfileState extends State<EditProfile> {
   String? _phone = "Phone Not Set";
   var _isShown;
   var _userImage =
-      "https://cdn.landesa.org/wp-content/uploads/default-user-image.png";
+      "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/user.png?alt=media&token=e0070a00-a874-49ac-975c-c327d8779ed3";
 
 // METHOD TO GET THE USER DATA
   getUserData() async {
@@ -298,7 +298,7 @@ class _EditProfileState extends State<EditProfile> {
                     }
                   },
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 14),
+                    padding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
                     child: Text(
                       "SAVE",
                       style: TextStyle(fontSize: 20),
@@ -314,7 +314,7 @@ class _EditProfileState extends State<EditProfile> {
                     Navigator.pop(context);
                   },
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 14),
+                    padding: EdgeInsets.symmetric(vertical: 14, horizontal: 5),
                     child: Text(
                       "CANCEL",
                       style: TextStyle(fontSize: 20),

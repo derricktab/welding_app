@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
   String? _address = "Not Set";
   var _isShown;
   var _userImage =
-      "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/userImages%2F2022-09-02%2014%3A51%3A26.244059.png?alt=media&token=8b87a755-6660-44a5-988c-56f6fe5b899d";
+      "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/user.png?alt=media&token=e0070a00-a874-49ac-975c-c327d8779ed3";
 
 // METHOD TO GET THE USER DATA
   getUserData() {
@@ -172,7 +172,7 @@ class _ProfileState extends State<Profile> {
                   top: 135,
                   left: 125,
                   child: CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 221, 41, 17),
+                    backgroundColor: Color.fromARGB(118, 0, 0, 0),
                     radius: 65,
                     backgroundImage: NetworkImage(
                       _userImage,
