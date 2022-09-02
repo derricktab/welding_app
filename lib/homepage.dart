@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:is_first_run/is_first_run.dart';
@@ -17,6 +18,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var _userImage =
+      "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/user.png?alt=media&token=e0070a00-a874-49ac-975c-c327d8779ed3";
+
+  // GET THE USER IMAGE
+  getUserImage() {
+    var user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      var uid = user.uid;
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(uid)
+          .get()
+          .then((value) {
+        setState(() {
+          _userImage = value["image"];
+          print(_userImage);
+        });
+      });
+    }
+  }
+
   var prefs;
 
 // METHOD TO DISPLAY ALERT DIALOG FOR CONTACT
@@ -129,6 +151,12 @@ class _HomePageState extends State<HomePage> {
   ];
 
   var _cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
+
+  @override
+  void initState() {
+    super.initState();
+    getUserImage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -267,12 +295,12 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: const EdgeInsets.only(right: 15.0),
                     child: GestureDetector(
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         radius: 15,
-                        foregroundImage: AssetImage("assets/images/logo.jpg"),
-                        foregroundColor: Colors.yellow,
-                        backgroundColor: Colors.black,
-                        child: Text("DZ"),
+                        foregroundImage: NetworkImage(_userImage),
+                        // foregroundColor: Colors.yellow,
+                        backgroundColor: Color.fromARGB(163, 0, 0, 0),
+                        child: const Text("DZ"),
                       ),
                       onTap: () {
                         Navigator.pushNamed(context, "profile");
