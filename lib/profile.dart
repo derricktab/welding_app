@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:welding_app/constants.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _ProfileState extends State<Profile> {
     var uid;
     var user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      uid = FirebaseAuth.instance.currentUser!.uid;
+      uid = user.uid;
       setState(() {
         _uid = uid;
       });
@@ -327,11 +328,30 @@ class _ProfileState extends State<Profile> {
         ),
       );
     } else {
-      return const Scaffold(
-        body: Center(
-          child: Text("THE USER IS NOT LOGGED IN"),
-        ),
-      );
+      return Scaffold(
+          backgroundColor: Colors.white,
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset("assets/images/loggedout.webp"),
+              const Text(
+                "You Are Not Signed In",
+                style: TextStyle(fontSize: 23),
+              ),
+              ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(primaryColor),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "login");
+                  },
+                  child: const Text(
+                    "Go To Login",
+                    style: TextStyle(fontSize: 16),
+                  ))
+            ],
+          ));
     }
   }
 }
