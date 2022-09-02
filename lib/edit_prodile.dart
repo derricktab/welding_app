@@ -226,6 +226,7 @@ class _EditProfileState extends State<EditProfile> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextFormField(
+                enabled: false,
                 decoration: const InputDecoration(
                     hintText: "Enter Email",
                     prefixIcon: Icon(Icons.email),

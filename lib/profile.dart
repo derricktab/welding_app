@@ -49,14 +49,12 @@ class _ProfileState extends State<Profile> {
               e["address"],
               e["phone"],
               e["image"],
-              e["email"],
             ];
           });
           setState(() {
             _address = result.first[0];
             _phone = result.first[1];
             _userImage = result.first[2];
-            _email = result.first[3];
           });
         });
       }
