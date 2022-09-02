@@ -25,36 +25,30 @@ class _ProfileState extends State<Profile> {
   var _userImage =
       "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/user.png?alt=media&token=e0070a00-a874-49ac-975c-c327d8779ed3";
 
+  // Get User ID
+  getUid() {
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    // get latest id
+    return uid;
+  }
+
 // METHOD TO GET THE USER DATA
   getUserData() {
-    final components =
-        FirebaseAuth.instance.authStateChanges().listen((User? user) {
+    var uid = getUid();
+
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user != null) {
-        print("USER ID: ${user.uid}");
-        setState(() {
-          _username = user.displayName;
-          _email = user.email;
-          // _phone = user.phoneNumber;
-        });
-        final query = FirebaseFirestore.instance
+        FirebaseFirestore.instance
             .collection("users")
-            .where("email", isEqualTo: _email.toString())
+            .doc(uid)
             .get()
             .then((value) {
-          print(value.size);
-          var result = value.docs.map((e) {
-            var data = e.data();
-
-            return [
-              e["address"],
-              e["phone"],
-              e["image"],
-            ];
-          });
           setState(() {
-            _address = result.first[0];
-            _phone = result.first[1];
-            _userImage = result.first[2];
+            _address = value["address"];
+            _phone = value["phone"];
+            _userImage = value["image"];
+            _email = value["email"];
+            _username = value["name"];
           });
         });
       }
