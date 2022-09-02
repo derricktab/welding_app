@@ -24,12 +24,19 @@ class _EditProfileState extends State<EditProfile> {
       "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/user.png?alt=media&token=e0070a00-a874-49ac-975c-c327d8779ed3";
   var _uid;
 
+  // Get User ID
+  getUid() {
+    var uid = FirebaseAuth.instance.currentUser!.uid;
+    // get latest id
+    return uid;
+  }
+
 // METHOD TO GET THE USER DATA
   getUserData() async {
+    var uid = await getUid();
     final components =
         FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user != null) {
-        print(user.uid);
         setState(() {
           _nameField.text = user.displayName.toString();
           _username = user.displayName;
@@ -37,23 +44,13 @@ class _EditProfileState extends State<EditProfile> {
         });
         FirebaseFirestore.instance
             .collection("users")
-            .where("email", isEqualTo: _emailField.text)
+            .doc(uid)
             .get()
             .then((value) {
-          var result = value.docs.map((e) {
-            var data = e.data();
-            return [
-              data["address"],
-              data["phone"],
-              data["image"],
-              data["uid"],
-            ];
-          });
           setState(() {
-            _addressField.text = result.first[0];
-            _phoneField.text = result.first[1];
-            _userImage = result.first[2];
-            _uid = result.first[3];
+            _addressField.text = value["address"];
+            _phoneField.text = value["phone"];
+            _userImage = value["image"];
           });
         });
       }

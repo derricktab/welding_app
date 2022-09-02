@@ -16,6 +16,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   // Upload Image
+
+  // Get User ID
   getUid() async {
     var uid = await FirebaseAuth.instance.currentUser!.uid;
     // get latest id
