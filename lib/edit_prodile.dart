@@ -41,7 +41,11 @@ class _EditProfileState extends State<EditProfile> {
             .then((value) {
           var result = value.docs.map((e) {
             var data = e.data();
-            return [data["address"], data["phone"], data["image"]];
+            return [
+              data["address"],
+              data["phone"],
+              data["image"],
+            ];
           });
           setState(() {
             _addressField.text = result.first[0];

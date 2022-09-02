@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
   String? _address = "Not Set";
   var _isShown;
   var _userImage =
-      "https://cdn.landesa.org/wp-content/uploads/default-user-image.png";
+      "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/userImages%2F2022-09-02%2014%3A51%3A26.244059.png?alt=media&token=8b87a755-6660-44a5-988c-56f6fe5b899d";
 
 // METHOD TO GET THE USER DATA
   getUserData() {
@@ -47,12 +47,13 @@ class _ProfileState extends State<Profile> {
             return [
               e["address"],
               e["phone"],
+              e["image"],
             ];
           });
           setState(() {
             _address = result.first[0];
-            print("ADDRESS: $_address");
             _phone = result.first[1];
+            _userImage = result.first[2];
           });
         });
       }
