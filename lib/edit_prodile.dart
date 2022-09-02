@@ -21,7 +21,8 @@ class _EditProfileState extends State<EditProfile> {
   var _email;
   String? _phone = "Phone Not Set";
   var _isShown;
-  var _userImage;
+  var _userImage =
+      "https://ci4.googleusercontent.com/proxy/Z2XzrZeJzTeKo8XbmSQvnPHnYhICxpHyndi3gc8NNnPLwsnJrVJbM4hhB4V-U2KVzPIELMxMoS5yuhC_ICxzIDbCxGyNjKGS-xR4z3_HBFxtUN8td7wdidbjhuSSjKXVLXsIMpTUYxVoxpYA7SCN7aa_MekL145KRjazS1EDM9sxUC08EHKdNnM8IILAwq_PpEm5BJf2_HDInTx-0VI1vLKHtWzfWZMHFXOf01NGRx69KNqvCYxlhLLjnyOHjG_QWkxe9GEXF-rdlpw=s0-d-e1-ft#https://legacy-image-prod.s3.amazonaws.com/uploads/54e0c82c60f6b1c9f1e8f325adb75fcbbf8e0af64685baf6b56f35a320e82f35656e3c4fd7ac9c53b0070e4080245dfbe7caeaedfca3ea05d58a22fd76f553db.png";
 
 // METHOD TO GET THE USER DATA
   getUserData() async {
@@ -153,14 +154,14 @@ class _EditProfileState extends State<EditProfile> {
                 ),
 
                 // PROFILE IMAGE
-                const Positioned(
+                Positioned(
                   top: 135,
                   left: 125,
                   child: CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 139, 188, 234),
+                    backgroundColor: const Color.fromARGB(255, 139, 188, 234),
                     radius: 65,
-                    backgroundImage: AssetImage(
-                      "assets/images/dummy-user.png",
+                    backgroundImage: NetworkImage(
+                      _userImage,
                     ),
                   ),
                 ),
