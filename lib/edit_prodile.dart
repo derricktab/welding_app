@@ -37,27 +37,20 @@ class _EditProfileState extends State<EditProfile> {
           _nameField.text = user.displayName.toString();
           _username = user.displayName;
           _emailField.text = user.email.toString();
-          // _phoneField.text = user.phoneNumber.toString();
-          // _addressField.text = user.phoneNumber.toString();
         });
-        final query = FirebaseFirestore.instance
+        FirebaseFirestore.instance
             .collection("users")
-            .where("email", isEqualTo: _email.toString())
+            .where("email", isEqualTo: _emailField.text)
             .get()
             .then((value) {
           var result = value.docs.map((e) {
             var data = e.data();
-            print(data);
-
             return [data["address"], data["phone"]];
           });
-          print(result);
           setState(() {
             _addressField.text = result.first[0];
             _phoneField.text = result.first[1];
           });
-
-          print(_addressField.text);
         });
       }
     });
@@ -179,6 +172,7 @@ class _EditProfileState extends State<EditProfile> {
                         setState(() {
                           _path = image!.path;
                         });
+                        uploadImage(_path);
                       },
                       child: const CircleAvatar(
                         backgroundColor: Color.fromARGB(135, 0, 0, 0),

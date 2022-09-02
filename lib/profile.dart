@@ -22,6 +22,7 @@ class _ProfileState extends State<Profile> {
   String? _phone = "Phone Not Set";
   String? _address = "Not Set";
   var _isShown;
+  var _userImage;
 
 // METHOD TO GET THE USER DATA
   getUserData() {
@@ -38,6 +39,7 @@ class _ProfileState extends State<Profile> {
             .where("email", isEqualTo: _email.toString())
             .get()
             .then((value) {
+          print(value.size);
           var result = value.docs.map((e) {
             var data = e.data();
 
@@ -107,7 +109,6 @@ class _ProfileState extends State<Profile> {
       body: Container(
         child: ListView(
           children: [
-   
             // STACK TO CONTAIN THE PROFILE DETAILS
             Stack(
               children: [
