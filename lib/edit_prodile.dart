@@ -300,7 +300,15 @@ class _EditProfileState extends State<EditProfile> {
                       FirebaseFirestore.instance
                           .collection("users")
                           .doc(_uid.toString())
-                          .update({"image": _userImage.toString()});
+                          .update(
+                        {
+                          "image": _userImage.toString(),
+                          "name": _nameField.text.toString(),
+                          "email": _emailField.text.toString(),
+                          "phone": _phoneField.text.toString(),
+                          "address": _addressField.text.toString(),
+                        },
+                      );
                       print("VALIDATED");
                     }
                   },
