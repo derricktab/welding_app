@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -307,9 +308,22 @@ class _LoginState extends State<Login> {
                       // bring up the loader
                       Navigator.pushNamed(context, "loader");
 
-                      signInWithGoogle().then((value) {
+                      signInWithGoogle().then((value) async {
                         var user = value.user;
                         if (user != null) {
+                          var cUser = await FirebaseFirestore.instance
+                              .collection("users")
+                              .where("uid", isEqualTo: user.uid)
+                              .get();
+
+                          print("CUSER TYPE: ${cUser.size}");
+                          if (cUser.size <= 0) {
+                            // Add the user to cloudfirestore
+                            
+                          } else {
+                            // get the user details from firestore
+                          }
+
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                             content: Text(
