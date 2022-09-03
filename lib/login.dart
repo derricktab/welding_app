@@ -324,7 +324,7 @@ class _LoginState extends State<Login> {
                               "name": user.displayName,
                               "email": user.email,
                               "phone": user.phoneNumber,
-                              "address": "",
+                              "address": null,
                               "image":
                                   "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/userImages%2F2022-09-02%2014%3A51%3A26.244059.png?alt=media&token=8b87a755-6660-44a5-988c-56f6fe5b899d",
                             };
