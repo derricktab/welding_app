@@ -286,7 +286,6 @@ class _LoginState extends State<Login> {
 
                         Navigator.pop(context);
                         Navigator.pop(context);
-                  
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -309,33 +308,30 @@ class _LoginState extends State<Login> {
                       Navigator.pushNamed(context, "loader");
 
                       signInWithGoogle().then((value) {
-                        FirebaseAuth.instance
-                            .authStateChanges()
-                            .listen((User? user) {
-                          if (user != null) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text(
-                                "Login Succesful",
-                                textAlign: TextAlign.center,
-                              ),
-                              backgroundColor: Colors.green,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 13, horizontal: 5),
-                            ));
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                            // Navigator.pop(context);
-                          } else {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              content: Text("Something Went Wrong"),
-                              backgroundColor: Colors.red,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 15),
-                            ));
-                          }
-                        });
+                        var user = value.user;
+                        if (user != null) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text(
+                              "Login Succesful",
+                              textAlign: TextAlign.center,
+                            ),
+                            backgroundColor: Colors.green,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 13, horizontal: 5),
+                          ));
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          // Navigator.pop(context);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Something Went Wrong"),
+                            backgroundColor: Colors.red,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 15),
+                          ));
+                        }
                       });
                     },
                     icon: const Icon(
