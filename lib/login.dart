@@ -232,7 +232,10 @@ class _LoginState extends State<Login> {
                               .signInWithEmailAndPassword(
                             email: _email.text,
                             password: _password.text,
-                          );
+                          )
+                              .then((value) {
+                            print(value.user!.photoURL);
+                          });
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
                             setState(() {
@@ -280,7 +283,6 @@ class _LoginState extends State<Login> {
                                 )),
                           );
                         }
-                        await _prefs.setBool("loggedIn", true);
 
                         Navigator.pop(context);
                         Navigator.pushNamed(context, "profile");
@@ -315,7 +317,7 @@ class _LoginState extends State<Login> {
                       Navigator.pushNamed(context, "loader");
 
                       signInWithGoogle().then((value) {
-                        print(value.user);
+                        print(value.user!.photoURL);
                         FirebaseAuth.instance
                             .authStateChanges()
                             .listen((User? user) {
