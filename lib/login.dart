@@ -309,7 +309,6 @@ class _LoginState extends State<Login> {
                       Navigator.pushNamed(context, "loader");
 
                       signInWithGoogle().then((value) {
-                        print(value.user!.photoURL);
                         FirebaseAuth.instance
                             .authStateChanges()
                             .listen((User? user) {
