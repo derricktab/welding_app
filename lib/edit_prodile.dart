@@ -184,7 +184,7 @@ class _EditProfileState extends State<EditProfile> {
                         backgroundColor: Color.fromARGB(135, 0, 0, 0),
                         radius: 65,
                         child: Icon(
-                          Icons.edit,
+                          Icons.camera_alt_sharp,
                           color: Colors.white,
                           size: 35,
                         ),

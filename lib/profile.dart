@@ -45,7 +45,7 @@ class _ProfileState extends State<Profile> {
   getUserData() {
     var uid = getUid();
     if (uid == null) {
-      Navigator.pop(context);
+      // Navigator.pop(context);
       return;
     }
 

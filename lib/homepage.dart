@@ -303,7 +303,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                       onTap: () {
                         Navigator.pushNamed(context, "profile");
-                        Navigator.pushNamed(context, "loader");
                       },
                     ),
                   ),
