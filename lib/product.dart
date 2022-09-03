@@ -95,10 +95,15 @@ class _ProductState extends State<Product> {
   addToCart(product) {
     var prodId = product["prodId"];
 
-    FirebaseFirestore.instance
-        .collection("cart")
-        .add(product)
-        .then((value) => _showMyDialog(), onError: (error) => print("$error"));
+    FirebaseFirestore.instance.collection("cart").add(product).then((value) {
+      var id = value.id;
+      print(id);
+      FirebaseFirestore.instance
+          .collection("cart")
+          .doc(id)
+          .update({"prodId": id});
+      _showMyDialog();
+    }, onError: (error) => print("$error"));
   }
 
   @override
@@ -184,7 +189,6 @@ class _ProductState extends State<Product> {
                       style: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-
                   ),
                 )
               ],

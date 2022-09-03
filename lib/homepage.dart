@@ -297,12 +297,13 @@ class _HomePageState extends State<HomePage> {
                     child: GestureDetector(
                       child: CircleAvatar(
                         radius: 15,
-                        backgroundImage: NetworkImage(_userImage),
+                        backgroundImage: NetworkImage(_userImage, scale: 0.5),
                         // foregroundColor: Colors.yellow,
-                        backgroundColor: Color.fromARGB(209, 0, 0, 0),
+                        backgroundColor: const Color.fromARGB(209, 0, 0, 0),
                       ),
                       onTap: () {
                         Navigator.pushNamed(context, "profile");
+                        Navigator.pushNamed(context, "loader");
                       },
                     ),
                   ),

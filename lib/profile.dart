@@ -45,6 +45,7 @@ class _ProfileState extends State<Profile> {
   getUserData() {
     var uid = getUid();
     if (uid == null) {
+      Navigator.pop(context);
       return;
     }
 
@@ -64,6 +65,7 @@ class _ProfileState extends State<Profile> {
           });
         });
       }
+      Navigator.pop(context);
     });
   }
 
