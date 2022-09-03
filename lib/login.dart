@@ -331,8 +331,15 @@ class _LoginState extends State<Login> {
                             ));
                             Navigator.pop(context);
                             Navigator.pop(context);
+                            Navigator.pop(context);
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Something Went Wrong"), backgroundColor: Colors.red, padding: EdgeInsets.symmetric(horizontal: 5, vertical: 15),));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Something Went Wrong"),
+                              backgroundColor: Colors.red,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 15),
+                            ));
                           }
                         });
                       });

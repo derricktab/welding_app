@@ -42,13 +42,11 @@ class _ProfileState extends State<Profile> {
   }
 
 // METHOD TO GET THE USER DATA
-  getUserData() {
+  getUserData() async {
     var uid = getUid();
     if (uid == null) {
-      // Navigator.pop(context);
       return;
     }
-
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user != null) {
         FirebaseFirestore.instance
@@ -65,7 +63,6 @@ class _ProfileState extends State<Profile> {
           });
         });
       }
-      Navigator.pop(context);
     });
   }
 

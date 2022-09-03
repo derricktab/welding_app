@@ -120,6 +120,7 @@ class _CartState extends State<Cart> {
                           // calculating the total
                           int price = int.parse(item["price"]);
                           int quantity = int.parse(item["quantity"].toString());
+                          var prodId = item["prodId"];
 
                           setState(() {
                             _total += (price * quantity);
@@ -165,7 +166,7 @@ class _CartState extends State<Cart> {
                                 // REMOVE ITEM FROM CART
                                 FirebaseFirestore.instance
                                     .collection("cart")
-                                    .doc("8p19Mk9xG8B5V239mV4g")
+                                    .doc(prodId)
                                     .delete()
                                     .then((value) =>
                                         print("Item Removed from cart"));
