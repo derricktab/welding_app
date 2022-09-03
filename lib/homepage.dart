@@ -25,16 +25,9 @@ class _HomePageState extends State<HomePage> {
   getUserImage() {
     var user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      var uid = user.uid;
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(uid)
-          .get()
-          .then((value) {
-        setState(() {
-          _userImage = value["image"];
-          print(_userImage);
-        });
+      setState(() {
+        _userImage = user.photoURL.toString();
+        print(_userImage);
       });
     }
   }
