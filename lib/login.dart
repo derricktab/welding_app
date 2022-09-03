@@ -285,16 +285,8 @@ class _LoginState extends State<Login> {
                         }
 
                         Navigator.pop(context);
-                        Navigator.pushNamed(context, "profile");
-                        FirebaseAuth.instance
-                            .authStateChanges()
-                            .listen((User? user) {
-                          if (user != null) {
-                            setState(() {
-                              _loggedIn = true;
-                            });
-                          }
-                        });
+                        Navigator.pop(context);
+                  
                       }
                     },
                     style: ElevatedButton.styleFrom(
