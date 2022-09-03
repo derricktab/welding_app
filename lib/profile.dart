@@ -308,8 +308,18 @@ class _ProfileState extends State<Profile> {
                     await FirebaseAuth.instance.signOut().then((value) {
                       Navigator.pop(context);
                       Navigator.pushNamed(context, "login");
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text("LOGGED OUT SUCCESFULLY")));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: Colors.green,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 15),
+                          content: Text(
+                            "LOGGED OUT SUCCESFULLY",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ),
+                      );
                     });
                   },
                   child: const Padding(

@@ -315,6 +315,7 @@ class _LoginState extends State<Login> {
                       Navigator.pushNamed(context, "loader");
 
                       signInWithGoogle().then((value) {
+                        print(value.user);
                         FirebaseAuth.instance
                             .authStateChanges()
                             .listen((User? user) {
@@ -331,7 +332,7 @@ class _LoginState extends State<Login> {
                             ));
                             Navigator.pop(context);
                             Navigator.pop(context);
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                           } else {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
