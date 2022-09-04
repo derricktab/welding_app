@@ -84,14 +84,14 @@ var roofingSnapshot = FirebaseFirestore.instance
     .collection("roofing")
     .snapshots();
 
-// Main Doors Snapshot
+// Wells Snapshot
 var wellsSnapshot = FirebaseFirestore.instance
     .collection("products")
     .doc("wells")
     .collection("wells")
     .snapshots();
 
-// Main Doors Snapshot
+// Flooring Snapshot
 var flooringSnapshot = FirebaseFirestore.instance
     .collection("products")
     .doc("flooring")
@@ -183,18 +183,18 @@ class Products {
       });
     });
 
-    // woodendoors
-    woodendoorsSnapshot.listen((snapshot) {
+    // gates
+    gatesSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
-        woodendoors.add(doc.data());
+        gates.add(doc.data());
         print(doc.id);
       });
     });
 
-    // woodendoors
-    woodendoorsSnapshot.listen((snapshot) {
+    // painting
+    paintingSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
-        woodendoors.add(doc.data());
+        painting.add(doc.data());
         print(doc.id);
       });
     });
