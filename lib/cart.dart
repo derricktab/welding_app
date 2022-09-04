@@ -165,8 +165,12 @@ class _CartState extends State<Cart> {
                                     .collection("cart")
                                     .doc(prodId)
                                     .delete()
-                                    .then((value) =>
-                                        print("Item Removed from cart"));
+                                    .then((value) {
+                                  print("Item Removed from cart");
+                                  setState(() {
+                                    
+                                  });
+                                });
                               },
                               direction: DismissDirection.endToStart,
                               child: CartItem(
@@ -308,7 +312,7 @@ class CartItem extends StatelessWidget {
                   ),
 
                   // price
-                  Text("UGX " + Price)
+                  Text("UGX $Price")
                 ],
               )
             ],
@@ -316,7 +320,7 @@ class CartItem extends StatelessWidget {
         ),
 
         // quantity
-        Text("X " + Quanity)
+        Text("X $Quanity")
       ],
     );
   }
