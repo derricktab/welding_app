@@ -29,7 +29,7 @@ var maindoorsSnapshot = FirebaseFirestore.instance
     .snapshots();
 
 // Wooden Doors Snapshot
-var woodenDoorsSnapshot = FirebaseFirestore.instance
+var woodendoorsSnapshot = FirebaseFirestore.instance
     .collection("products")
     .doc("woodendoors")
     .collection("woodendoors")
@@ -178,7 +178,23 @@ class Products {
     // woodendoors
     woodendoorsSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
-        windows.add(doc.data());
+        woodendoors.add(doc.data());
+        print(doc.id);
+      });
+    });
+
+    // woodendoors
+    woodendoorsSnapshot.listen((snapshot) {
+      snapshot.docs.forEach((doc) {
+        woodendoors.add(doc.data());
+        print(doc.id);
+      });
+    });
+
+    // woodendoors
+    woodendoorsSnapshot.listen((snapshot) {
+      snapshot.docs.forEach((doc) {
+        woodendoors.add(doc.data());
         print(doc.id);
       });
     });
