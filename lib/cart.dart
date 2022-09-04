@@ -119,9 +119,6 @@ class _CartState extends State<Cart> {
                           int quantity = int.parse(item["quantity"].toString());
                           var prodId = item["prodId"];
 
-                          setState(() {
-                            _total += (price * quantity);
-                          });
                           return MapEntry(
                             index,
                             Dismissible(
@@ -168,7 +165,7 @@ class _CartState extends State<Cart> {
                                     .then((value) {
                                   print("Item Removed from cart");
                                   setState(() {
-                                    
+
                                   });
                                 });
                               },
@@ -189,23 +186,6 @@ class _CartState extends State<Cart> {
                 ),
                 const SizedBox(height: 40),
 
-                // TOTAL
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "Total: ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      Text("UGX ${f.format(_total)}",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20))
-                    ],
-                  ),
-                ),
                 const SizedBox(height: 20),
                 // CHECKOUT BUTTON
                 ElevatedButton(
