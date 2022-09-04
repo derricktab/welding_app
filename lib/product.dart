@@ -329,7 +329,7 @@ class _ProductState extends State<Product> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          icon: Icon(Icons.remove),
+                          icon: const Icon(Icons.remove),
                           onPressed: () => setState(() {
                             final newValue = _currentHorizontalIntValue - 1;
                             _currentHorizontalIntValue = newValue.clamp(0, 100);

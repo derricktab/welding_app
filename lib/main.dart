@@ -47,7 +47,6 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-
     // checking if the app is running for the first time.
     var isFirstRun = firstRun();
 
@@ -69,18 +68,17 @@ class _MainAppState extends State<MainApp> {
         "finished_projects": (context) => const FinishedProjects(),
         "ongoing_projects": (context) => const OngoingProjects(),
         "gallery": (context) => const MyApp(),
-        "addProduct": (context) => const AddProduct(),
+        // "addProduct": (context) => const AddProduct(),
         "edit_profile": (context) => const EditProfile(),
       },
-
       home: AnimatedSplashScreen(
         splashIconSize: 180,
         splash: 'assets/images/L1.png',
         nextScreen: Stack(
-          children: const <Widget> [
+          children: const <Widget>[
             DrawerScreen(),
             HomePage(),
-            ],
+          ],
         ),
         splashTransition: SplashTransition.scaleTransition,
         // pageTransitionType: PageTransitionType.scale,

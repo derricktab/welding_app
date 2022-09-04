@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:welding_app/models/maindoors.dart';
 
 var windows = [];
 var backdoors = [];
