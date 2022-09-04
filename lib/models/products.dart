@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-var windows = [];
-var backdoors = [];
-var balcony = [];
-var gates = [];
-var gypsum = [];
-var construction = [];
-var painting = [];
-var roofing = [];
-var wells = [];
-var woodendoors = [];
-var flooring = [];
-var maindoors = [];
+var windows = <Map<String, dynamic>>[];
+var backdoors = <Map<String, dynamic>>[];
+var balcony = <Map<String, dynamic>>[];
+var gates = <Map<String, dynamic>>[];
+var gypsum = <Map<String, dynamic>>[];
+var construction = <Map<String, dynamic>>[];
+var painting = <Map<String, dynamic>>[];
+var roofing = <Map<String, dynamic>>[];
+var wells = <Map<String, dynamic>>[];
+var woodendoors = <Map<String, dynamic>>[];
+var flooring = <Map<String, dynamic>>[];
+var maindoors = <Map<String, dynamic>>[];
 
 // Windows Snapshot
 var windowsSnapshot = FirebaseFirestore.instance
