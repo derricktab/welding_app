@@ -7,13 +7,13 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Product extends StatefulWidget {
+class OurService extends StatefulWidget {
   final String image;
   final String prodName;
   final String price;
   final String description;
 
-  const Product({
+  const OurService({
     Key? key,
     required this.image,
     required this.prodName,
@@ -22,10 +22,10 @@ class Product extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<Product> createState() => _ProductState();
+  State<OurService> createState() => _OurServiceState();
 }
 
-class _ProductState extends State<Product> {
+class _OurServiceState extends State<OurService> {
   var _cartItems = 0;
 
   // DIALOG BOX TO CONFIRM ADD TO CART OPERATION
