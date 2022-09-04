@@ -483,16 +483,64 @@ class _SignUpState extends State<SignUp> {
                   // LOGIN WITH GOOGLE
                   ElevatedButton.icon(
                     onPressed: () {
-                      final user = signInWithGoogle();
-                      FirebaseAuth.instance
-                          .authStateChanges()
-                          .listen((User? user) {
+                      // bring up the loader
+                      Navigator.pushNamed(context, "loader");
+
+                      signInWithGoogle().then((value) async {
+                        var user = value.user;
                         if (user != null) {
-                          setState(() {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(context, "profile");
-                            _loggedIn = true;
-                          });
+                          var cUser = await FirebaseFirestore.instance
+                              .collection("users")
+                              .where("uid", isEqualTo: user.uid)
+                              .get();
+
+                          print("CUSER TYPE: ${cUser.size}");
+                          if (cUser.size <= 0) {
+                            // Add the user to cloudfirestore
+                            var _user = {
+                              "uid": user.uid,
+                              "name": user.displayName,
+                              "email": user.email,
+                              "phone": user.phoneNumber,
+                              "address": null,
+                              "image":
+                                  "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/userImages%2F2022-09-02%2014%3A51%3A26.244059.png?alt=media&token=8b87a755-6660-44a5-988c-56f6fe5b899d",
+                            };
+
+                            FirebaseFirestore.instance
+                                .collection("users")
+                                .doc(user.uid)
+                                .set(_user)
+                                .then((value) {
+                              print("Data added to Cloud Firestore");
+                            });
+                          } else {
+                            print(
+                                "THE USER ALREADY EXISTS Size: ${cUser.size}");
+                            // get the user details from firestore
+                          }
+
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text(
+                              "Login Succesful",
+                              textAlign: TextAlign.center,
+                            ),
+                            backgroundColor: Colors.green,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 13, horizontal: 5),
+                          ));
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          // Navigator.pop(context);
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Something Went Wrong"),
+                            backgroundColor: Colors.red,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 15),
+                          ));
                         }
                       });
                     },
