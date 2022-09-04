@@ -110,9 +110,11 @@ class _ProductState extends State<Product> {
   Widget build(BuildContext context) {
     // GETTING THE CURRENT STREAM
     _cartStream.listen((snapshot) {
-      setState(() {
-        _cartItems = snapshot.docs.length;
-      });
+      if (this.mounted) {
+        setState(() {
+          _cartItems = snapshot.docs.length;
+        });
+      }
     });
 
     var imgList = [widget.image];
@@ -495,7 +497,7 @@ class _ProductState extends State<Product> {
 
                     addToCart(_item);
                     // _showMyDialog();
-                    setState(() {});
+                    // setState(() {});
                   },
                   child: const Text("ADD TO CART"),
                 ),

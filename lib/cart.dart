@@ -29,10 +29,6 @@ class _CartState extends State<Cart> {
   @override
   void initState() {
     // initSharedPrefs();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     cartStream.listen((snapshot) {
       setState(() {
         // updating the cart
@@ -44,9 +40,10 @@ class _CartState extends State<Cart> {
         _cartItems = snapshot.docs.length;
       });
     });
+  }
 
-    print(cartItems);
-
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.black,
