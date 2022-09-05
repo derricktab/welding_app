@@ -23,8 +23,8 @@ var windowsSnapshot = FirebaseFirestore.instance
 // Main Doors Snapshot
 var maindoorsSnapshot = FirebaseFirestore.instance
     .collection("products")
-    .doc("maindoors")
-    .collection("maindoors")
+    .doc("maindoor")
+    .collection("maindoor")
     .snapshots();
 
 // Wooden Doors Snapshot
@@ -106,7 +106,6 @@ class Products {
     windowsSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         windows.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -114,7 +113,6 @@ class Products {
     backdoorsSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         backdoors.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -122,7 +120,6 @@ class Products {
     balconySnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         balcony.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -130,7 +127,6 @@ class Products {
     flooringSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         flooring.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -138,7 +134,6 @@ class Products {
     gatesSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         gates.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -146,7 +141,6 @@ class Products {
     gypsumSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         gypsum.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -154,7 +148,6 @@ class Products {
     maindoorsSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         maindoors.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -162,7 +155,6 @@ class Products {
     roofingSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         roofing.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -170,7 +162,6 @@ class Products {
     wellsSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         wells.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -178,7 +169,6 @@ class Products {
     woodendoorsSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         woodendoors.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -186,7 +176,6 @@ class Products {
     gatesSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         gates.add(doc.data());
-        print(doc.id);
       });
     });
 
@@ -194,13 +183,13 @@ class Products {
     paintingSnapshot.listen((snapshot) {
       snapshot.docs.forEach((doc) {
         painting.add(doc.data());
-        print(doc.id);
       });
     });
 
     if (category == "Windows") {
       return windows;
     } else if (category == "Main Doors") {
+      print(maindoors.length);
       return maindoors;
     } else if (category == "Gypsum Ceilings") {
       return gypsum;

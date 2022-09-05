@@ -44,7 +44,7 @@ class SingleProduct extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: img,
                 placeholder: ((context, url) {
-                  return const CircularProgressIndicator();
+                  return Image.asset("assets/images/placeholder.gif");
                 }),
                 height: 120,
                 width: 170,

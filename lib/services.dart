@@ -48,7 +48,7 @@ class _ServicesState extends State<Services> {
                 ),
 
                 const SizedBox(width: 28),
-                // METALLIC DOORS
+                // MAIN DOORS DOORS
                 SingleService(
                   img: "assets/images/d2.webp",
                   service: "Main Doors",
