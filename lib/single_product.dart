@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_app/product.dart';
 
@@ -40,11 +41,13 @@ class SingleProduct extends StatelessWidget {
             ClipRRect(
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              child: Image.network(
-                img,
+              child: CachedNetworkImage(
+                imageUrl: img,
+                placeholder: ((context, url) {
+                  return const CircularProgressIndicator();
+                }),
                 height: 120,
                 width: 170,
-                scale: 0.0001,
               ),
             ),
             const SizedBox(height: 13),
