@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -135,8 +136,11 @@ class _ProductState extends State<Product> {
                   borderRadius: const BorderRadius.all(Radius.circular(15.0)),
                   child: Stack(
                     children: <Widget>[
-                      Image.asset(
-                        item,
+                      CachedNetworkImage(
+                        imageUrl: item,
+                        placeholder: (context, url) {
+                          return Image.asset("assets/images/placeholder.gif");
+                        },
                         fit: BoxFit.cover,
                         width: 1000.0,
                         height: 400,
@@ -305,7 +309,7 @@ class _ProductState extends State<Product> {
 
                     // PRICE
                     Text(
-                      "~ $_price",
+                      _price,
                       style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

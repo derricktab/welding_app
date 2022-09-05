@@ -31,6 +31,13 @@ class _ProdListState extends State<ProdList> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _products.clear();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 239, 251, 247),
