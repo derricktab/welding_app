@@ -44,7 +44,7 @@ class _MainAppState extends State<MainApp> {
       isFirst = isFirstRun;
     });
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     // checking if the app is running for the first time.
