@@ -24,7 +24,8 @@ class _OurServiceState extends State<OurService> {
 
   // Method to fetch products
   getItems(category) {
-    List<Map<String, dynamic>> products = Products(category).returnProdList();
+    var products = Products(category).returnProdList();
+    print("Printing Products : $products");
 
     setState(() {
       _products = products;
@@ -37,6 +38,11 @@ class _OurServiceState extends State<OurService> {
     super.initState();
     getItems(widget.category);
     print(_products.length);
+    if (_products.length > 0) {
+      print("SOME ITEMS");
+    } else {
+      print("NO PRODUCTS RETURNED");
+    }
   }
 
   @override
@@ -142,10 +148,13 @@ class _OurServiceState extends State<OurService> {
     print(imgList);
 
     final _prodName = _products[0]["name"];
+    print(_prodName);
 
     final _price = _products[0]["price"];
+    print(_price);
 
     final _description = _products[0]["description"];
+    print(_description);
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
