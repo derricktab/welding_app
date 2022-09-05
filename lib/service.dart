@@ -22,6 +22,11 @@ class OurService extends StatefulWidget {
 class _OurServiceState extends State<OurService> {
   var _products = <Map<String, dynamic>>[];
 
+  var imgList = [];
+  String _prodName = "";
+  String _price = "";
+  String _description = "";
+
   // Method to fetch products
   getItems(category) async {
     var products = await Products(category).returnProdList();
@@ -30,26 +35,6 @@ class _OurServiceState extends State<OurService> {
     setState(() {
       _products = products;
     });
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getItems(widget.category);
-    print(_products.length);
-    if (_products.length > 0) {
-      print("SOME ITEMS");
-    } else {
-      print("NO PRODUCTS RETURNED");
-    }
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    _products.clear();
   }
 
   var _cartItems = 0;
@@ -134,7 +119,28 @@ class _OurServiceState extends State<OurService> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getItems(widget.category);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _products.clear();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print(_products.length);
+    if (_products.length > 0) {
+      print("SOME ITEMS");
+    } else {
+      print("NO PRODUCTS RETURNED");
+    }
+
     // GETTING THE CURRENT STREAM
     _cartStream.listen((snapshot) {
       if (this.mounted) {
@@ -144,17 +150,19 @@ class _OurServiceState extends State<OurService> {
       }
     });
 
-    var imgList = _products[0]["image"];
-    print(imgList.runtimeType);
+    if (_products.length > 0) {
+      var imgList = _products[0]["image"];
+      print(imgList);
 
-    final _prodName = _products[0]["name"];
-    print(_prodName);
+      final _prodName = _products[0]["name"];
+      print(_prodName);
 
-    final _price = _products[0]["price"];
-    print(_price);
+      final _price = _products[0]["price"];
+      print(_price);
 
-    final _description = _products[0]["description"];
-    print(_description);
+      final _description = _products[0]["description"];
+      print(_description);
+    }
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList

@@ -76,6 +76,7 @@ class Products {
           wells.add(doc.data());
         });
       });
+      print("WELLS: ${wells.length}");
       return wells;
     } else if (category == "Construction") {
 // construction Snapshot
