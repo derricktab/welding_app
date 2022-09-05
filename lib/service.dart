@@ -23,8 +23,8 @@ class _OurServiceState extends State<OurService> {
   var _products = <Map<String, dynamic>>[];
 
   // Method to fetch products
-  getItems(category) {
-    var products = Products(category).returnProdList();
+  getItems(category) async {
+    var products = await Products(category).returnProdList();
     print("Printing Products : $products");
 
     setState(() {
@@ -145,7 +145,7 @@ class _OurServiceState extends State<OurService> {
     });
 
     var imgList = _products[0]["image"];
-    print(imgList);
+    print(imgList.runtimeType);
 
     final _prodName = _products[0]["name"];
     print(_prodName);
