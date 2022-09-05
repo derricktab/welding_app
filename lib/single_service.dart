@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:welding_app/prod_list.dart';
+import 'package:welding_app/service.dart';
 
 class SingleService extends StatelessWidget {
   String img;
@@ -10,6 +11,24 @@ class SingleService extends StatelessWidget {
     required this.img,
     required this.service,
   }) : super(key: key);
+
+  final _products = <String>[
+    "Windows",
+    "Main Doors",
+    "Gypsum Ceilings",
+    "Balcony",
+    "Metallic Gates",
+    "Wooden Doors",
+    "Back Doors",
+  ];
+
+  final _services = <String>[
+    "Flooring",
+    "Painting",
+    "Roofing",
+    "Construction",
+    "Underground Well Escavation",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +77,6 @@ class SingleService extends StatelessWidget {
                       ),
                     ),
                   ),
-
                 ],
               ),
             )
@@ -66,10 +84,19 @@ class SingleService extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ProdList(category: service)));
+        if (_products.contains(service)) {
+          print("THIS IS A PRODUCT");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProdList(category: service)));
+        } else if (_services.contains(service)) {
+          print("THIS IS A SERVICE");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => OurService(category: service)));
+        }
       },
     );
   }

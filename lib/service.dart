@@ -1,24 +1,18 @@
-import 'dart:convert';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import 'models/products.dart';
 
 class OurService extends StatefulWidget {
-  final String image;
-  final String prodName;
-  final String price;
-  final String description;
+  final String category;
 
   const OurService({
     Key? key,
-    required this.image,
-    required this.prodName,
-    required this.price,
-    required this.description,
+    required this.category,
   }) : super(key: key);
 
   @override
@@ -26,6 +20,32 @@ class OurService extends StatefulWidget {
 }
 
 class _OurServiceState extends State<OurService> {
+  var _products = <Map<String, dynamic>>[];
+
+  // Method to fetch products
+  getItems(category) {
+    List<Map<String, dynamic>> products = Products(category).returnProdList();
+
+    setState(() {
+      _products = products;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getItems(widget.category);
+    print(_products.length);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _products.clear();
+  }
+
   var _cartItems = 0;
 
   // DIALOG BOX TO CONFIRM ADD TO CART OPERATION
@@ -118,13 +138,14 @@ class _OurServiceState extends State<OurService> {
       }
     });
 
-    var imgList = [widget.image];
+    var imgList = _products[0]["image"];
+    print(imgList);
 
-    final _prodName = widget.prodName;
+    final _prodName = _products[0]["name"];
 
-    final _price = widget.price;
+    final _price = _products[0]["price"];
 
-    final _description = widget.description;
+    final _description = _products[0]["description"];
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
@@ -135,8 +156,11 @@ class _OurServiceState extends State<OurService> {
                   borderRadius: const BorderRadius.all(Radius.circular(15.0)),
                   child: Stack(
                     children: <Widget>[
-                      Image.asset(
-                        item,
+                      CachedNetworkImage(
+                        imageUrl: item,
+                        placeholder: (context, url) {
+                          return Image.asset("assets/images/placeholder.gif");
+                        },
                         fit: BoxFit.cover,
                         width: 1000.0,
                         height: 400,

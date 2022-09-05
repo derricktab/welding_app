@@ -11,9 +11,11 @@ class ProdList extends StatefulWidget {
   State<ProdList> createState() => _ProdListState();
 }
 
-var _products = <Map<String, dynamic>>[];
 
 class _ProdListState extends State<ProdList> {
+  
+var _products = <Map<String, dynamic>>[];
+
   // Method to fetch products
   getItems(category) {
     List<Map<String, dynamic>> products = Products(category).returnProdList();
