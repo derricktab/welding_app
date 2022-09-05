@@ -13,203 +13,178 @@ var woodendoors = <Map<String, dynamic>>[];
 var flooring = <Map<String, dynamic>>[];
 var maindoors = <Map<String, dynamic>>[];
 
-// Windows Snapshot
-var windowsSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("windows")
-    .collection("windows")
-    .snapshots();
-
-// Main Doors Snapshot
-var maindoorsSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("maindoor")
-    .collection("maindoor")
-    .snapshots();
-
-// Wooden Doors Snapshot
-var woodendoorsSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("woodendoors")
-    .collection("woodendoors")
-    .snapshots();
-
-// Back Doors Snapshot
-var backdoorsSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("backdoors")
-    .collection("backdoors")
-    .snapshots();
-
-// Balcony Snapshot
-var balconySnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("balcony")
-    .collection("balcony")
-    .snapshots();
-
-// Gates Snapshot
-var gatesSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("gates")
-    .collection("gates")
-    .snapshots();
-
-// Gypsum Snapshot
-var gypsumSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("gypsum")
-    .collection("gypsum")
-    .snapshots();
-
-// construction Snapshot
-var constructionSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("construction")
-    .collection("construction")
-    .snapshots();
-
-// Painting Snapshot
-var paintingSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("painting")
-    .collection("painting")
-    .snapshots();
-
-// Roofing Snapshot
-var roofingSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("roofing")
-    .collection("roofing")
-    .snapshots();
-
-// Wells Snapshot
-var wellsSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("wells")
-    .collection("wells")
-    .snapshots();
-
-// Flooring Snapshot
-var flooringSnapshot = FirebaseFirestore.instance
-    .collection("products")
-    .doc("flooring")
-    .collection("flooring")
-    .snapshots();
-
 class Products {
   String category;
   Products(this.category);
 
   returnProdList() {
-    // Windows
-    windowsSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        windows.add(doc.data());
-      });
-    });
-
-    // backdoors
-    backdoorsSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        backdoors.add(doc.data());
-      });
-    });
-
-    // balcony
-    balconySnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        balcony.add(doc.data());
-      });
-    });
-
-    // Flooring
-    flooringSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        flooring.add(doc.data());
-      });
-    });
-
-    // Gates
-    gatesSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        gates.add(doc.data());
-      });
-    });
-
-    // Gypsum
-    gypsumSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        gypsum.add(doc.data());
-      });
-    });
-
-    // MainDoors
-    maindoorsSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        maindoors.add(doc.data());
-      });
-    });
-
-    // roofing
-    roofingSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        roofing.add(doc.data());
-      });
-    });
-
-    // wells
-    wellsSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        wells.add(doc.data());
-      });
-    });
-
-    // woodendoors
-    woodendoorsSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        woodendoors.add(doc.data());
-      });
-    });
-
-    // gates
-    gatesSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        gates.add(doc.data());
-      });
-    });
-
-    // painting
-    paintingSnapshot.listen((snapshot) {
-      snapshot.docs.forEach((doc) {
-        painting.add(doc.data());
-      });
-    });
-
     if (category == "Windows") {
+// Windows Snapshot
+      var windowsSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("windows")
+          .collection("windows")
+          .snapshots();
+
+      // Windows
+      windowsSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          windows.add(doc.data());
+        });
+      });
+
       return windows;
     } else if (category == "Main Doors") {
+// Main Doors Snapshot
+      var maindoorsSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("maindoor")
+          .collection("maindoor")
+          .snapshots();
+      // MainDoors
+      maindoorsSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          maindoors.add(doc.data());
+        });
+      });
       print(maindoors.length);
       return maindoors;
     } else if (category == "Gypsum Ceilings") {
+// Gypsum Snapshot
+      var gypsumSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("gypsum")
+          .collection("gypsum")
+          .snapshots();
+      // Gypsum
+      gypsumSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          gypsum.add(doc.data());
+        });
+      });
       return gypsum;
     } else if (category == "Underground Well Escavation") {
+// Wells Snapshot
+      var wellsSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("wells")
+          .collection("wells")
+          .snapshots();
+      // wells
+      wellsSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          wells.add(doc.data());
+        });
+      });
       return wells;
     } else if (category == "Construction") {
+// construction Snapshot
+      var constructionSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("construction")
+          .collection("construction")
+          .snapshots();
       return construction;
     } else if (category == "Balcony") {
+// Balcony Snapshot
+      var balconySnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("balcony")
+          .collection("balcony")
+          .snapshots();
+      // balcony
+      balconySnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          balcony.add(doc.data());
+        });
+      });
       return balcony;
     } else if (category == "Metallic Gates") {
+// Gates Snapshot
+      var gatesSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("gates")
+          .collection("gates")
+          .snapshots()
+          .first
+          .then((value) {
+        value.docs.forEach((doc) {
+          gates.add(doc.data());
+        });
+      });
+      print(gates.length);
+
       return gates;
     } else if (category == "Wooden Doors") {
+// Wooden Doors Snapshot
+      var woodendoorsSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("woodendoors")
+          .collection("woodendoors")
+          .snapshots();
+      // woodendoors
+      woodendoorsSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          woodendoors.add(doc.data());
+        });
+      });
       return woodendoors;
     } else if (category == "Back Doors") {
+// Back Doors Snapshot
+      var backdoorsSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("backdoors")
+          .collection("backdoors")
+          .snapshots();
+      // backdoors
+      backdoorsSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          backdoors.add(doc.data());
+        });
+      });
       return backdoors;
     } else if (category == "Roofing") {
+      // Roofing Snapshot
+      var roofingSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("roofing")
+          .collection("roofing")
+          .snapshots();
+      // roofing
+      roofingSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          roofing.add(doc.data());
+        });
+      });
       return roofing;
     } else if (category == "Painting") {
+// Painting Snapshot
+      var paintingSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("painting")
+          .collection("painting")
+          .snapshots();
+
+      // painting
+      paintingSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          painting.add(doc.data());
+        });
+      });
       return painting;
     } else if (category == "Flooring") {
+// Flooring Snapshot
+      var flooringSnapshot = FirebaseFirestore.instance
+          .collection("products")
+          .doc("flooring")
+          .collection("flooring")
+          .snapshots();
+      // Flooring
+      flooringSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          flooring.add(doc.data());
+        });
+      });
       return flooring;
     }
   }

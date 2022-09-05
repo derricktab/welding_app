@@ -11,14 +11,27 @@ class ProdList extends StatefulWidget {
   State<ProdList> createState() => _ProdListState();
 }
 
-class _ProdListState extends State<ProdList> {
+var _products = <Map<String, dynamic>>[];
 
+class _ProdListState extends State<ProdList> {
+  // Method to fetch products
+  getItems(category) {
+    List<Map<String, dynamic>> products = Products(category).returnProdList();
+
+    setState(() {
+      _products = products;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getItems(widget.category);
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    List<Map<String, dynamic>> products = Products(widget.category).returnProdList();
-
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 239, 251, 247),
         // backgroundColor: Colors.white,
@@ -43,7 +56,7 @@ class _ProdListState extends State<ProdList> {
           crossAxisSpacing: 20,
           childAspectRatio: 0.8,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          children: products.map((product) {
+          children: _products.map((product) {
             return SingleProduct(
               img: product["image"].toString(),
               prodName: product["name"].toString(),

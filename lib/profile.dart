@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -181,7 +182,7 @@ class _ProfileState extends State<Profile> {
                     child: CircleAvatar(
                       backgroundColor: Color.fromARGB(118, 0, 0, 0),
                       radius: 65,
-                      backgroundImage: NetworkImage(
+                      backgroundImage: CachedNetworkImageProvider(
                         _userImage,
                       ),
                     ),

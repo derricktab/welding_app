@@ -58,12 +58,7 @@ class SingleService extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // const Expanded(
-                  //   child: Icon(
-                  //     Icons.arrow_forward_ios,
-                  //     color: Colors.lightGreen,
-                  //   ),
-                  // )
+
                 ],
               ),
             )

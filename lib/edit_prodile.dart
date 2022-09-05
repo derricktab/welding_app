@@ -304,7 +304,20 @@ class _EditProfileState extends State<EditProfile> {
                           "address": _addressField.text.toString(),
                         },
                       ).then((value) {
-                        print("DATA UPDATED SUCCESFULLY");
+                        // show snackbar
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.green,
+                            content: Text(
+                              "Data Saved Succesfully",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                        );
+
+                        // redirect to profile page
+                        Navigator.pop(context);
                       });
                       // print("VALIDATED");
                     }
