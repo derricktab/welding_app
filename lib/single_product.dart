@@ -40,7 +40,7 @@ class SingleProduct extends StatelessWidget {
             ClipRRect(
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-              child: Image.asset(
+              child: Image.network(
                 img,
                 height: 120,
                 width: 170,
