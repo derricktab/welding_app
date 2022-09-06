@@ -1,8 +1,6 @@
-import 'dart:convert';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
 
 class Cart extends StatefulWidget {
@@ -115,9 +113,9 @@ class _CartState extends State<Cart> {
                         .asMap()
                         .map((index, item) {
                           // calculating the total
-                          int price = int.parse(item["price"]);
-                          int quantity = int.parse(item["quantity"].toString());
-                          var prodId = item["prodId"];
+                          String price = item["price"];
+                          String quantity = item["quantity"].toString();
+                          String prodId = item["prodId"].toString();
 
                           return MapEntry(
                             index,
@@ -157,25 +155,22 @@ class _CartState extends State<Cart> {
                                 return response;
                               },
                               onDismissed: (direction) async {
+                                print(prodId);
                                 // REMOVE ITEM FROM CART
                                 FirebaseFirestore.instance
                                     .collection("cart")
-                                    .doc(prodId)
+                                    .doc(prodId.toString())
                                     .delete()
                                     .then((value) {
                                   print("Item Removed from cart");
-                                  setState(() {
-
-                                  });
+                                  setState(() {});
                                 });
                               },
                               direction: DismissDirection.endToStart,
                               child: CartItem(
                                   imagePath: item["image"].toString(),
                                   itemName: item["prodName"].toString(),
-                                  Price: f
-                                      .format(int.parse(item["price"]))
-                                      .toString(),
+                                  Price: item["price"].toString(),
                                   Quanity: item["quantity"].toString()),
                             ),
                           );
@@ -271,8 +266,11 @@ class CartItem extends StatelessWidget {
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(40), bottomLeft: Radius.circular(40)),
-            child: Image.asset(
-              imagePath,
+            child: CachedNetworkImage(
+              imageUrl: imagePath,
+              placeholder: (context, url) {
+                return Image.asset("assets/images/placeholder.gif");
+              },
               width: 150,
               height: 110,
             ),

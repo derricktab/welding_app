@@ -20,7 +20,6 @@ class OurService extends StatefulWidget {
 }
 
 class _OurServiceState extends State<OurService> {
-  
   var _products = <Map<String, dynamic>>[];
   var imgList = [];
   String _prodName = "";
@@ -30,10 +29,18 @@ class _OurServiceState extends State<OurService> {
   // Method to fetch products
   getItems(category) async {
     var products = await Products(category).returnProdList();
-    print("Printing Products : $products");
+    // print("Printing Products : $products");
 
     setState(() {
       _products = products;
+
+      imgList = products[0]["image"];
+
+      _prodName = products[0]["name"];
+
+      _price = products[0]["price"];
+
+      _description = products[0]["description"];
     });
   }
 
@@ -125,21 +132,16 @@ class _OurServiceState extends State<OurService> {
     getItems(widget.category);
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    _products.clear();
-  }
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  //   _products.clear();
+  // }
 
   @override
   Widget build(BuildContext context) {
     print(_products.length);
-    if (_products.length > 0) {
-      print("SOME ITEMS");
-    } else {
-      print("NO PRODUCTS RETURNED");
-    }
 
     // GETTING THE CURRENT STREAM
     _cartStream.listen((snapshot) {
@@ -149,20 +151,6 @@ class _OurServiceState extends State<OurService> {
         });
       }
     });
-
-    if (_products.length > 0) {
-      var imgList = _products[0]["image"];
-      print(imgList);
-
-      final _prodName = _products[0]["name"];
-      print(_prodName);
-
-      final _price = _products[0]["price"];
-      print(_price);
-
-      final _description = _products[0]["description"];
-      print(_description);
-    }
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
