@@ -1,12 +1,9 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Product extends StatefulWidget {
   final String image;
@@ -95,8 +92,6 @@ class _ProductState extends State<Product> {
 
 // METHOD TO ADD PRODUCT TO CART
   addToCart(product) {
-    var prodId = product["prodId"];
-
     FirebaseFirestore.instance.collection("cart").add(product).then((value) {
       var id = value.id;
       print(id);
