@@ -20,7 +20,7 @@ class OurService extends StatefulWidget {
 }
 
 class _OurServiceState extends State<OurService> {
-  var _products = <Map<String, dynamic>>[];
+  var product = Map<String, dynamic>;
   var imgList = [];
   String _prodName = "";
   String _price = "";

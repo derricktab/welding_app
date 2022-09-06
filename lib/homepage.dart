@@ -414,10 +414,10 @@ class _HomePageState extends State<HomePage> {
                             service: "Windows",
                           ),
 
-                          // METAL DOORS
+                          // MAIN DOORS
                           MiniServices(
                             img: "assets/images/d2.webp",
-                            service: "Metal Doors",
+                            service: "Main Doors",
                           ),
 
                           // BALCONY
@@ -435,7 +435,7 @@ class _HomePageState extends State<HomePage> {
                           // WOODEN DOORS
                           MiniServices(
                             img: "assets/images/wdoor1.jpg",
-                            service: "Wood Doors",
+                            service: "Wooden Doors",
                           ),
                         ],
                       ),

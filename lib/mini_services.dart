@@ -7,7 +7,7 @@ class MiniServices extends StatelessWidget {
   String service;
 
   MiniServices({
-    Key? key, 
+    Key? key,
     required this.img,
     required this.service,
   }) : super(key: key);
@@ -26,7 +26,7 @@ class MiniServices extends StatelessWidget {
             BoxShadow(color: Colors.blue, spreadRadius: 0.4),
           ],
         ),
-        height: 135,
+        height: 140,
         width: 120,
         child: Column(
           children: [
@@ -40,16 +40,18 @@ class MiniServices extends StatelessWidget {
             ),
             // const SizedBox(height: ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.only(left: 10.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    service,
-                    style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueGrey),
+                  Expanded(
+                    child: Text(
+                      service,
+                      style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueGrey),
+                    ),
                   ),
                   const Icon(
                     Icons.arrow_forward_ios,
@@ -62,7 +64,13 @@ class MiniServices extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: ((context) => ProdList(category: service,))));
+        print(service);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => ProdList(
+                      category: service,
+                    ))));
       },
     );
   }
