@@ -27,8 +27,8 @@ class _OurServiceState extends State<OurService> {
   String _description = "";
 
   // Method to fetch products
-  getItems(category) {
-    var products = Products(category).returnProdList();
+  getItems(category) async {
+    var products = await Products(category).returnProdList();
     print("Printing Products : $products");
 
     setState(() {
