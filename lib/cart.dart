@@ -26,18 +26,23 @@ class _CartState extends State<Cart> {
   // init state method
   @override
   void initState() {
-    // initSharedPrefs();
+    print("INIT STATE RUN AGAIN");
     cartStream.listen((snapshot) {
       setState(() {
-        // updating the cart
-        snapshot.docs.forEach((doc) {
-          cartItems.add(doc.data());
-        });
-
         // updating the number of items in the cart
         _cartItems = snapshot.docs.length;
       });
+      // updating the cart
+      snapshot.docs.forEach((doc) {
+        cartItems.add(doc.data());
+      });
     });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -163,7 +168,7 @@ class _CartState extends State<Cart> {
                                     .delete()
                                     .then((value) {
                                   print("Item Removed from cart");
-                                  setState(() {});
+                                  // setState(() {});
                                 });
                               },
                               direction: DismissDirection.endToStart,
@@ -185,7 +190,7 @@ class _CartState extends State<Cart> {
                 // CHECKOUT BUTTON
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    backgroundColor: Colors.red,
                     shape: BeveledRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
@@ -195,7 +200,10 @@ class _CartState extends State<Cart> {
                     // await prefs.setStringList("items", <String>[]);
                     // print("cart cleared");
                   },
-                  child: const Text("CHECKOUT"),
+                  child: const Text(
+                    "CHECKOUT",
+                    style: TextStyle(fontSize: 17),
+                  ),
                 ),
               ],
             )
