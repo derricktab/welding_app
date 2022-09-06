@@ -14,6 +14,21 @@ var flooring = <Map<String, dynamic>>[];
 var maindoors = <Map<String, dynamic>>[];
 
 class Products {
+  getWells() async {
+    var wellsSnapshot = await FirebaseFirestore.instance
+        .collection("products")
+        .doc("wells")
+        .collection("wells")
+        .snapshots();
+    // wells
+    wellsSnapshot.listen((snapshot) {
+      for (var doc in snapshot.docs) {
+        wells.add(doc.data());
+        print(doc.data());
+      }
+    });
+  }
+
   String category;
   Products(this.category);
 
@@ -65,18 +80,8 @@ class Products {
       return gypsum;
     } else if (category == "Underground Well Escavation") {
 // Wells Snapshot
-      var wellsSnapshot = FirebaseFirestore.instance
-          .collection("products")
-          .doc("wells")
-          .collection("wells")
-          .snapshots();
-      // wells
-      wellsSnapshot.listen((snapshot) {
-        snapshot.docs.forEach((doc) {
-          wells.add(doc.data());
-        });
-      });
-      print("WELLS: ${wells.length}");
+      getWells();
+      print("WELLS: ${wells}");
       return wells;
     } else if (category == "Construction") {
 // construction Snapshot

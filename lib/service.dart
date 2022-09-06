@@ -20,16 +20,16 @@ class OurService extends StatefulWidget {
 }
 
 class _OurServiceState extends State<OurService> {
-  var product = Map<String, dynamic>;
+  var _products = [];
   var imgList = [];
   String _prodName = "";
   String _price = "";
   String _description = "";
 
   // Method to fetch products
-  getItems(category) async {
-    var products = await Products(category).returnProdList();
-    // print("Printing Products : $products");
+  getItems(category) {
+    var products = Products(category).returnProdList();
+    print("Printing Products : $products");
 
     setState(() {
       _products = products;
