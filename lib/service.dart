@@ -297,6 +297,8 @@ class _OurServiceState extends State<OurService> {
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
                     ),
+
+                    // ADD TO FAVORITES
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -317,26 +319,19 @@ class _OurServiceState extends State<OurService> {
                     )
                   ],
                 ),
-                const SizedBox(height: 11),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // RATING STARS
-                    RatingBar.builder(
-                        initialRating: 3.5,
-                        minRating: 1,
-                        itemCount: 5,
-                        itemSize: 26,
-                        allowHalfRating: true,
-                        itemBuilder: ((context, index) => const Icon(
-                              Icons.star,
-                              color: Colors.orange,
-                            )),
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        }),
+                const SizedBox(height: 25),
 
+                // PRICE
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
                     // PRICE
+                    const Text(
+                      "PRICE: ",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+
                     Text(
                       "~ $_price",
                       style: const TextStyle(

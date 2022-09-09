@@ -23,20 +23,30 @@ class _CartState extends State<Cart> {
   // adding commas to numbers
   var f = NumberFormat.decimalPattern('en_us');
 
-  // init state method
-  @override
-  void initState() {
-    print("INIT STATE RUN AGAIN");
+// GET CART ITEMS
+  getCartItems() {
     cartStream.listen((snapshot) {
+      var items = [];
+      // updating the cart
+      snapshot.docs.forEach((doc) {
+        items.add(doc.data());
+      });
+
+      print(items);
+
       setState(() {
         // updating the number of items in the cart
         _cartItems = snapshot.docs.length;
-      });
-      // updating the cart
-      snapshot.docs.forEach((doc) {
-        cartItems.add(doc.data());
+        cartItems = items;
       });
     });
+  }
+
+  // init state method
+  @override
+  void initState() {
+    // print("INIT STATE RUN AGAIN");
+    getCartItems();
   }
 
   @override
