@@ -38,11 +38,11 @@ class _OurServiceState extends State<OurService> {
 
       // imgList = products[0]["image"];
 
-      _prodName = products[0]["name"];
+      // _prodName = products[0]["name"];
 
-      _price = products[0]["price"];
+      // _price = products[0]["price"];
 
-      _description = products[0]["description"];
+      // _description = products[0]["description"];
     });
   }
 
@@ -157,7 +157,7 @@ class _OurServiceState extends State<OurService> {
     print("PRODUCTS LENGTH: ${_products.length}");
 
 // IMAGE SLIDERS
-    final List<Widget> imageSliders = _products[0]["image"]
+    final imageSliders = _products[0]["image"]
         .map((item) => Container(
               margin: EdgeInsets.all(5.0),
               height: 600,
