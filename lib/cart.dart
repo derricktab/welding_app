@@ -40,18 +40,6 @@ class _CartState extends State<Cart> {
     });
   }
 
-  // init state method
-  @override
-  void initState() {
-    print("INIT STATE RUN AGAIN");
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     getCartItems();
