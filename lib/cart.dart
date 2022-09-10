@@ -25,8 +25,9 @@ class _CartState extends State<Cart> {
 
 // GET CART ITEMS
   getCartItems() {
-    cartStream.listen((snapshot) {
+    cartStream.listen((snapshot) async {
       var items = [];
+
       // updating the cart
       snapshot.docs.forEach((doc) {
         items.add(doc.data());
@@ -45,8 +46,7 @@ class _CartState extends State<Cart> {
   // init state method
   @override
   void initState() {
-    // print("INIT STATE RUN AGAIN");
-    getCartItems();
+    print("INIT STATE RUN AGAIN");
   }
 
   @override
@@ -57,6 +57,7 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
+    getCartItems();
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.black,
@@ -178,7 +179,7 @@ class _CartState extends State<Cart> {
                                     .delete()
                                     .then((value) {
                                   print("Item Removed from cart");
-                                  // setState(() {});
+                                  setState(() {});
                                 });
                               },
                               direction: DismissDirection.endToStart,
