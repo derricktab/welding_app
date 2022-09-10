@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -16,14 +17,23 @@ class _CartState extends State<Cart> {
   var _cartItems = 0;
   var cartItems = [];
 
-// Cart Stream
-  var cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
+  var uid;
 
   // adding commas to numbers
   var f = NumberFormat.decimalPattern('en_us');
 
 // GET CART ITEMS
   getCartItems() {
+    // Cart Stream
+    var cartStream = FirebaseFirestore.instance
+        .collection("cart")
+        .where({"user": uid}).snapshots();
+
+    var user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      uid = user.uid;
+    }
+
     cartStream.listen((snapshot) async {
       var items = [];
 
