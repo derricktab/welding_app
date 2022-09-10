@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -482,20 +483,28 @@ class _ProductState extends State<Product> {
                 // ADD TO CART BUTTON
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    backgroundColor: Colors.red,
                     shape: BeveledRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () async {
-                    var _item = {
-                      'prodId': 12,
-                      "image": imgList[0],
-                      "prodName": _prodName,
-                      "quantity": _currentHorizontalIntValue,
-                      "price": _price
-                    };
+                    var user = FirebaseAuth.instance.currentUser;
+                    if (user != null) {
+                      var uid = user.uid;
 
-                    addToCart(_item);
+                      var item = {
+                        'prodId': 12,
+                        "image": imgList[0],
+                        "prodName": _prodName,
+                        "quantity": _currentHorizontalIntValue,
+                        "price": _price,
+                        "user": uid
+                      };
+
+                      addToCart(item);
+                    } else {
+                      print("NO USER SIGNED IN");
+                    }
                     // _showMyDialog();
                     // setState(() {});
                   },
