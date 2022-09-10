@@ -36,7 +36,7 @@ class _OurServiceState extends State<OurService> {
     setState(() {
       _products = products;
 
-      imgList = products[0]["image"];
+      // imgList = products[0]["image"];
 
       _prodName = products[0]["name"];
 
@@ -157,7 +157,7 @@ class _OurServiceState extends State<OurService> {
     print("PRODUCTS LENGTH: ${_products.length}");
 
 // IMAGE SLIDERS
-    final List<Widget> imageSliders = imgList
+    final List<Widget> imageSliders = _products[0]["image"]
         .map((item) => Container(
               margin: EdgeInsets.all(5.0),
               height: 600,
@@ -293,7 +293,7 @@ class _OurServiceState extends State<OurService> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      _prodName,
+                      _products[0]["name"],
                       style: const TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -333,7 +333,7 @@ class _OurServiceState extends State<OurService> {
                     ),
 
                     Text(
-                      "~ $_price",
+                      "~ ${_products[0]["price"]}",
                       style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -351,17 +351,17 @@ class _OurServiceState extends State<OurService> {
                 // ADD TO CART BUTTON
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.red,
+                    backgroundColor: Colors.red,
                     shape: BeveledRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () async {
                     var _item = {
-                      'prodId': 12,
-                      "image": imgList[0],
-                      "prodName": _prodName,
+                      'prodId': _products[0]["prodId"],
+                      "image": _products[0]["image"][0],
+                      "prodName": _products[0]["name"],
                       "quantity": _currentHorizontalIntValue,
-                      "price": _price
+                      "price": _products[0]["price"]
                     };
 
                     addToCart(_item);
