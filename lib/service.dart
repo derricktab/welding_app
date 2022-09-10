@@ -155,11 +155,11 @@ class _OurServiceState extends State<OurService> {
     });
 
     print("PRODUCTS LENGTH: ${_products.length}");
-    List<String>images = _products[0]["image"];
+    var images = _products[0]["image"];
 
 // IMAGE SLIDERS
-    final List<Widget> imageSliders = 
-        images.map((item) => Container(
+    final List<Widget> imageSliders = images
+        .map((item) => Container(
               margin: EdgeInsets.all(5.0),
               height: 600,
               child: ClipRRect(
