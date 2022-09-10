@@ -144,6 +144,26 @@ class _HomePageState extends State<HomePage> {
     'assets/images/window4.jpeg',
   ];
 
+  getCartItems() {
+    var uid;
+    var user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      uid = user.uid;
+    }
+    var _cartStream = FirebaseFirestore.instance
+        .collection("cart")
+        .where("user", isEqualTo: uid)
+        .snapshots();
+
+    // GETTING THE CURRENT STREAM
+    _cartStream.listen((snapshot) {
+      if (this.mounted) {
+        setState(() {
+          _cartItems = snapshot.docs.length;
+        });
+      }
+    });
+  }
 
   @override
   void initState() {
@@ -153,21 +173,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-    // Getting the cart snapshots from the database
-    var _cartStream = FirebaseFirestore.instance.collection("cart").where("user", isEqualTo: uid).snapshots();
-
-    _cartStream.listen((snapshot) {
-      setState(() {
-        // updating the cart
-        snapshot.docs.forEach((doc) {
-          cartItems.add(doc.data());
-        });
-
-        // updating the number of items in the cart
-        _cartItems = snapshot.docs.length;
-      });
-    });
+    getCartItems();
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
@@ -257,33 +263,17 @@ class _HomePageState extends State<HomePage> {
                         ),
                         // CART ITEMS NUMBER
                         Positioned(
-                            top: 5,
-                            right: 0,
-                            child: StreamBuilder<QuerySnapshot>(
-                              stream: _cartStream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (snapshot.hasError) {
-                                  return const Text('Something went wrong');
-                                }
-
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const Text("Loading");
-                                }
-
-                                return Container(
-                                    margin: const EdgeInsets.only(right: 12),
-                                    decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        borderRadius:
-                                            BorderRadius.circular(50)),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5, vertical: 2),
-                                    child:
-                                        Text(snapshot.data!.size.toString()));
-                              },
-                            ))
+                          top: 5,
+                          right: 0,
+                          child: Container(
+                              margin: const EdgeInsets.only(right: 12),
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(50)),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 2),
+                              child: Text(_cartItems.toString())),
+                        )
                       ],
                     ),
                   ),
