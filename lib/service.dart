@@ -129,9 +129,9 @@ class _OurServiceState extends State<OurService> {
 
   @override
   void initState() {
+    getItems(widget.category);
     // TODO: implement initState
     super.initState();
-    getItems(widget.category);
   }
 
   // @override
