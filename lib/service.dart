@@ -143,11 +143,10 @@ class _OurServiceState extends State<OurService> {
 
   @override
   Widget build(BuildContext context) {
-    print(_products.length);
-
     // GETTING THE CURRENT STREAM
     _cartStream.listen((snapshot) {
-      if (this.mounted) {
+      print("LISTEN PRINTING");
+      if (mounted) {
         setState(() {
           _cartItems = snapshot.docs.length;
         });
@@ -155,10 +154,12 @@ class _OurServiceState extends State<OurService> {
     });
 
     print("PRODUCTS LENGTH: ${_products.length}");
-    var images = _products[0]["image"];
+    setState(() {
+      imgList = _products[0]["image"];
+    });
 
 // IMAGE SLIDERS
-    final List<Widget> imageSliders = images
+    final List<Widget> imageSliders = imgList
         .map((item) => Container(
               margin: EdgeInsets.all(5.0),
               height: 600,
