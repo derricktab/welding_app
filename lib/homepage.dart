@@ -21,13 +21,14 @@ class _HomePageState extends State<HomePage> {
   var _userImage =
       "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/dummy-user.png?alt=media&token=1c9c3610-e560-4347-8931-bcd30139a324";
 
+  var uid;
   // GET THE USER IMAGE
   getUserImage() {
     var user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       setState(() {
         _userImage = user.photoURL.toString();
-        print(_userImage);
+        uid = user.uid;
       });
     }
   }
@@ -143,7 +144,6 @@ class _HomePageState extends State<HomePage> {
     'assets/images/window4.jpeg',
   ];
 
-  var _cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
 
   @override
   void initState() {
@@ -153,6 +153,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+      var _cartStream = FirebaseFirestore.instance.collection("cart").where("user", isEqualTo: uid).snapshots();
+
     _cartStream.listen((snapshot) {
       setState(() {
         // updating the cart
