@@ -217,6 +217,7 @@ class _CartState extends State<Cart> {
                     style: TextStyle(fontSize: 17),
                   ),
                 ),
+
               ],
             )
 
