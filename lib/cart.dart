@@ -14,7 +14,6 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   var _cartItems = 0;
-  var _total = 0;
   var cartItems = [];
 
 // Cart Stream
@@ -32,8 +31,6 @@ class _CartState extends State<Cart> {
       snapshot.docs.forEach((doc) {
         items.add(doc.data());
       });
-
-      print(items);
 
       setState(() {
         // updating the number of items in the cart
@@ -74,7 +71,9 @@ class _CartState extends State<Cart> {
         actions: [
           // SHOPPING CART ICON
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              setState(() {});
+            },
             child: Stack(
               alignment: AlignmentDirectional.centerEnd,
               children: [
