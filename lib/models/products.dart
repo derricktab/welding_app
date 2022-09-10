@@ -21,12 +21,18 @@ class Products {
         .collection("wells")
         .snapshots();
     // wells
-    wellsSnapshot.listen((snapshot) {
+    wellsSnapshot.first.then((snapshot){
       for (var doc in snapshot.docs) {
         wells.add(doc.data());
-        print(doc.data());
+        // print(doc.data());
       }
     });
+    // wellsSnapshot.listen((snapshot) {
+    //   for (var doc in snapshot.docs) {
+    //     wells.add(doc.data());
+    //     print(doc.data());
+    //   }
+    // });
   }
 
   String category;

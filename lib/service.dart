@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'models/products.dart';
@@ -29,7 +28,6 @@ class _OurServiceState extends State<OurService> {
   // Method to fetch products
   getItems(category) {
     List products = Products(category).returnProdList();
-    print("Printing Products : $products");
     if (products.isNotEmpty) {
       print("products loaded");
     } else {
@@ -155,6 +153,8 @@ class _OurServiceState extends State<OurService> {
         });
       }
     });
+
+    print("PRODUCTS LENGTH: ${_products.length}");
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
