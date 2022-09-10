@@ -74,8 +74,6 @@ class _ProductState extends State<Product> {
     );
   }
 
-  var _cartStream = FirebaseFirestore.instance.collection("cart").snapshots();
-
   var _liked = false;
   int _current = 0;
   final CarouselController _controller = CarouselController();
@@ -104,8 +102,17 @@ class _ProductState extends State<Product> {
     }, onError: (error) => print("$error"));
   }
 
-  @override
-  Widget build(BuildContext context) {
+  getCartItems() {
+    var uid;
+    var user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      uid = user.uid;
+    }
+    var _cartStream = FirebaseFirestore.instance
+        .collection("cart")
+        .where("user", isEqualTo: uid)
+        .snapshots();
+
     // GETTING THE CURRENT STREAM
     _cartStream.listen((snapshot) {
       if (this.mounted) {
@@ -114,6 +121,11 @@ class _ProductState extends State<Product> {
         });
       }
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    getCartItems();
 
     var imgList = [widget.image];
 

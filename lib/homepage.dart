@@ -153,7 +153,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-      var _cartStream = FirebaseFirestore.instance.collection("cart").where("user", isEqualTo: uid).snapshots();
+
+    // Getting the cart snapshots from the database
+    var _cartStream = FirebaseFirestore.instance.collection("cart").where("user", isEqualTo: uid).snapshots();
 
     _cartStream.listen((snapshot) {
       setState(() {
