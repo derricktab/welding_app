@@ -155,8 +155,7 @@ class _OurServiceState extends State<OurService> {
     });
 
     print("PRODUCTS LENGTH: ${_products.length}");
-    List<String>
-     images = _products[0]["image"];
+    List<String>images = _products[0]["image"];
 
 // IMAGE SLIDERS
     final List<Widget> imageSliders = 
