@@ -146,7 +146,7 @@ class _OurServiceState extends State<OurService> {
     // GETTING THE CURRENT STREAM
     _cartStream.listen((snapshot) {
       print("LISTEN PRINTING");
-      if (mounted) {
+      if (mounted) { 
         setState(() {
           _cartItems = snapshot.docs.length;
         });
@@ -155,6 +155,7 @@ class _OurServiceState extends State<OurService> {
 
     print("PRODUCTS LENGTH: ${_products.length}");
     setState(() {
+      print("new set state printing");
       imgList = _products[0]["image"];
     });
 
