@@ -24,16 +24,19 @@ class _CartState extends State<Cart> {
 
 // GET CART ITEMS
   getCartItems() {
-    
     var user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       uid = user.uid;
+    } else {
+      print("USER NOT LOGGED IN");
+      return;
     }
 
     // Cart Stream
     var cartStream = FirebaseFirestore.instance
         .collection("cart")
-        .where("user", isEqualTo: uid).snapshots();
+        .where("user", isEqualTo: uid)
+        .snapshots();
 
     cartStream.listen((snapshot) async {
       var items = [];
