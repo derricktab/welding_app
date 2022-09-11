@@ -360,7 +360,7 @@ class _OurServiceState extends State<OurService> {
                 // ADD TO CART BUTTON
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
                     backgroundColor: Colors.red,
                     shape: BeveledRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
@@ -378,7 +378,10 @@ class _OurServiceState extends State<OurService> {
                     // _showMyDialog();
                     // setState(() {});
                   },
-                  child: const Text("ADD TO CART"),
+                  child: const Text(
+                    "ADD TO CART",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
                 ),
 
                 const SizedBox(height: 20),
