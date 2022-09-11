@@ -380,6 +380,9 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                       .update({"orderId": orderId}).then((value) {
                     print("THE ORDER ID HAS BEEN SUCCESFULLY UPDATED");
 
+                    // REMOVING THE ITEMS FROM CART
+                    FirebaseFirestore.instance.collection("cart").
+
                     // SENDING AN EMAIL TO THE CLIENT
                   });
                 });
