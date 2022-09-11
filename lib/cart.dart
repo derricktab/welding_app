@@ -348,6 +348,8 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
             ),
             onPressed: () async {
               Navigator.pushNamed(context, "loader");
+
+              // Getting the logged in user details.
               var user = FirebaseAuth.instance.currentUser;
               if (user != null) {
                 var email = user.email;
@@ -360,13 +362,27 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                   "user": uid,
                   "orderId": "1",
                   "items": widget.cartItems,
+                  "additionalInfo": additionalInfo,
                 };
 
+                // ADDING THE ORDER TO CLOUD FIRESTORE
                 FirebaseFirestore.instance
                     .collection("orders")
                     .add(order)
                     .then((value) {
-                  print("THE ORDER HAS BEEN ADDED TO DATABASE SUCCESFULLY");
+                  var orderId = value.id;
+                  print("THE ORDER HAS BEEN ADDED TO THE DATABASE SUCCESFULLY");
+
+                  // UPDATING THE ORDER ID
+                  FirebaseFirestore.instance
+                      .collection("orders")
+                      .doc(orderId)
+                      .update({"orderId": orderId}).then((value) {
+                    print("THE ORDER ID HAS BEEN SUCCESFULLY UPDATED");
+
+                    // SENDING AN EMAIL TO THE CLIENT
+                    
+                  });
                 });
 
                 Navigator.pop(context);
