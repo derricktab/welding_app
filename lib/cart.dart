@@ -197,26 +197,8 @@ class _CartState extends State<Cart> {
                   ),
                 ),
                 const SizedBox(height: 40),
-
+                const AdditionalInfo(),
                 const SizedBox(height: 20),
-                // CHECKOUT BUTTON
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                  ),
-                  onPressed: () async {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, "checkout");
-                    // await prefs.setStringList("items", <String>[]);
-                    // print("cart cleared");
-                  },
-                  child: const Text(
-                    "CHECKOUT",
-                    style: TextStyle(fontSize: 17),
-                  ),
-                ),
               ],
             )
 
@@ -320,6 +302,59 @@ class CartItem extends StatelessWidget {
         // quantity
         Text("X $Quanity")
       ],
+    );
+  }
+}
+
+//  ADDITIONAL INFORMATION AND CHECKOUT BUTTON
+class AdditionalInfo extends StatefulWidget {
+  const AdditionalInfo({super.key});
+
+  @override
+  State<AdditionalInfo> createState() => _AdditionalInfoState();
+}
+
+class _AdditionalInfoState extends State<AdditionalInfo> {
+  final GlobalKey _key = GlobalKey<FormState>();
+  var _additionalInfo = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _key,
+      child: Column(
+        children: [
+          TextFormField(
+            minLines: 4,
+            maxLines: 17,
+            decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(18))),
+            controller: _additionalInfo,
+          ),
+
+          const SizedBox(height: 25),
+
+          // CHECKOUT BUTTON
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+            ),
+            onPressed: () async {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "checkout");
+              // await prefs.setStringList("items", <String>[]);
+              // print("cart cleared");
+            },
+            child: const Text(
+              "CHECKOUT",
+              style: TextStyle(fontSize: 17),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
