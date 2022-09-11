@@ -20,19 +20,15 @@ class Products {
         .doc("wells")
         .collection("wells")
         .snapshots();
+    // var _wells = <Map<String, dynamic>>[];
     // wells
-    wellsSnapshot.first.then((snapshot){
+    wellsSnapshot.first.then((snapshot) {
       for (var doc in snapshot.docs) {
         wells.add(doc.data());
-        // print(doc.data());
       }
     });
-    // wellsSnapshot.listen((snapshot) {
-    //   for (var doc in snapshot.docs) {
-    //     wells.add(doc.data());
-    //     print(doc.data());
-    //   }
-    // });
+
+    print(wells);
   }
 
   String category;

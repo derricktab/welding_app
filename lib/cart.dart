@@ -121,7 +121,7 @@ class _CartState extends State<Cart> {
                         fontFamily: "times"),
                   ),
                 ),
-           
+
                 // CART ITEMS
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
