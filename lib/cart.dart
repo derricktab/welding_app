@@ -197,7 +197,7 @@ class _CartState extends State<Cart> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                const AdditionalInfo(),
+                AdditionalInfo(cartItems: cartItems),
                 const SizedBox(height: 20),
               ],
             )
@@ -222,7 +222,7 @@ class _CartState extends State<Cart> {
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      backgroundColor: Colors.red,
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                     ),
@@ -308,7 +308,9 @@ class CartItem extends StatelessWidget {
 
 //  ADDITIONAL INFORMATION AND CHECKOUT BUTTON
 class AdditionalInfo extends StatefulWidget {
-  const AdditionalInfo({super.key});
+  final cartItems;
+
+  const AdditionalInfo({required this.cartItems, super.key});
 
   @override
   State<AdditionalInfo> createState() => _AdditionalInfoState();
@@ -345,8 +347,33 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                   borderRadius: BorderRadius.circular(12)),
             ),
             onPressed: () async {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, "checkout");
+              Navigator.pushNamed(context, "loader");
+              var user = FirebaseAuth.instance.currentUser;
+              if (user != null) {
+                var email = user.email;
+                var uid = user.uid;
+                var phone = user.phoneNumber;
+                var name = user.displayName;
+                var additionalInfo = _additionalInfo.text;
+
+                var order = {
+                  "user": uid,
+                  "orderId": "1",
+                  "items": widget.cartItems,
+                };
+
+                FirebaseFirestore.instance
+                    .collection("orders")
+                    .add(order)
+                    .then((value) {
+                  print("THE ORDER HAS BEEN ADDED TO DATABASE SUCCESFULLY");
+                });
+
+                Navigator.pop(context);
+                Navigator.pushNamed(context, "checkout");
+              } else {
+                print("THE USER IS NOT LOGGED IN");
+              }
               // await prefs.setStringList("items", <String>[]);
               // print("cart cleared");
             },

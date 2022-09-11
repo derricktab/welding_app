@@ -469,7 +469,7 @@ class _SignUpState extends State<SignUp> {
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
-                      primary: Colors.black,
+                      backgroundColor: Colors.black,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 60, vertical: 15),
                     ),
