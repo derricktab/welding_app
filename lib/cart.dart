@@ -381,10 +381,10 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                     print("THE ORDER ID HAS BEEN SUCCESFULLY UPDATED");
 
                     // SENDING AN EMAIL TO THE CLIENT
-                    
                   });
                 });
 
+                Navigator.pop(context);
                 Navigator.pop(context);
                 Navigator.pushNamed(context, "checkout");
               } else {
