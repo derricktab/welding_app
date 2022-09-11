@@ -325,9 +325,11 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
       child: Column(
         children: [
           TextFormField(
-            minLines: 4,
-            maxLines: 17,
+            minLines: 3,
+            maxLines: 8,
             decoration: InputDecoration(
+                hintText:
+                    "Please Tell Us any additional information you would like us to know.",
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18))),
             controller: _additionalInfo,
