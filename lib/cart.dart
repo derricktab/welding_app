@@ -381,7 +381,23 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                     print("THE ORDER ID HAS BEEN SUCCESFULLY UPDATED");
 
                     // REMOVING THE ITEMS FROM CART
-                    FirebaseFirestore.instance.collection("cart").
+                    var cartSnap = FirebaseFirestore.instance
+                        .collection("cart")
+                        .where("user", isEqualTo: uid)
+                        .snapshots();
+
+                    cartSnap.forEach((doc) {
+                      doc.docs.forEach((element) {
+                        var id = element.id;
+                        FirebaseFirestore.instance
+                            .collection("cart")
+                            .doc(id)
+                            .delete()
+                            .then((value) {
+                          print("DOCUMENT: $id has been deleted!");
+                        });
+                      });
+                    });
 
                     // SENDING AN EMAIL TO THE CLIENT
                   });
