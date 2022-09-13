@@ -222,7 +222,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 color: Colors.black,
               ),
               title: const Text(
-                "Invention Plus Junior Sch",
+                "Our School",
                 style: TextStyle(
                   fontSize: 19,
                   color: Colors.black,
