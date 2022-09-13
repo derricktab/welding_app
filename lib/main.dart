@@ -16,6 +16,7 @@ import 'package:welding_app/login.dart';
 import 'package:welding_app/new.dart';
 import 'package:welding_app/ongoing_projects.dart';
 import 'package:welding_app/orders.dart';
+import 'package:welding_app/school.dart';
 // import 'package:welding_app/product.dart';
 import 'package:welding_app/services.dart';
 import 'package:welding_app/signup.dart';
@@ -70,6 +71,7 @@ class _MainAppState extends State<MainApp> {
         "gallery": (context) => const MyApp(),
         // "addProduct": (context) => const AddProduct(),
         "edit_profile": (context) => const EditProfile(),
+        "school": (context) => const School(),
       },
       home: AnimatedSplashScreen(
         splashIconSize: 180,

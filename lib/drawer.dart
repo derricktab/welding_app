@@ -214,6 +214,24 @@ class _DrawerScreenState extends State<DrawerScreen> {
                 Navigator.pushNamed(context, "about");
               },
             ),
+            // SCHOOL TILE
+            ListTile(
+              leading: const Icon(
+                FontAwesomeIcons.circleInfo,
+                size: 30,
+                color: Colors.black,
+              ),
+              title: const Text(
+                "Invention Plus Junior Sch",
+                style: TextStyle(
+                  fontSize: 19,
+                  color: Colors.black,
+                ),
+              ),
+              onTap: () {
+                Navigator.pushNamed(context, "school");
+              },
+            ),
 
             // SHARE TILE
             ListTile(
