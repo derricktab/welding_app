@@ -51,14 +51,10 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
-    Navigator.pushNamed(context, "loader");
     getCartItems();
     setState(() {
       _cartItems = cartItems.length;
     });
-    if (_cartItems > 0) {
-      Navigator.pop(context);
-    }
 
     print(cartItems);
 
