@@ -77,7 +77,7 @@ class _MainAppState extends State<MainApp> {
         splashIconSize: 180,
         splash: 'assets/images/L1.png',
         nextScreen: Stack(
-          children: const <Widget>[
+          children: const <Widget>[ 
             DrawerScreen(),
             HomePage(),
           ],

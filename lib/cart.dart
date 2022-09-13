@@ -38,32 +38,29 @@ class _CartState extends State<Cart> {
         .where("user", isEqualTo: uid)
         .snapshots();
 
-    var length = 0;
-    var items = [];
-
     cartStream.forEach((element) {
       var items = [];
       for (var doc in element.docs) {
         items.add(doc.data());
       }
-      // setState(() {
-      //   cartItems = items;
-      // });
+      setState(() {
+        cartItems = items;
+      });
     });
-
-    // print("CART ITEMS: $cartItems");
-    return [length, items];
   }
 
   @override
   Widget build(BuildContext context) {
-    var response = getCartItems();
+    Navigator.pushNamed(context, "loader");
+    getCartItems();
     setState(() {
-      _cartItems = response[0];
-      cartItems = response[1];
+      _cartItems = cartItems.length;
     });
+    if (_cartItems > 0) {
+      Navigator.pop(context);
+    }
 
-    print(_cartItems);
+    print(cartItems);
 
     return Scaffold(
       appBar: AppBar(
