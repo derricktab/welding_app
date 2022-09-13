@@ -38,19 +38,20 @@ class _CartState extends State<Cart> {
         .where("user", isEqualTo: uid)
         .snapshots();
 
-    var items = [];
     var length = 0;
+    var items = [];
 
-    cartStream.listen((snapshot) async {
-      // updating the cart
-      snapshot.docs.forEach((doc) {
-       items.add(doc.data());
-        print("ITEMS INSIDE: $items");
-      });
+    cartStream.forEach((element) {
+      var items = [];
+      for (var doc in element.docs) {
+        items.add(doc.data());
+      }
+      // setState(() {
+      //   cartItems = items;
+      // });
     });
 
-    length = items.length;
-    print("ITEMS OUTSIDE: $items");
+    // print("CART ITEMS: $cartItems");
     return [length, items];
   }
 
