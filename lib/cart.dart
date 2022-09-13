@@ -38,31 +38,32 @@ class _CartState extends State<Cart> {
         .where("user", isEqualTo: uid)
         .snapshots();
 
-    cartStream.listen((snapshot) async {
-      var items = [];
+    var items = [];
+    var length = 0;
 
+    cartStream.listen((snapshot) async {
       // updating the cart
       snapshot.docs.forEach((doc) {
-        items.add(doc.data());
-      });
-
-      setState(() {
-        // updating the number of items in the cart
-        _cartItems = snapshot.docs.length;
-        cartItems = items;
+       items.add(doc.data());
+        print("ITEMS INSIDE: $items");
       });
     });
-  }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
+    length = items.length;
+    print("ITEMS OUTSIDE: $items");
+    return [length, items];
   }
 
   @override
   Widget build(BuildContext context) {
-    getCartItems();
+    var response = getCartItems();
+    setState(() {
+      _cartItems = response[0];
+      cartItems = response[1];
+    });
+
+    print(_cartItems);
+
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.black,
