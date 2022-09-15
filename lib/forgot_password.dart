@@ -30,7 +30,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   controller: _email,
                   decoration: const InputDecoration(
                       hintText: "Enter Your Email",
-                      border: OutlineInputBorder()),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)))),
                 ),
                 const SizedBox(height: 15),
                 ElevatedButton(
@@ -41,7 +42,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       var email = _email.text;
                       print(email);
                     },
-                    child: const Text("RESET PASSWORD"))
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      child: Text(
+                        "RESET PASSWORD",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ))
               ],
             ),
           )),
