@@ -42,21 +42,23 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     onPressed: () {
                       Navigator.pushNamed(context, "loader");
                       var email = _email.text;
-                      try {
-                        FirebaseAuth.instance
-                            .sendPasswordResetEmail(email: email)
-                            .then((value) {
-                          Navigator.pop(context);
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
+                      FirebaseAuth.instance
+                          .sendPasswordResetEmail(email: email)
+                          .then((value) {
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.green,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 5),
                             content: Text(
-                                "Password Reset Email Sent, Please Check Your Email."),
-                          ));
-                          print("PASSWORD RESET EMAIL SENT");
-                        });
-                      } catch (error) {
-                        print(error);
-                      }
+                                "Password Reset Email Sent, Please Check Your Email To Reset Your Password."),
+                          ),
+                        );
+                        print("PASSWORD RESET EMAIL SENT");
+                      }, onError: (error) {
+                        print("SOMETHING WENT WRONG");
+                      });
                     },
                     child: const Padding(
                       padding:
