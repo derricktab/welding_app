@@ -46,6 +46,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           .sendPasswordResetEmail(email: email)
                           .then((value) {
                         Navigator.pop(context);
+                        Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             backgroundColor: Colors.green,
