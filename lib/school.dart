@@ -30,7 +30,7 @@ class _SchoolState extends State<School> {
               margin: EdgeInsets.all(5.0),
               height: 600,
               child: ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                   child: Image.asset(
                     item,
                   )),
