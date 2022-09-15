@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_app/constants.dart';
 
@@ -9,8 +11,31 @@ class School extends StatefulWidget {
 }
 
 class _SchoolState extends State<School> {
+  var imgList = [
+    "assets/images/school.jpeg",
+    "assets/images/school1.jpeg",
+    "assets/images/school2.jpeg",
+    "assets/images/school3.jpeg",
+    "assets/images/school4.jpeg",
+  ];
+
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
+// IMAGE SLIDERS
+    final List<Widget> imageSliders = imgList
+        .map((item) => Container(
+              margin: EdgeInsets.all(5.0),
+              height: 600,
+              child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                  child: Image.asset(
+                    item,
+                  )),
+            ))
+        .toList();
     return Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
@@ -53,7 +78,46 @@ class _SchoolState extends State<School> {
                 color: Colors.white,
               ),
               height: 700,
-              child: const Text("INVENTION PLUS JUNIOR SCHOOL"),
+              child: ListView(
+                children: [
+                  CarouselSlider(
+                    items: imageSliders,
+                    carouselController: _controller,
+                    options: CarouselOptions(
+                        height: 300,
+                        autoPlay: false,
+                        enlargeCenterPage: true,
+                        aspectRatio: 2.0,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _current = index;
+                          });
+                        }),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: imgList.asMap().entries.map((entry) {
+                      return GestureDetector(
+                        onTap: () => _controller.animateToPage(entry.key),
+                        child: Container(
+                          width: 12.0,
+                          height: 12.0,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 4.0),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: (Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : Colors.black)
+                                  .withOpacity(
+                                      _current == entry.key ? 0.9 : 0.4)),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
             ),
           ],
         ));
