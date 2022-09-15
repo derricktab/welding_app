@@ -29,8 +29,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 TextFormField(
                   controller: _email,
                   decoration: const InputDecoration(
-                    hintText: "Enter Your Email",
-                  ),
+                      hintText: "Enter Your Email",
+                      border: OutlineInputBorder()),
                 ),
                 const SizedBox(height: 15),
                 ElevatedButton(
