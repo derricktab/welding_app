@@ -10,6 +10,7 @@ import 'package:welding_app/contact.dart';
 import 'package:welding_app/drawer.dart';
 import 'package:welding_app/edit_prodile.dart';
 import 'package:welding_app/finished_projects.dart';
+import 'package:welding_app/forgot_password.dart';
 import 'package:welding_app/homepage.dart';
 import 'package:welding_app/loader.dart';
 import 'package:welding_app/login.dart';
@@ -72,6 +73,7 @@ class _MainAppState extends State<MainApp> {
         // "addProduct": (context) => const AddProduct(),
         "edit_profile": (context) => const EditProfile(),
         "school": (context) => const School(),
+        "forgot_password": (context) => const ForgotPassword(),
       },
       home: AnimatedSplashScreen(
         splashIconSize: 180,
