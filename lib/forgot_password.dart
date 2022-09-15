@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_app/constants.dart';
 
@@ -40,7 +41,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             MaterialStateProperty.all(primaryColor)),
                     onPressed: () {
                       var email = _email.text;
-                      print(email);
+                      try {
+                        FirebaseAuth.instance
+                            .sendPasswordResetEmail(email: email)
+                            .then((value) {
+                          print("PASSWORD RESET EMAIL SENT");
+                        });
+                      } catch (error) {
+                        print(error);
+                      }
                     },
                     child: const Padding(
                       padding:
