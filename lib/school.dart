@@ -12,16 +12,16 @@ class _SchoolState extends State<School> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: primaryColor,
         appBar: AppBar(
           backgroundColor: primaryColor,
           elevation: 0,
         ),
         body: ListView(
-          children: [
-            Container(
-              color: primaryColor,
+          children: const [
+            SizedBox(
               height: 100,
-              child: const Center(
+              child: Center(
                 child: Text(
                   "INVENTION PLUS JUNIOR SCHOOL",
                   style: TextStyle(
@@ -33,7 +33,7 @@ class _SchoolState extends State<School> {
                 ),
               ),
             ),
-            const Text("INVENTION PLUS JUNIOR SCHOOL"),
+            Text("INVENTION PLUS JUNIOR SCHOOL"),
           ],
         ));
   }
