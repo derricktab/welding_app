@@ -63,10 +63,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             backgroundColor: Colors.red,
                             padding: EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 5),
-                            content: Text("Something Went Wrong"),
+                            content: Text(
+                              "Something Went Wrong",
+                              style: TextStyle(fontSize: 15),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         );
-                        print("SOMETHING WENT WRONG");
                       });
                     },
                     child: const Padding(
