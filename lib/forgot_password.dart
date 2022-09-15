@@ -57,6 +57,15 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         );
                         print("PASSWORD RESET EMAIL SENT");
                       }, onError: (error) {
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.red,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 5),
+                            content: Text("Something Went Wrong"),
+                          ),
+                        );
                         print("SOMETHING WENT WRONG");
                       });
                     },
