@@ -40,11 +40,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         backgroundColor:
                             MaterialStateProperty.all(primaryColor)),
                     onPressed: () {
+                      Navigator.pushNamed(context, "loader");
                       var email = _email.text;
                       try {
                         FirebaseAuth.instance
                             .sendPasswordResetEmail(email: email)
                             .then((value) {
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text(
+                                "Password Reset Email Sent, Please Check Your Email."),
+                          ));
                           print("PASSWORD RESET EMAIL SENT");
                         });
                       } catch (error) {
