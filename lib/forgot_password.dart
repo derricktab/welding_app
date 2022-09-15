@@ -53,10 +53,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             padding: EdgeInsets.symmetric(
                                 vertical: 15, horizontal: 5),
                             content: Text(
-                                "Password Reset Email Sent, Please Check Your Email To Reset Your Password."),
+                              "Password Reset Email Sent, Please Check Your Email To Reset Your Password.",
+                              style: TextStyle(fontSize: 15),
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         );
-                        print("PASSWORD RESET EMAIL SENT");
                       }, onError: (error) {
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
