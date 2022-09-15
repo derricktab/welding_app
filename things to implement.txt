@@ -1,0 +1,8 @@
+add flooring service to firebase
+update roofing description
+add construction servicse to firebase
+add finished products and ongoing projects to firebase
+add orders page
+work on the school page.
+get the popular designs from firebase
+implement sending the email
