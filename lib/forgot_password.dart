@@ -65,7 +65,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 vertical: 15, horizontal: 5),
                             content: Text(
                               "Something Went Wrong",
-                              style: TextStyle(fontSize: 15),
+                              style: TextStyle(fontSize: 17),
                               textAlign: TextAlign.center,
                             ),
                           ),
