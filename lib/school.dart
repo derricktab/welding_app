@@ -126,6 +126,29 @@ class _SchoolState extends State<School> {
                   Container(
                     // height: 30,
                     margin:
+                        const EdgeInsets.only(bottom: 10, right: 15, left: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.red,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Icon(
+                          FontAwesomeIcons.locationCrosshairs,
+                          color: Colors.lightGreenAccent,
+                        ),
+                        Text(
+                          "1KM Along Nsangi Buloba Road",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    // height: 30,
+                    margin:
                         const EdgeInsets.only(bottom: 5, right: 15, left: 15),
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
