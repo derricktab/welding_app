@@ -12,7 +12,6 @@ class School extends StatefulWidget {
 
 class _SchoolState extends State<School> {
   var imgList = [
-    "assets/images/school.jpeg",
     "assets/images/school1.jpeg",
     "assets/images/school2.jpeg",
     "assets/images/school3.jpeg",
