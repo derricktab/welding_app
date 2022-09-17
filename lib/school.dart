@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:welding_app/constants.dart';
 
 class School extends StatefulWidget {
@@ -26,12 +27,14 @@ class _SchoolState extends State<School> {
 // IMAGE SLIDERS
     final List<Widget> imageSliders = imgList
         .map((item) => Container(
-              margin: EdgeInsets.all(5.0),
-              height: 600,
+              margin: const EdgeInsets.all(5.0),
+              // height: 600,
               child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                   child: Image.asset(
                     item,
+                    height: 800,
+                    width: 700,
                   )),
             ))
         .toList();
@@ -79,6 +82,7 @@ class _SchoolState extends State<School> {
               height: 700,
               child: ListView(
                 children: [
+                  // Image Slider
                   CarouselSlider(
                     items: imageSliders,
                     carouselController: _controller,
@@ -93,6 +97,8 @@ class _SchoolState extends State<School> {
                           });
                         }),
                   ),
+
+                  // Slider Dots
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: imgList.asMap().entries.map((entry) {
@@ -114,6 +120,27 @@ class _SchoolState extends State<School> {
                         ),
                       );
                     }).toList(),
+                  ),
+                  const SizedBox(height: 10),
+
+                  Container(
+                    // height: 30,
+                    margin: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.red,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Icon(FontAwesomeIcons.locationCrosshairs),
+                        Text(
+                          "1KM Along Nsangi Buloba Road",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
