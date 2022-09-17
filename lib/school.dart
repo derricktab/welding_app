@@ -125,7 +125,8 @@ class _SchoolState extends State<School> {
 
                   Container(
                     // height: 30,
-                    margin: const EdgeInsets.symmetric(horizontal: 25),
+                    margin:
+                        const EdgeInsets.only(bottom: 5, right: 15, left: 15),
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -134,7 +135,10 @@ class _SchoolState extends State<School> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: const [
-                        Icon(FontAwesomeIcons.locationCrosshairs),
+                        Icon(
+                          FontAwesomeIcons.locationCrosshairs,
+                          color: Colors.lightGreenAccent,
+                        ),
                         Text(
                           "1KM Along Nsangi Buloba Road",
                           style: TextStyle(color: Colors.white),
