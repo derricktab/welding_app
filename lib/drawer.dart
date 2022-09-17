@@ -217,7 +217,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
             // SCHOOL TILE
             ListTile(
               leading: const Icon(
-                FontAwesomeIcons.circleInfo,
+                FontAwesomeIcons.schoolFlag,
                 size: 30,
                 color: Colors.black,
               ),
