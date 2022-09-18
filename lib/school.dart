@@ -79,8 +79,8 @@ class _SchoolState extends State<School> {
                     topLeft: Radius.circular(35)),
                 color: Colors.white,
               ),
-              height: 700,
-              child: ListView(
+              // height: 700,
+              child: Column(
                 children: [
                   // Image Slider
                   CarouselSlider(
@@ -141,7 +141,10 @@ class _SchoolState extends State<School> {
                         ),
                         Text(
                           "1KM Along Nsangi Buloba Road",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
@@ -154,36 +157,121 @@ class _SchoolState extends State<School> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.orange,
+                      color: primaryColor,
                     ),
                     child: Column(
                       children: [
                         Row(
                           children: const [
+                            SizedBox(width: 20),
                             Icon(
                               FontAwesomeIcons.chevronRight,
                               color: Colors.lightGreenAccent,
                               size: 16,
                             ),
+                            SizedBox(width: 15),
                             Text(
                               "We Offer Theology & Secular Studies",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 17),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 5),
+                        const SizedBox(height: 10),
                         Row(
                           children: const [
+                            SizedBox(width: 20),
                             Icon(
                               FontAwesomeIcons.chevronRight,
                               color: Colors.lightGreenAccent,
                               size: 16,
                             ),
+                            SizedBox(width: 15),
                             Text(
                               "Commited Staff",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 17),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: const [
+                            SizedBox(width: 20),
+                            Icon(
+                              FontAwesomeIcons.chevronRight,
+                              color: Colors.lightGreenAccent,
+                              size: 16,
+                            ),
+                            SizedBox(width: 15),
+                            Text(
+                              "Excellent Teacher-Student Ratio",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: const [
+                            SizedBox(width: 20),
+                            Icon(
+                              FontAwesomeIcons.chevronRight,
+                              color: Colors.lightGreenAccent,
+                              size: 16,
+                            ),
+                            SizedBox(width: 15),
+                            Text(
+                              "Affordable School Fees",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: const [
+                            SizedBox(width: 20),
+                            Icon(
+                              FontAwesomeIcons.chevronRight,
+                              color: Colors.lightGreenAccent,
+                              size: 16,
+                            ),
+                            SizedBox(width: 15),
+                            Text(
+                              "Computer Studies/Lessons",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: const [
+                            SizedBox(width: 20),
+                            Icon(
+                              FontAwesomeIcons.chevronRight,
+                              color: Colors.lightGreenAccent,
+                              size: 16,
+                            ),
+                            SizedBox(width: 15),
+                            Text(
+                              "Well Balanced Alternate Menu",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),

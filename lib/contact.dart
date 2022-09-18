@@ -232,7 +232,7 @@ class _ContactState extends State<Contact> {
               // CONTACT FORM
               child: Form(
                   key: _contactForm,
-                  child: ListView(
+                  child: Column(
                     children: [
                       // FULL NAME INPUT BOX
                       Padding(
