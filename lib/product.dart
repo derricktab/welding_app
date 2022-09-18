@@ -344,7 +344,7 @@ class _ProductState extends State<Product> {
                           icon: const Icon(Icons.remove),
                           onPressed: () => setState(() {
                             final newValue = _currentHorizontalIntValue - 1;
-                            _currentHorizontalIntValue = newValue.clamp(0, 100);
+                            _currentHorizontalIntValue = newValue.clamp(1, 100);
                           }),
                         ),
                         Container(
@@ -363,7 +363,7 @@ class _ProductState extends State<Product> {
                           icon: const Icon(Icons.add),
                           onPressed: () => setState(() {
                             final newValue = _currentHorizontalIntValue + 1;
-                            _currentHorizontalIntValue = newValue.clamp(0, 100);
+                            _currentHorizontalIntValue = newValue.clamp(1, 100);
                           }),
                         ),
                       ],

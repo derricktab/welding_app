@@ -144,6 +144,7 @@ class _SchoolState extends State<School> {
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
                         ),
                       ],
@@ -274,6 +275,34 @@ class _SchoolState extends State<School> {
                                   fontWeight: FontWeight.bold),
                             ),
                           ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+
+                  // Contact Details
+                  Container(
+                    margin:
+                        const EdgeInsets.only(bottom: 10, right: 15, left: 15),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.red,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        Icon(
+                          FontAwesomeIcons.phone,
+                          color: Colors.lightGreenAccent,
+                        ),
+                        Text(
+                          "+256 702078598 / +256392175187",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
                         ),
                       ],
                     ),
