@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 import 'package:welding_app/mini_item.dart';
 import 'package:welding_app/mini_services.dart';
+import 'package:welding_app/search.dart';
 import 'constants.dart';
 
 class HomePage extends StatefulWidget {
@@ -350,7 +351,7 @@ class _HomePageState extends State<HomePage> {
                             offset: Offset.fromDirection(2),
                             blurRadius: 5,
                             blurStyle: BlurStyle.outer),
-                        BoxShadow(
+                        const BoxShadow(
                             color: Colors.black,
                             blurRadius: 8,
                             blurStyle: BlurStyle.inner),
@@ -360,8 +361,9 @@ class _HomePageState extends State<HomePage> {
 
                     // search input box
                     child: OutlineSearchBar(
+                      // Making the search
                       onSearchButtonPressed: (value) {
-                        print(value.runtimeType);
+                        Navigator.push(context, MaterialPageRoute(builder: ((context) => Search(query: value))));
                       },
                       textEditingController: _textController,
                       borderRadius: BorderRadius.circular(25),
