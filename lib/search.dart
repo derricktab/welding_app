@@ -17,16 +17,14 @@ class _SearchState extends State<Search> {
 
   // Method to fetch products
   getItems(query) async {
-    var result = await FirebaseFirestore.instance
-        .collection("products")
-        .where("name", arrayContains: query)
-        .get();
+    var result = await FirebaseFirestore.instance.collection("users").get();
 
-    print(result.toString());
+    print(result.size);
 
-    // setState(() {
-    //   _products = products;
-    // });
+    result.docs.forEach((doc) {
+      _products.add(doc.data());
+      print("${doc.id} ADDED!");
+    });
   }
 
   @override
