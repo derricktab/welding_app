@@ -360,6 +360,9 @@ class _HomePageState extends State<HomePage> {
 
                     // search input box
                     child: OutlineSearchBar(
+                      onSearchButtonPressed: (value) {
+                        print(value.runtimeType);
+                      },
                       textEditingController: _textController,
                       borderRadius: BorderRadius.circular(25),
                       hintText: "Search Product",
