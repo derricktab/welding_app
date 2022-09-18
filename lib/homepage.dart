@@ -363,7 +363,10 @@ class _HomePageState extends State<HomePage> {
                     child: OutlineSearchBar(
                       // Making the search
                       onSearchButtonPressed: (value) {
-                        Navigator.push(context, MaterialPageRoute(builder: ((context) => Search())));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => Search(query: value))));
                       },
                       textEditingController: _textController,
                       borderRadius: BorderRadius.circular(25),

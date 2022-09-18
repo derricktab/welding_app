@@ -93,11 +93,9 @@
 //   }
 // }
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_app/single_product.dart';
-import 'models/products.dart';
 
 class Search extends StatefulWidget {
   final query;
@@ -121,6 +119,7 @@ class _SearchState extends State<Search> {
       _products.add(doc.data());
       print("${doc.id} ADDED!");
     });
+    print(_products.length);
   }
 
   @override
