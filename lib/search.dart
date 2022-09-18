@@ -111,10 +111,9 @@ class _SearchState extends State<Search> {
 
   // Method to fetch products
   getItems(query) async {
-    var result = await FirebaseFirestore.instance.collection("users").get();
+    var result = await FirebaseFirestore.instance.collection("products").get();
 
     print(result.size);
-
     result.docs.forEach((doc) {
       _products.add(doc.data());
       print("${doc.id} ADDED!");
