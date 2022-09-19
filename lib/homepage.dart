@@ -475,37 +475,37 @@ class _HomePageState extends State<HomePage> {
                             image:
                                 "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/products%2Fbalcony1.jpeg?alt=media&token=ca2ddac0-5970-479b-a664-1dec6d02e8c0",
                             prodName: "Balcony Railing",
-                            price: "180000 - 250000",
+                            price: "180,000 - 250,000",
                             description:
                                 "Strong metallic nc cutting balcony railings",
                           ),
                           MiniItem(
-                            image: "assets/images/wdoor1.jpg",
-                            prodName: "Interior Door",
-                            price: "260000",
+                            image: "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/products%2Fmdoor.jpg?alt=media&token=4218adbb-2180-4cb2-a2f0-8004660d2e2b",
+                            prodName: "Main Door",
+                            price: "2,500,000 - 2,900,000",
                             description:
                                 "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
-                            image: "assets/images/d1.jpg",
-                            prodName: "Door",
-                            price: "500000",
+                            image: "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/products%2Fwindow.jpeg?alt=media&token=93adae5a-6644-418e-842a-853e9be52e3c",
+                            prodName: "Window",
+                            price: "500,000 - 600,000",
                             description:
                                 "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
-                            image: "assets/images/balcony.jpg",
-                            prodName: "Balcony",
-                            price: "600000",
+                            image: "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/products%2Fwdoor2.jpeg?alt=media&token=2d248d3a-8c3f-4a90-a228-0106fbdac5d4",
+                            prodName: "Wooden Door",
+                            price: "450,000 - 500,000",
                             description:
                                 "Very durable product made from the finest materials.",
                           ),
                           MiniItem(
-                            image: "assets/images/roof.jpg",
-                            prodName: "Roofing",
-                            price: "3000000",
+                            image: "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/products%2Fgate2.jpg?alt=media&token=42ff856c-92ef-4bf6-a357-a1d4f2c7b98f",
+                            prodName: "Modern Gate",
+                            price: "3,000,000 - 4,000,000",
                             description:
-                                "Very durable product made from the finest materials.",
+                                "Safe, Sliding gates to protect your house.",
                           ),
                         ],
                       ),
