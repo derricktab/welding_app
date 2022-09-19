@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:welding_app/prod_list.dart';
 import 'package:welding_app/product.dart';
@@ -32,14 +33,17 @@ class MiniItem extends StatelessWidget {
             BoxShadow(color: Colors.blue, spreadRadius: 0.4),
           ],
         ),
-        height: 135,
+        height: 145,
         width: 120,
         child: Column(
           children: [
             ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(30)),
-              child: Image.asset(
-                image,
+              child: CachedNetworkImage(
+                imageUrl: image,
+                placeholder: (context, url) {
+                  return Image.asset("assets/images/placeholder.gif");
+                },
                 height: 100,
                 width: 100,
               ),
@@ -50,15 +54,17 @@ class MiniItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    prodName,
-                    softWrap: true,
-                    overflow: TextOverflow.clip,
-                    maxLines: 3,
-                    style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blueGrey),
+                  Expanded(
+                    child: Text(
+                      prodName,
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                      maxLines: 3,
+                      style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueGrey),
+                    ),
                   ),
                   const Icon(
                     Icons.arrow_forward_ios,

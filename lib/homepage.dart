@@ -472,11 +472,12 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         children: [
                           MiniItem(
-                            image: "assets/images/w1.jpg",
-                            prodName: "Window",
-                            price: "200000",
+                            image:
+                                "https://firebasestorage.googleapis.com/v0/b/invention-plus.appspot.com/o/products%2Fbalcony1.jpeg?alt=media&token=ca2ddac0-5970-479b-a664-1dec6d02e8c0",
+                            prodName: "Balcony Railing",
+                            price: "180000 - 250000",
                             description:
-                                "Very durable product made from the finest materials.",
+                                "Strong metallic nc cutting balcony railings",
                           ),
                           MiniItem(
                             image: "assets/images/wdoor1.jpg",
