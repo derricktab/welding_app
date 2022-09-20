@@ -359,12 +359,14 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                 var phone = user.phoneNumber;
                 var name = user.displayName;
                 var additionalInfo = _additionalInfo.text;
+                var orderDate = DateTime.now();
 
                 var order = {
                   "user": uid,
                   "orderId": "1",
                   "items": widget.cartItems,
                   "additionalInfo": additionalInfo,
+                  "orderDate": orderDate
                 };
 
                 // ADDING THE ORDER TO CLOUD FIRESTORE
