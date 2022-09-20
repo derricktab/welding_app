@@ -343,6 +343,7 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
           // CHECKOUT BUTTON
           ElevatedButton(
             style: ElevatedButton.styleFrom(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               backgroundColor: Colors.red,
               shape: BeveledRectangleBorder(
                   borderRadius: BorderRadius.circular(12)),
