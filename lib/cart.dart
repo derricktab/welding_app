@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
+import 'package:http/http.dart';
 
 class Cart extends StatefulWidget {
   const Cart({
@@ -51,10 +52,12 @@ class _CartState extends State<Cart> {
   }
 
   Future sendEmail(String name, String email, String message) async {
+    
     final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
     const serviceId = 'service_c57cf3a';
     const templateId = 'template_orqhcn9';
     const userId = 'iFc1RnGFXTP13rkAx';
+
     final response = await http.post(url,
         headers: {
           'Content-Type': 'application/json'
