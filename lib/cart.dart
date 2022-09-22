@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'dart:convert';
 
 class Cart extends StatefulWidget {
   const Cart({
@@ -47,6 +48,28 @@ class _CartState extends State<Cart> {
         cartItems = items;
       });
     });
+  }
+
+  Future sendEmail(String name, String email, String message) async {
+    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+    const serviceId = 'service_c57cf3a';
+    const templateId = 'template_orqhcn9';
+    const userId = 'iFc1RnGFXTP13rkAx';
+    final response = await http.post(url,
+        headers: {
+          'Content-Type': 'application/json'
+        }, //This line makes sure it works for all platforms.
+        body: json.encode({
+          'service_id': serviceId,
+          'template_id': templateId,
+          'user_id': userId,
+          'template_params': {
+            'from_name': name,
+            'from_email': email,
+            'message': message
+          }
+        }));
+    return response.statusCode;
   }
 
   @override
@@ -403,30 +426,22 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                       });
                     });
 
-                    // SENDING AN EMAIL TO THE CLIENT
-                    Future sendEmail(
-                        String name, String email, String message) async {
-                      final url = Uri.parse(
-                          'https://api.emailjs.com/api/v1.0/email/send');
-                      const serviceId = 'service_c57cf3a';
-                      const templateId = 'template_orqhcn9';
-                      const userId = 'iFc1RnGFXTP13rkAx';
-                      final response = await http.post(url,
-                          headers: {
-                            'Content-Type': 'application/json'
-                          }, //This line makes sure it works for all platforms.
-                          body: json.encode({
-                            'service_id': serviceId,
-                            'template_id': templateId,
-                            'user_id': userId,
-                            'template_params': {
-                              'from_name': name,
-                              'from_email': email,
-                              'message': message
-                            }
-                          }));
-                      return response.statusCode;
-                    }
+                    // SENDING AN EMAIL TO CONFIRM ORDER
+                    final response = await sendEmail(
+                            name,
+                            email,
+                            order);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          response == 200
+                              ? const SnackBar(
+                                  content: Text('Order Placed Succesfully'),
+                                  backgroundColor: Colors.green)
+                              : const SnackBar(
+                                  content: Text('Failed to place order'),
+                                  backgroundColor: Colors.red),
+                        );
+          
+                      }
                   });
                 });
 
