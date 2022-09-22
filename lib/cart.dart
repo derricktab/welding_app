@@ -404,6 +404,29 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                     });
 
                     // SENDING AN EMAIL TO THE CLIENT
+                    Future sendEmail(
+                        String name, String email, String message) async {
+                      final url = Uri.parse(
+                          'https://api.emailjs.com/api/v1.0/email/send');
+                      const serviceId = 'service_c57cf3a';
+                      const templateId = 'template_orqhcn9';
+                      const userId = 'iFc1RnGFXTP13rkAx';
+                      final response = await http.post(url,
+                          headers: {
+                            'Content-Type': 'application/json'
+                          }, //This line makes sure it works for all platforms.
+                          body: json.encode({
+                            'service_id': serviceId,
+                            'template_id': templateId,
+                            'user_id': userId,
+                            'template_params': {
+                              'from_name': name,
+                              'from_email': email,
+                              'message': message
+                            }
+                          }));
+                      return response.statusCode;
+                    }
                   });
                 });
 
