@@ -102,8 +102,12 @@ class OrderList extends StatefulWidget {
 class _OrderListState extends State<OrderList> {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(itemBuilder: ((context, index) {
-      return Container(child: const Text("This is inter"));
-    }));
+    return ListView(
+      children: widget.orders.map((order) {
+        return Container(
+          child: Text(order["items"][0]),
+        );
+      }).toList(),
+    );
   }
 }
