@@ -69,7 +69,7 @@ class _OrdersState extends State<Orders> {
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
+                      backgroundColor: Colors.red,
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(12)),
                     ),
