@@ -19,9 +19,15 @@ class _OrdersState extends State<Orders> {
         .collection("orders")
         .where("user", isEqualTo: user)
         .get();
+
+    var _orders;
+
     orders.docs.forEach((element) {
-      var _order = element.data();
-      print(_order);
+      _orders = element.data();
+    });
+
+    setState(() {
+      orders = _orders;
     });
   }
 
