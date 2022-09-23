@@ -113,11 +113,21 @@ class _OrderListState extends State<OrderList> {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
           child: Row(
             children: [
-              Image.network(
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"),
+              Image.asset(
+                "assets/images/b3.png",
+                height: 70,
+              ),
+              const SizedBox(width: 50),
               Column(
-                children: [
-                  Text("Product Name"),
+                children: const [
+                  Text(
+                    "Order ID",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text("Order Date"),
                 ],
               )
             ],
