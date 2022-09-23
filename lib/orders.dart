@@ -25,6 +25,7 @@ class _OrdersState extends State<Orders> {
     order.docs.forEach((element) {
       _orders = element.data();
     });
+    print("ORDERS: $_orders");
 
     setState(() {
       orders = _orders;
