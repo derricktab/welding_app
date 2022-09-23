@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
@@ -9,29 +11,26 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
-  var orders = <Map<String, dynamic>>[
-    {
-      "user": "43",
-      "orderId": "1",
-      "items": ["sugar", "salt", "irish"],
-      "additionalInfo": "iwant rice",
-      "orderDate": "2019"
-    },
-    {
-      "user": "43",
-      "orderId": "1",
-      "items": ["sugar", "salt", "irish"],
-      "additionalInfo": "iwant rice",
-      "orderDate": "2019"
-    },
-    {
-      "user": "43",
-      "orderId": "1",
-      "items": ["sugar", "salt", "irish"],
-      "additionalInfo": "iwant rice",
-      "orderDate": "2019"
-    },
-  ];
+  var orders = ["hello"];
+
+  getOrders() async {
+    var user = FirebaseAuth.instance.currentUser!.uid;
+    var orders = await FirebaseFirestore.instance
+        .collection("orders")
+        .where("user", isEqualTo: user)
+        .get();
+    orders.docs.forEach((element) {
+      var _order = element.data();
+      print(_order);
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getOrders();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,10 +106,10 @@ class _OrderListState extends State<OrderList> {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.orange,
+            color: Color.fromARGB(255, 213, 183, 127),
           ),
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          margin: const EdgeInsets.only(top: 15, right: 15, left: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Row(
             children: [
               Image.asset(
@@ -127,7 +126,11 @@ class _OrderListState extends State<OrderList> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text("Order Date"),
+                  Divider(height: 10),
+                  Text(
+                    "Order Date",
+                    style: TextStyle(fontSize: 15),
+                  ),
                 ],
               )
             ],
