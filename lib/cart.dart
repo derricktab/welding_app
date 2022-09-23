@@ -431,8 +431,10 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                     });
 
                     // SENDING AN EMAIL TO CONFIRM ORDER
+                    print("going to send email");
                     final response = await sendEmail(
                         name.toString(), email.toString(), order.toString());
+
                     ScaffoldMessenger.of(context).showSnackBar(
                       response == 200
                           ? const SnackBar(
@@ -442,6 +444,7 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
                               content: Text('Failed to place order'),
                               backgroundColor: Colors.red),
                     );
+                    print("done sending");
                   });
                 });
 

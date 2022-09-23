@@ -106,6 +106,8 @@ class _OrderListState extends State<OrderList> {
       children: widget.orders.map((order) {
         return Container(
           child: Text(order["items"][0]),
+          color: Colors.orange,
+          margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         );
       }).toList(),
     );
