@@ -15,14 +15,14 @@ class _OrdersState extends State<Orders> {
 
   getOrders() async {
     var user = FirebaseAuth.instance.currentUser!.uid;
-    var orders = await FirebaseFirestore.instance
+    var order = await FirebaseFirestore.instance
         .collection("orders")
         .where("user", isEqualTo: user)
         .get();
 
     var _orders;
 
-    orders.docs.forEach((element) {
+    order.docs.forEach((element) {
       _orders = element.data();
     });
 
