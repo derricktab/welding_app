@@ -105,9 +105,23 @@ class _OrderListState extends State<OrderList> {
     return ListView(
       children: widget.orders.map((order) {
         return Container(
-          child: Text(order["items"][0]),
-          color: Colors.orange,
-          margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.orange,
+          ),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          child: Row(
+            children: [
+              Image.network(
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/640px-Image_created_with_a_mobile_phone.png"),
+              Column(
+                children: [
+                  Text("Product Name"),
+                ],
+              )
+            ],
+          ),
         );
       }).toList(),
     );
