@@ -14,8 +14,6 @@ class _OrdersState extends State<Orders> {
   List<Map<String, dynamic>> orders = [];
 
   getOrders() async {
-    Navigator.pushNamed(context, "loader");
-
     var user = FirebaseAuth.instance.currentUser!.uid;
     var order = await FirebaseFirestore.instance
         .collection("orders")
@@ -32,8 +30,6 @@ class _OrdersState extends State<Orders> {
     setState(() {
       orders = _orders;
     });
-
-    Navigator.pop(context);
   }
 
   @override
@@ -45,6 +41,12 @@ class _OrdersState extends State<Orders> {
 
   @override
   Widget build(BuildContext context) {
+    Navigator.pushNamed(context, "loader");
+    
+    if (orders.length > 0) {
+      Navigator.pop(context);
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
