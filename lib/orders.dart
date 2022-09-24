@@ -115,8 +115,9 @@ class _OrderListState extends State<OrderList> {
     return ListView(
       children: widget.orders.map((order) {
         var orderDate = order["orderDate"];
+        print(orderDate);
+        DateTime dt = (orderDate as Timestamp).toDate();
 
-        print(orderDate["year"]);
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -148,7 +149,7 @@ class _OrderListState extends State<OrderList> {
 
                   // ORDER DATE
                   Text(
-                    order["orderDate"].toString(),
+                    "$dt",
                     style: const TextStyle(fontSize: 15),
                   ),
                 ],
