@@ -41,11 +41,6 @@ class _OrdersState extends State<Orders> {
 
   @override
   Widget build(BuildContext context) {
-    Navigator.pushNamed(context, "loader");
-    
-    if (orders.length > 0) {
-      Navigator.pop(context);
-    }
 
     return Scaffold(
       backgroundColor: Colors.white,
