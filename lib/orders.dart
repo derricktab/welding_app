@@ -11,31 +11,36 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
-  var orders = ["hello"];
+  List<Map<String, dynamic>> orders = [];
 
   getOrders() async {
+    Navigator.pushNamed(context, "loader");
+
     var user = FirebaseAuth.instance.currentUser!.uid;
     var order = await FirebaseFirestore.instance
         .collection("orders")
         .where("user", isEqualTo: user)
         .get();
 
-    var _orders;
+    List<Map<String, dynamic>> _orders = [];
 
     order.docs.forEach((element) {
-      _orders = element.data();
+      _orders.add(element.data());
     });
-    print("ORDERS: $_orders");
+    print("ORDERS: ${_orders.length}");
 
     setState(() {
       orders = _orders;
     });
+
+    Navigator.pop(context);
   }
 
   @override
   void initState() {
     // TODO: implement initState
     getOrders();
+    print("INIT");
   }
 
   @override
