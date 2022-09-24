@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,6 @@ class _OrdersState extends State<Orders> {
   List<Map<String, dynamic>> orders = [];
 
   getOrders() async {
-    Navigator.pushNamed(context, "loader");
-
     var user = FirebaseAuth.instance.currentUser!.uid;
     var order = await FirebaseFirestore.instance
         .collection("orders")
@@ -27,7 +26,9 @@ class _OrdersState extends State<Orders> {
     order.docs.forEach((element) {
       _orders.add(element.data());
     });
-    print("ORDERS: ${_orders.length}");
+
+    var orderDate = _orders[0]["items"][0];
+    print(orderDate);
 
     setState(() {
       orders = _orders;
@@ -113,6 +114,9 @@ class _OrderListState extends State<OrderList> {
   Widget build(BuildContext context) {
     return ListView(
       children: widget.orders.map((order) {
+        var orderDate = order["orderDate"];
+
+        print(orderDate["year"]);
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -122,24 +126,30 @@ class _OrderListState extends State<OrderList> {
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Row(
             children: [
-              Image.asset(
-                "assets/images/b3.png",
+              CachedNetworkImage(
+                imageUrl: order["items"][0]["image"].toString(),
+                placeholder: (context, url) {
+                  return Image.asset("assets/images/placeholder.gif");
+                },
                 height: 70,
               ),
               const SizedBox(width: 50),
               Column(
-                children: const [
+                children: [
+                  // ORDER ID
                   Text(
-                    "Order ID",
-                    style: TextStyle(
+                    order["orderId"].toString(),
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Divider(height: 10),
+                  const Divider(height: 10),
+
+                  // ORDER DATE
                   Text(
-                    "Order Date",
-                    style: TextStyle(fontSize: 15),
+                    order["orderDate"].toString(),
+                    style: const TextStyle(fontSize: 15),
                   ),
                 ],
               )
