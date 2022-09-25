@@ -13,7 +13,7 @@ class FinishedProjects extends StatefulWidget {
 }
 
 class _FinishedProjectsState extends State<FinishedProjects> {
-  List finished = [];
+  List finished_projects = [];
 
   getProducts() {
     // getting the products from the database
@@ -23,11 +23,9 @@ class _FinishedProjectsState extends State<FinishedProjects> {
         .get()
         .then((value) {
       setState(() {
-        finished.add(value.data());
+        finished_projects.add(value.data());
       });
     });
-
-    print("finished getting the products");
   }
 
   @override
