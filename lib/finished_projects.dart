@@ -36,45 +36,6 @@ class _FinishedProjectsState extends State<FinishedProjects> {
 
   @override
   Widget build(BuildContext context) {
-    var finished = [
-      "assets/images/finished.jpeg",
-    ];
-    var finished1 = [
-      "assets/images/finished1.jpeg",
-    ];
-    var finished2 = [
-      "assets/images/finished2.jpeg",
-      "assets/images/finished3.jpeg",
-    ];
-    var finished3 = [
-      "assets/images/finished.jpeg",
-      "assets/images/finished1.jpeg",
-      "assets/images/finished2.jpeg"
-    ];
-
-// // IMAGE SLIDERS
-//     final List<Widget> imageSliders = imgList
-//         .map((item) => Container(
-//               margin: EdgeInsets.all(5.0),
-//               height: 600,
-//               child: ClipRRect(
-//                   borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-//                   child: Stack(
-//                     children: <Widget>[
-//                       Image.asset(
-//                         item,
-//                         fit: BoxFit.cover,
-//                         width: 1000.0,
-//                         height: 400,
-//                       ),
-//                     ],
-//                   )),
-//             ))
-//         .toList();
-
-//     int _current = 0;
-//     final CarouselController _controller = CarouselController();
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -115,55 +76,25 @@ class _FinishedProjectsState extends State<FinishedProjects> {
           const SizedBox(height: 30),
 
           // images slider
-          Container(
-            margin: const EdgeInsets.all(22),
-            height: 270,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MJImageSlider(
-                images: finished,
-                useLocalAssetImages: true,
-                duration: const Duration(seconds: 3),
-                width: 200,
-                height: 200,
-                curve: Curves.easeInOutCubicEmphasized,
-              ),
-            ),
-          ),
-
-          // images slider
-          Container(
-            margin: const EdgeInsets.all(22),
-            height: 270,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MJImageSlider(
-                images: finished1,
-                useLocalAssetImages: true,
-                duration: const Duration(seconds: 3),
-                width: 200,
-                height: 200,
-                curve: Curves.easeInOutCubicEmphasized,
-              ),
-            ),
-          ),
-
-          // images slider
-          Container(
-            margin: const EdgeInsets.all(22),
-            height: 270,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MJImageSlider(
-                images: finished3,
-                useLocalAssetImages: true,
-                duration: const Duration(seconds: 3),
-                width: 200,
-                height: 200,
-                curve: Curves.easeInOutCubicEmphasized,
-              ),
-            ),
-          ),
+          Column(
+            children: finished_projects.map((element) {
+              return Container(
+                margin: const EdgeInsets.all(22),
+                height: 270,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: MJImageSlider(
+                    images: element["images"],
+                    useLocalAssetImages: true,
+                    duration: const Duration(seconds: 3),
+                    width: 200,
+                    height: 200,
+                    curve: Curves.easeInOutCubicEmphasized,
+                  ),
+                ),
+              );
+            }).toList(),
+          )
         ],
       ),
     );
