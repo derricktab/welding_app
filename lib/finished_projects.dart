@@ -13,16 +13,21 @@ class FinishedProjects extends StatefulWidget {
 }
 
 class _FinishedProjectsState extends State<FinishedProjects> {
-  var finished;
+  List finished = [];
 
   getProducts() {
-    var prods = FirebaseFirestore.instance
+    // getting the products from the database
+    FirebaseFirestore.instance
         .collection("products")
         .doc("finished_projects")
-        .get();
-    prods.then((value) {
-      print(value.data());
+        .get()
+        .then((value) {
+      setState(() {
+        finished.add(value.data());
+      });
     });
+
+    print("finished getting the products");
   }
 
   @override
