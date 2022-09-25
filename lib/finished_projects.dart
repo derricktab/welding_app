@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 import 'package:mj_image_slider/mj_image_slider.dart';
@@ -12,6 +13,24 @@ class FinishedProjects extends StatefulWidget {
 }
 
 class _FinishedProjectsState extends State<FinishedProjects> {
+  var finished;
+
+  getProducts() {
+    var prods = FirebaseFirestore.instance
+        .collection("products")
+        .doc("finished_projects")
+        .get();
+    prods.then((value) {
+      print(value.data());
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     var finished = [

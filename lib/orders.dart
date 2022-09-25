@@ -124,37 +124,39 @@ class _OrderListState extends State<OrderList> {
             color: Color.fromARGB(255, 213, 183, 127),
           ),
           margin: const EdgeInsets.only(top: 15, right: 15, left: 15),
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-          child: Row(
-            children: [
-              CachedNetworkImage(
-                imageUrl: order["items"][0]["image"].toString(),
-                placeholder: (context, url) {
-                  return Image.asset("assets/images/placeholder.gif");
-                },
-                height: 70,
-              ),
-              const SizedBox(width: 50),
-              Column(
-                children: [
-                  // ORDER ID
-                  Text(
-                    order["orderId"].toString(),
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          child: Expanded(
+            child: Row(
+              children: [
+                CachedNetworkImage(
+                  imageUrl: order["items"][0]["image"].toString(),
+                  placeholder: (context, url) {
+                    return Image.asset("assets/images/placeholder.gif");
+                  },
+                  height: 70,
+                ),
+                const SizedBox(width: 15),
+                Column(
+                  children: [
+                    // ORDER ID
+                    Text(
+                      order["orderId"].toString(),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  const Divider(height: 10),
+                    const Divider(height: 10),
 
-                  // ORDER DATE
-                  Text(
-                    "$dt",
-                    style: const TextStyle(fontSize: 15),
-                  ),
-                ],
-              )
-            ],
+                    // ORDER DATE
+                    Text(
+                      "$dt",
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         );
       }).toList(),
