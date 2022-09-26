@@ -92,6 +92,11 @@ class Products {
           .doc("construction")
           .collection("construction")
           .snapshots();
+      constructionSnapshot.listen((snapshot) {
+        snapshot.docs.forEach((doc) {
+          construction.add(doc.data());
+        });
+      });
       return construction;
     } else if (category == "Balcony") {
 // Balcony Snapshot

@@ -26,7 +26,7 @@ class _FinishedProjectsState extends State<FinishedProjects> {
         var response = value.data();
         List projects = response!["project"];
         projects.forEach((element) {
-          print(element);
+          print("ELEMENT: $element");
         });
 
         finished_projects.add(value.data());
