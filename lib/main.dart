@@ -72,7 +72,6 @@ class _MainAppState extends State<MainApp> {
         "finished_projects": (context) => const FinishedProjects(),
         "ongoing_projects": (context) => const OngoingProjects(),
         "gallery": (context) => const MyApp(),
-        // "addProduct": (context) => const AddProduct(),
         "edit_profile": (context) => const EditProfile(),
         "school": (context) => const School(),
         "forgot_password": (context) => const ForgotPassword(),
