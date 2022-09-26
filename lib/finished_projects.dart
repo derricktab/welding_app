@@ -32,9 +32,6 @@ class _FinishedProjectsState extends State<FinishedProjects> {
         finished_projects.add(value.data());
       });
     });
-
-    print("AFTER $finished_projects");
-    print(finished_projects.runtimeType);
   }
 
   @override
@@ -45,6 +42,7 @@ class _FinishedProjectsState extends State<FinishedProjects> {
 
   @override
   Widget build(BuildContext context) {
+    print("BUILD METHOD: $finished_projects");
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
