@@ -23,9 +23,18 @@ class _FinishedProjectsState extends State<FinishedProjects> {
         .get()
         .then((value) {
       setState(() {
+        var response = value.data();
+        List projects = response!["project"];
+        projects.forEach((element) {
+          print(element);
+        });
+
         finished_projects.add(value.data());
       });
     });
+
+    print("AFTER $finished_projects");
+    print(finished_projects.runtimeType);
   }
 
   @override
