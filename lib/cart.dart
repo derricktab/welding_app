@@ -325,11 +325,17 @@ class AdditionalInfo extends StatefulWidget {
 class _AdditionalInfoState extends State<AdditionalInfo> {
   Future sendEmail(Map order) async {
     var uid = order["user"];
-    var items = order["items"];
+    List items = order["items"];
     var additionalinfo = order["additionalInfo"];
     var date = order["orderDate"];
     var user = FirebaseAuth.instance.currentUser!.displayName;
     var email = FirebaseAuth.instance.currentUser!.email;
+
+    items.forEach((element) {
+      print(element);
+    });
+    
+    print(items);
 
     var cuser = FirebaseFirestore.instance
         .collection("users")
@@ -341,7 +347,7 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
     });
 
     final url = Uri.parse(
-        'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?items=$items&additionalInfo=$additionalinfo&date=$date&user=$user&email=$email&phone=$phone');
+        'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?items=${items.toString()}&additionalInfo=$additionalinfo&date=$date&user=$user&email=$email&phone=$phone');
 
     final response = await http.get(
       url,
@@ -363,10 +369,11 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
             minLines: 3,
             maxLines: 8,
             decoration: InputDecoration(
-                hintText:
-                    "Please Tell Us any additional information you would like us to know.",
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18))),
+              hintText:
+                  "Please Tell Us any additional information you would like us to know.",
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
+            ),
             controller: _additionalInfo,
           ),
 
