@@ -1,7 +1,7 @@
 add flooring service to firebase
 update roofing description
 update underground well escavation description
-add construction servicse to firebase
+add construction services to firebase
 add finished products and ongoing projects to firebase
 implement sending the email
 
