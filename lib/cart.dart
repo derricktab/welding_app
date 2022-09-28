@@ -17,7 +17,7 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  var _cartItems = 0;
+  // var _cartItems = 0;
   var cartItems = [];
 
   var uid;
@@ -26,7 +26,7 @@ class _CartState extends State<Cart> {
   var f = NumberFormat.decimalPattern('en_us');
 
 // GET CART ITEMS
-  getCartItems() {
+  getCartItems() async {
     var user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       uid = user.uid;
@@ -41,7 +41,9 @@ class _CartState extends State<Cart> {
         .where("user", isEqualTo: uid)
         .snapshots();
 
-    cartStream.forEach((element) {
+    var _items = [];
+
+    await cartStream.forEach((element) {
       var items = [];
       for (var doc in element.docs) {
         items.add(doc.data());
@@ -53,18 +55,13 @@ class _CartState extends State<Cart> {
   }
 
   @override
-  void initState() {
-    // TODO: implement initState
-    cartItems = ["THERE"];
-    print("CART ITEMS $cartItems");
-  }
-
-  @override
   Widget build(BuildContext context) {
     getCartItems();
-    setState(() {
-      _cartItems = cartItems.length;
-    });
+    print('CART ITEMS: $cartItems');
+
+    // setState(() {
+    //   _cartItems = cartItems.length;
+    // });
 
     return Scaffold(
       appBar: AppBar(
@@ -107,7 +104,7 @@ class _CartState extends State<Cart> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 5, vertical: 2),
                         child: Text(
-                          _cartItems.toString(),
+                          cartItems.length.toString(),
                           style: const TextStyle(color: Colors.white),
                         )))
               ],
@@ -115,7 +112,7 @@ class _CartState extends State<Cart> {
           ),
         ],
       ),
-      body: _cartItems > 0
+      body: cartItems.isNotEmpty
           ? ListView(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               children: [
@@ -327,22 +324,30 @@ class AdditionalInfo extends StatefulWidget {
 
 class _AdditionalInfoState extends State<AdditionalInfo> {
   Future sendEmail(Map order) async {
+    var uid = order["user"];
     var items = order["items"];
     var additionalinfo = order["additionalInfo"];
     var date = order["orderDate"];
     var user = FirebaseAuth.instance.currentUser!.displayName;
     var email = FirebaseAuth.instance.currentUser!.email;
+    FirebaseFirestore.instance
+        .collection("users")
+        .where("uid", isEqualTo: uid)
+        .get()
+        .then((value) {
+      print(value);
+    });
 
     // SEND MAIL FUNCTION
 
-    final url = Uri.parse(
-        'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?items=$items&additionalInfo=$additionalinfo&date=$date&user=$user&email=$email');
+    // final url = Uri.parse(
+    //     'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?items=$items&additionalInfo=$additionalinfo&date=$date&user=$user&email=$email&phone=$phone');
 
-    final response = await http.get(
-      url,
-      headers: {'Content-Type': 'application/json'},
-    );
-    return response;
+    // final response = await http.get(
+    //   url,
+    //   headers: {'Content-Type': 'application/json'},
+    // );
+    // return response;
   }
 
   final GlobalKey _key = GlobalKey<FormState>();
@@ -381,16 +386,15 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
               // Getting the logged in user details.
               var user = FirebaseAuth.instance.currentUser;
               if (user != null) {
-                var email = user.email;
                 var uid = user.uid;
                 var phone = user.phoneNumber;
-                var name = user.displayName;
                 var additionalInfo = _additionalInfo.text;
                 var orderDate = DateTime.now();
 
                 var order = {
                   "user": uid,
                   "orderId": "1",
+                  "phone": phone,
                   "items": widget.cartItems,
                   "additionalInfo": additionalInfo,
                   "orderDate": orderDate
