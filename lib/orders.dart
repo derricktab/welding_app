@@ -121,7 +121,7 @@ class _OrderListState extends State<OrderList> {
         return Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Color.fromARGB(255, 213, 183, 127),
+            color: Color.fromARGB(94, 20, 250, 200),
           ),
           margin: const EdgeInsets.only(top: 15, right: 15, left: 15),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -139,19 +139,38 @@ class _OrderListState extends State<OrderList> {
                 Column(
                   children: [
                     // ORDER ID
-                    Text(
-                      order["orderId"].toString(),
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Row(
+                      children: [
+                        const Text(
+                          "ORDER ID: ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 14),
+                        ),
+                        Text(
+                          order["orderId"].toString(),
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ),
                     const Divider(height: 10),
 
                     // ORDER DATE
-                    Text(
-                      "$dt",
-                      style: const TextStyle(fontSize: 15),
+                    Row(
+                      children: [
+                        const Text(
+                          "DATE: ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          "$dt",
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
                     ),
                   ],
                 )
