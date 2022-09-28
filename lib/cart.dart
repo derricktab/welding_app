@@ -59,8 +59,6 @@ class _CartState extends State<Cart> {
       _cartItems = cartItems.length;
     });
 
-    print(cartItems);
-
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.black,
