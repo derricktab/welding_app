@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -323,26 +324,14 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
   Future sendEmail(String name, String email, String message) async {
     // SEND MAIL FUNCTION
 
-    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
-    const serviceId = 'service_c57cf3a';
-    const templateId = 'template_orqhcn9';
-    const userId = 'iFc1RnGFXTP13rkAx';
+    final url = Uri.parse(
+        'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?order=$message');
 
-    final response = await http.post(url,
-        headers: {
-          'Content-Type': 'application/json'
-        }, //This line makes sure it works for all platforms.
-        body: json.encode({
-          'service_id': serviceId,
-          'template_id': templateId,
-          'user_id': userId,
-          'template_params': {
-            'from_name': name,
-            'from_email': email,
-            'message': message
-          }
-        }));
-    return response.statusCode;
+    final response = await http.get(
+      url,
+      headers: {'Content-Type': 'application/json'},
+    );
+    return response;
   }
 
   final GlobalKey _key = GlobalKey<FormState>();
@@ -432,11 +421,12 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
 
                     // SENDING AN EMAIL TO CONFIRM ORDER
                     print("going to send email");
-                    final response = await sendEmail(
+                    Response response = await sendEmail(
                         name.toString(), email.toString(), order.toString());
+                    print(response.body);
 
                     ScaffoldMessenger.of(context).showSnackBar(
-                      response == 200
+                      response.statusCode == 200
                           ? const SnackBar(
                               content: Text('Order Placed Succesfully'),
                               backgroundColor: Colors.green)
