@@ -330,24 +330,24 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
     var date = order["orderDate"];
     var user = FirebaseAuth.instance.currentUser!.displayName;
     var email = FirebaseAuth.instance.currentUser!.email;
-    FirebaseFirestore.instance
+
+    var cuser = FirebaseFirestore.instance
         .collection("users")
         .where("uid", isEqualTo: uid)
-        .get()
-        .then((value) {
-      print(value);
+        .get();
+
+    var phone = await cuser.then((value) {
+      return value.docs.first.data()["phone"];
     });
 
-    // SEND MAIL FUNCTION
+    final url = Uri.parse(
+        'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?items=$items&additionalInfo=$additionalinfo&date=$date&user=$user&email=$email&phone=$phone');
 
-    // final url = Uri.parse(
-    //     'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?items=$items&additionalInfo=$additionalinfo&date=$date&user=$user&email=$email&phone=$phone');
-
-    // final response = await http.get(
-    //   url,
-    //   headers: {'Content-Type': 'application/json'},
-    // );
-    // return response;
+    final response = await http.get(
+      url,
+      headers: {'Content-Type': 'application/json'},
+    );
+    return response;
   }
 
   final GlobalKey _key = GlobalKey<FormState>();
