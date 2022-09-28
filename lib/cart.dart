@@ -53,6 +53,13 @@ class _CartState extends State<Cart> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    cartItems = ["THERE"];
+    print("CART ITEMS $cartItems");
+  }
+
+  @override
   Widget build(BuildContext context) {
     getCartItems();
     setState(() {
@@ -319,11 +326,17 @@ class AdditionalInfo extends StatefulWidget {
 }
 
 class _AdditionalInfoState extends State<AdditionalInfo> {
-  Future sendEmail(String name, String email, String message) async {
+  Future sendEmail(Map order) async {
+    var items = order["items"];
+    var additionalinfo = order["additionalInfo"];
+    var date = order["orderDate"];
+    var user = FirebaseAuth.instance.currentUser!.displayName;
+    var email = FirebaseAuth.instance.currentUser!.email;
+
     // SEND MAIL FUNCTION
 
     final url = Uri.parse(
-        'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?order=$message');
+        'https://us-central1-sendmail-303ec.cloudfunctions.net/sendMail?items=$items&additionalInfo=$additionalinfo&date=$date&user=$user&email=$email');
 
     final response = await http.get(
       url,
@@ -419,8 +432,7 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
 
                     // SENDING AN EMAIL TO CONFIRM ORDER
                     print("going to send email");
-                    Response response = await sendEmail(
-                        name.toString(), email.toString(), order.toString());
+                    Response response = await sendEmail(order);
                     print(response.body);
 
                     ScaffoldMessenger.of(context).showSnackBar(
