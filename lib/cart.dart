@@ -385,7 +385,7 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               backgroundColor: Colors.red,
               shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(12),),
             ),
             onPressed: () async {
               Navigator.pushNamed(context, "loader");
