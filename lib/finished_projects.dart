@@ -13,7 +13,7 @@ class FinishedProjects extends StatefulWidget {
 }
 
 class _FinishedProjectsState extends State<FinishedProjects> {
-  List finished_projects = [];
+  List<Map<String, List<String>>> finished_projects = [];
 
   getProducts() {
     // getting the products from the database
@@ -24,12 +24,11 @@ class _FinishedProjectsState extends State<FinishedProjects> {
         .then((value) {
       setState(() {
         var response = value.data();
-        List projects = response!["project"];
+        List projects = response!["projects"];
         projects.forEach((element) {
-          print("ELEMENT: $element");
+          finished_projects.add(element);
+          print("element added to finished projects");
         });
-
-        finished_projects.add(value.data());
       });
     });
   }
@@ -91,7 +90,7 @@ class _FinishedProjectsState extends State<FinishedProjects> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: MJImageSlider(
-                    images: element["images"],
+                    images: element["images"]!.toList(),
                     useLocalAssetImages: true,
                     duration: const Duration(seconds: 3),
                     width: 200,
