@@ -1,6 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery_zoom_slides/gallery_zoom_slides.dart';
 import 'package:mj_image_slider/mj_image_slider.dart';
 import 'package:welding_app/constants.dart';
 
@@ -12,51 +12,36 @@ class OngoingProjects extends StatefulWidget {
 }
 
 class _OngoingProjectsState extends State<OngoingProjects> {
+  List<Map<String, List<dynamic>>> ongoing_projects = [];
+
+  getProducts() {
+    // getting the products from the database
+    FirebaseFirestore.instance
+        .collection("products")
+        .doc("ongoing_projects")
+        .get()
+        .then((value) {
+      setState(() {
+        var response = value.data();
+        List projects = response!["projects"];
+        projects.forEach((element) {
+          print("ELEMENT: ${element.runtimeType}");
+          ongoing_projects.add(Map<String, List<dynamic>>.from(element));
+          print("element added to ongoing projects");
+        });
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var ongoing = [
-      "assets/images/ongoing3.jpeg",
-    ];
-    var ongoing1 = [
-      "assets/images/ongoing.jpeg",
-    ];
-    var ongoing2 = [
-      "assets/images/ongoing2.jpeg",
-    ];
-    var ongoing3 = [
-      "assets/images/ongoing4.jpeg",
-      "assets/images/ongoing5.jpeg",
-      "assets/images/ongoing8.jpeg",
-      "assets/images/ongoing9.jpeg",
-    ];
-    var ongoing4 = [
-      "assets/images/ongoing6.jpeg",
-      "assets/images/ongoing7.jpeg",
-    ];
-
-// // IMAGE SLIDERS
-//     final List<Widget> imageSliders = imgList
-//         .map((item) => Container(
-//               margin: EdgeInsets.all(5.0),
-//               height: 600,
-//               child: ClipRRect(
-//                   borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-//                   child: Stack(
-//                     children: <Widget>[
-//                       Image.asset(
-//                         item,
-//                         fit: BoxFit.cover,
-//                         width: 1000.0,
-//                         height: 400,
-//                       ),
-//                     ],
-//                   )),
-//             ))
-//         .toList();
-
-//     int _current = 0;
-//     final CarouselController _controller = CarouselController();
-
+    print("BUILD METHOD: $ongoing_projects");
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -75,7 +60,7 @@ class _OngoingProjectsState extends State<OngoingProjects> {
       // ONGOING PROJECTS
       body: ListView(
         children: [
-          // ONGOING projects text
+          // finished projects text
           Container(
             height: 150,
             padding: const EdgeInsets.only(top: 25),
@@ -97,89 +82,29 @@ class _OngoingProjectsState extends State<OngoingProjects> {
           const SizedBox(height: 30),
 
           // images slider
-          Container(
-            margin: const EdgeInsets.all(22),
-            height: 270,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MJImageSlider(
-                images: ongoing,
-                useLocalAssetImages: true,
-                duration: const Duration(seconds: 3),
-                width: 200,
-                height: 200,
-                curve: Curves.easeInOutCubicEmphasized,
-              ),
-            ),
-          ),
+          Column(
+            children: ongoing_projects.map((element) {
+              List<dynamic>? images = element["images"];
+              var _images = images!.toList();
 
-          // images slider
-          Container(
-            margin: const EdgeInsets.all(22),
-            height: 270,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MJImageSlider(
-                images: ongoing1,
-                useLocalAssetImages: true,
-                duration: const Duration(seconds: 3),
-                width: 200,
-                height: 200,
-                curve: Curves.easeInOutCubicEmphasized,
-              ),
-            ),
-          ),
+              print("IMAGES: $_images");
 
-          // images slider
-          Container(
-            margin: const EdgeInsets.all(22),
-            height: 270,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MJImageSlider(
-                images: ongoing2,
-                useLocalAssetImages: true,
-                duration: const Duration(seconds: 3),
-                width: 200,
-                height: 200,
-                curve: Curves.easeInOutCubicEmphasized,
-              ),
-            ),
-          ),
-
-          // images slider
-          Container(
-            margin: const EdgeInsets.all(22),
-            height: 270,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MJImageSlider(
-                images: ongoing3,
-                useLocalAssetImages: true,
-                duration: const Duration(seconds: 3),
-                width: 200,
-                height: 200,
-                curve: Curves.easeInOutCubicEmphasized,
-              ),
-            ),
-          ),
-
-          // images slider
-          Container(
-            margin: const EdgeInsets.all(22),
-            height: 270,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: MJImageSlider(
-                images: ongoing4,
-                useLocalAssetImages: true,
-                duration: const Duration(seconds: 3),
-                width: 200,
-                height: 200,
-                curve: Curves.easeInOutCubicEmphasized,
-              ),
-            ),
-          ),
+              return Container(
+                  margin: const EdgeInsets.all(22),
+                  height: 250,
+                  width: 300,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: MJImageSlider(
+                        images: List<String>.from(_images),
+                        useLocalAssetImages: false,
+                        duration: const Duration(seconds: 3),
+                        width: 200,
+                        height: 200,
+                        curve: Curves.easeInOutCubicEmphasized,
+                      )));
+            }).toList(),
+          )
         ],
       ),
     );
