@@ -99,7 +99,6 @@ class Products {
           construction.add(doc.data());
         });
       });
-      print("CONSTRUCTION ITEMS: $construction");
       
       return construction;
     } else if (category == "Balcony") {
