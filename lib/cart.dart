@@ -279,8 +279,8 @@ class CartItem extends StatelessWidget {
               placeholder: (context, url) {
                 return Image.asset("assets/images/placeholder.gif");
               },
-              width: 150,
-              height: 110,
+              width: 100,
+              height: 100,
             ),
           ),
         ),
@@ -334,7 +334,7 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
     items.forEach((element) {
       print(element);
     });
-    
+
     print(items);
 
     var cuser = FirebaseFirestore.instance
@@ -385,7 +385,8 @@ class _AdditionalInfoState extends State<AdditionalInfo> {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               backgroundColor: Colors.red,
               shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),),
+                borderRadius: BorderRadius.circular(12),
+              ),
             ),
             onPressed: () async {
               Navigator.pushNamed(context, "loader");
