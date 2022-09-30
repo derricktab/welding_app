@@ -1,2 +1,7 @@
 implement sending the email
 
+update gypsum ceilings as a service in firebase.
+
+implement search
+
+make the login button disappear if the user is logged in.

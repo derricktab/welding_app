@@ -15,7 +15,6 @@ class SingleService extends StatelessWidget {
   final _products = <String>[
     "Windows",
     "Main Doors",
-    "Gypsum Ceilings",
     "Balcony",
     "Metallic Gates",
     "Wooden Doors",
@@ -27,6 +26,7 @@ class SingleService extends StatelessWidget {
     "Painting",
     "Roofing",
     "Construction",
+    "Gypsum Ceilings",
     "Underground Well Escavation",
   ];
 
