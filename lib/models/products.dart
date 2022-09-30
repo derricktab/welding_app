@@ -20,7 +20,6 @@ class Products {
         .doc("wells")
         .collection("wells")
         .snapshots();
-    // var _wells = <Map<String, dynamic>>[];
     // wells
     wellsSnapshot.first.then((snapshot) {
       for (var doc in snapshot.docs) {
@@ -83,8 +82,8 @@ class Products {
     } else if (category == "Underground Well Escavation") {
 // Wells Snapshot
       getWells();
-      print("WELLS: ${wells}");
       return wells;
+
     } else if (category == "Construction") {
 // construction Snapshot
       var constructionSnapshot = FirebaseFirestore.instance
