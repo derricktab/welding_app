@@ -57,7 +57,6 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     getCartItems();
-    print('CART ITEMS: $cartItems');
 
     // setState(() {
     //   _cartItems = cartItems.length;

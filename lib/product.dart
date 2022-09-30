@@ -500,6 +500,7 @@ class _ProductState extends State<Product> {
                         borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () async {
+                    Navigator.pushNamed(context, "loader");
                     var user = FirebaseAuth.instance.currentUser;
                     if (user != null) {
                       var uid = user.uid;
@@ -514,6 +515,7 @@ class _ProductState extends State<Product> {
                       };
 
                       addToCart(item);
+                      Navigator.pop(context);
                     } else {
                       print("NO USER SIGNED IN");
                     }

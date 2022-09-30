@@ -1,3 +1,2 @@
-add finished products and ongoing projects to firebase
 implement sending the email
 
