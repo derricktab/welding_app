@@ -364,17 +364,24 @@ class _OurServiceState extends State<OurService> {
                         borderRadius: BorderRadius.circular(12)),
                   ),
                   onPressed: () async {
-                    var _item = {
-                      'prodId': _products[0]["prodId"],
-                      "image": _products[0]["image"][0],
-                      "prodName": _products[0]["name"],
-                      "quantity": _currentHorizontalIntValue,
-                      "price": _products[0]["price"]
-                    };
+                    var currentUser = FirebaseAuth.instance.currentUser;
+                    if (currentUser == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              "YOU ARE NOT LOGGED IN, PLEASE LOGIN IN FIRST.")));
+                      Navigator.pushNamed(context, "login");
+                    } else {
+                      var item = {
+                        'prodId': _products[0]["prodId"],
+                        "image": _products[0]["image"][0],
+                        "prodName": _products[0]["name"],
+                        "quantity": _currentHorizontalIntValue,
+                        "price": _products[0]["price"],
+                        "user": currentUser.uid,
+                      };
 
-                    addToCart(_item);
-                    // _showMyDialog();
-                    // setState(() {});
+                      addToCart(item);
+                    }
                   },
                   child: const Text(
                     "ADD TO CART",
@@ -391,4 +398,3 @@ class _OurServiceState extends State<OurService> {
     );
   }
 }
-
