@@ -14,8 +14,7 @@ class FinishedProjects extends StatefulWidget {
 }
 
 class _FinishedProjectsState extends State<FinishedProjects> {
-  // List<Map<String, List<String>>> 
-  var finished_projects = [];
+  List<Map<String, List<dynamic>>> finished_projects = [];
 
   getProducts() {
     // getting the products from the database
@@ -28,7 +27,8 @@ class _FinishedProjectsState extends State<FinishedProjects> {
         var response = value.data();
         List projects = response!["projects"];
         projects.forEach((element) {
-          finished_projects.add(element);
+          print("ELEMENT: ${element.runtimeType}");
+          finished_projects.add(Map<String, List<dynamic>>.from(element));
           print("element added to finished projects");
         });
       });
@@ -86,21 +86,25 @@ class _FinishedProjectsState extends State<FinishedProjects> {
           // images slider
           Column(
             children: finished_projects.map((element) {
-              List images = element["images"];
+              List<dynamic>? images = element["images"];
+              var _images = images!.toList();
+
+              print("IMAGES: $_images");
+
               return Container(
-                margin: const EdgeInsets.all(22),
-                height: 270,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: MJImageSlider(
-                    images: element["images"]!.toList(),
-                    useLocalAssetImages: true,
-                    duration: const Duration(seconds: 3),
-                    width: 200,
-                    height: 200,
-                    curve: Curves.easeInOutCubicEmphasized,
-                  )
-              ));
+                  margin: const EdgeInsets.all(22),
+                  height: 250,
+                  width: 300,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: MJImageSlider(
+                        images: List<String>.from(_images),
+                        useLocalAssetImages: false,
+                        duration: const Duration(seconds: 3),
+                        width: 200,
+                        height: 200,
+                        curve: Curves.easeInOutCubicEmphasized,
+                      )));
             }).toList(),
           )
         ],
