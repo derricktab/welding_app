@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ class FinishedProjects extends StatefulWidget {
 }
 
 class _FinishedProjectsState extends State<FinishedProjects> {
-  List<Map<String, List<String>>> finished_projects = [];
+  // List<Map<String, List<String>>> 
+  var finished_projects = [];
 
   getProducts() {
     // getting the products from the database
@@ -84,6 +86,7 @@ class _FinishedProjectsState extends State<FinishedProjects> {
           // images slider
           Column(
             children: finished_projects.map((element) {
+              List images = element["images"];
               return Container(
                 margin: const EdgeInsets.all(22),
                 height: 270,
@@ -96,9 +99,8 @@ class _FinishedProjectsState extends State<FinishedProjects> {
                     width: 200,
                     height: 200,
                     curve: Curves.easeInOutCubicEmphasized,
-                  ),
-                ),
-              );
+                  )
+              ));
             }).toList(),
           )
         ],
