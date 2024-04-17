@@ -244,8 +244,7 @@ class _LoginState extends State<Login> {
                             });
                           } else if (e.code == 'wrong-password') {
                             setState(() {
-                              _errorMessage =
-                                  "Wrong password provided for that user.";
+                              _errorMessage = "Wrong password provided for that user.";
                             });
                           }
                         }
@@ -376,7 +375,7 @@ class _LoginState extends State<Login> {
                     ),
                     style: ElevatedButton.styleFrom(
                       shape: const StadiumBorder(),
-                      primary: const Color.fromARGB(244, 243, 239, 239),
+                      backgroundColor: const Color.fromARGB(244, 243, 239, 239),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 5),
                     ),
